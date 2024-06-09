@@ -1,0 +1,1 @@
+export { TrendingUp } from "./TrendingUp";

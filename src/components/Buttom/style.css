@@ -1,0 +1,74 @@
+.buttom {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  justify-content: center;
+  position: relative;
+  width: 165px;
+}
+
+.buttom .frame-9 {
+  align-items: center;
+  align-self: stretch;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  height: 56px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.buttom .UP-2 {
+  color: #ffffff;
+  font-family: "SF Pro-Bold", Helvetica;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.buttom .element-payout {
+  align-self: stretch;
+  color: #ffffff;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  text-align: center;
+}
+
+.buttom .arrow-right-up {
+  height: 22px !important;
+  position: relative !important;
+  width: 22px !important;
+}
+
+.buttom .DOWN {
+  background: linear-gradient(180deg, rgb(238, 51, 84) 0%, rgb(242.89, 120.26, 103.54) 100%);
+  padding: 10px;
+}
+
+.buttom .variant-4 {
+  padding: 10px;
+}
+
+.buttom .pressing {
+  padding: 10px 10px 10px 4px;
+}
+
+.buttom .UP {
+  background: linear-gradient(180deg, rgb(26.25, 173.54, 111.68) 0%, rgb(90.89, 204.4, 88.58) 100%);
+  padding: 10px 10px 10px 4px;
+}
+
+.buttom .pressing-true {
+  background-color: #00000033;
+}

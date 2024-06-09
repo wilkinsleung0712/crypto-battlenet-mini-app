@@ -1,0 +1,29 @@
+.status {
+  align-items: center;
+  border-radius: 10px;
+  display: inline-flex;
+  height: 30px;
+  padding: 4px 10px;
+  position: relative;
+}
+
+.status .live-2 {
+  color: var(--variable-collection-grey);
+  font-family: "Inter", Helvetica;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  width: fit-content;
+}
+
+.status.next {
+  background-color: #ffffff1a;
+  gap: 10px;
+}
+
+.status.live {
+  background-color: var(--variable-collection-black);
+  gap: 2px;
+}

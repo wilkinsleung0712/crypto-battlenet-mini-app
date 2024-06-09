@@ -1,0 +1,21 @@
+.home-indicator {
+  height: 34px;
+  width: 390px;
+}
+
+.home-indicator .div-5 {
+  border-radius: 2.5px;
+  height: 5px;
+  left: 125px;
+  position: relative;
+  top: 21px;
+  width: 140px;
+}
+
+.home-indicator .on-overlay-false {
+  background-color: var(--system-ios-label-colors-primary-duplicate);
+}
+
+.home-indicator .on-overlay-true {
+  background-color: #ffffff;
+}

@@ -1,0 +1,29 @@
+.logo-bar {
+  align-items: center;
+  background-color: var(--variable-collection-black2);
+  border-radius: 20px;
+  display: flex;
+  gap: 10px;
+  height: 58.79px;
+  overflow: hidden;
+  padding: 10px 20px;
+  position: relative;
+  width: 348px;
+}
+
+.logo-bar .img {
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.logo-bar .leading-crypto-index {
+  color: var(--variable-collection-green4);
+  flex: 1;
+  font-family: "SF Pro Display-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  text-align: right;
+}

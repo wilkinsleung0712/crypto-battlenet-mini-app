@@ -1,0 +1,276 @@
+.input-bar {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  padding: 10px 0px;
+  position: relative;
+  width: 353px;
+}
+
+.input-bar .frame-5 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.input-bar .frame-6 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  padding: 0px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.input-bar .text-wrapper-2 {
+  color: #ffffff80;
+  flex: 1;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+}
+
+.input-bar .frame-7 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  position: relative;
+}
+
+.input-bar .text-wrapper-3 {
+  color: #ffffff80;
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.input-bar .none {
+  color: var(--variable-collection-white);
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.input-bar .frame-wrapper {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: #000000;
+  border: 1px solid;
+  border-radius: 10px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  padding: 10px 16px;
+  position: relative;
+  width: 100%;
+}
+
+.input-bar .frame-8 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.input-bar .cursor {
+  position: relative;
+}
+
+.input-bar .element {
+  position: relative;
+}
+
+.input-bar .text-wrapper-4 {
+  color: var(--variable-collection-TG-blue);
+  font-family: "SF Pro Display-Bold", Helvetica;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+}
+
+.input-bar .overlap-group-wrapper {
+  height: 28px;
+  position: relative;
+  width: 338px;
+}
+
+.input-bar .overlap-group {
+  height: 28px;
+  position: relative;
+}
+
+.input-bar .div-2 {
+  background-color: #404040;
+  border-radius: 100px;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+  width: 338px;
+}
+
+.input-bar .div-3 {
+  border-radius: 100px;
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: 12px;
+}
+
+.input-bar .div-4 {
+  background-color: #ffffff;
+  border-radius: 100px;
+  box-shadow: 0px 6px 13px #0000001f, 0px 0.5px 4px #0000001f;
+  height: 28px;
+  position: absolute;
+  top: 0;
+  transform: rotate(180deg);
+  width: 28px;
+}
+
+.input-bar .zero {
+  border-color: #ffffff33;
+}
+
+.input-bar .amount-0 {
+  border-color: #ffffff4c;
+}
+
+.input-bar .wrong {
+  border-color: #ffffff33;
+}
+
+.input-bar .property-1-3-zero {
+  background-color: #ffffff;
+  width: 1px;
+}
+
+.input-bar .property-1-3-amount-0 {
+  background-color: var(--variable-collection-green4);
+  width: 159px;
+}
+
+.input-bar .property-1-3-wrong {
+  background-color: var(--variable-collection-green4);
+  width: 159px;
+}
+
+.input-bar .property-1-4-zero {
+  left: 0;
+}
+
+.input-bar .property-1-4-amount-0 {
+  left: 151px;
+}
+
+.input-bar .property-1-4-wrong {
+  left: 151px;
+}
+
+.input-bar .frame-wrapper.amount-0 .frame-8 {
+  justify-content: space-between;
+}
+
+.input-bar .frame-wrapper.wrong .frame-8 {
+  justify-content: space-between;
+}
+
+.input-bar .frame-wrapper.zero .cursor {
+  background-color: var(--colorsblue-dark);
+  border-radius: 2px;
+  height: 23px;
+  width: 2px;
+}
+
+.input-bar .frame-wrapper.amount-0 .cursor {
+  color: #ffffff;
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  width: fit-content;
+}
+
+.input-bar .frame-wrapper.wrong .cursor {
+  color: var(--variable-collection-red);
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  width: fit-content;
+}
+
+.input-bar .frame-wrapper.zero .element {
+  color: #ffffff66;
+  flex: 1;
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+}
+
+.input-bar .frame-wrapper.amount-0 .element {
+  background-color: var(--colorsblue-dark);
+  border-radius: 2px;
+  height: 23px;
+  width: 2px;
+}
+
+.input-bar .frame-wrapper.wrong .element {
+  background-color: var(--colorsblue-dark);
+  border-radius: 2px;
+  height: 23px;
+  width: 2px;
+}
+
+.input-bar .frame-wrapper.zero .text-wrapper-4 {
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.input-bar .frame-wrapper.amount-0 .text-wrapper-4 {
+  flex: 1;
+  text-align: right;
+}
+
+.input-bar .frame-wrapper.wrong .text-wrapper-4 {
+  flex: 1;
+  text-align: right;
+}

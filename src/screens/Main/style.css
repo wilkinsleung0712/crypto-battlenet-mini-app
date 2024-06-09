@@ -1,0 +1,233 @@
+.main {
+  align-items: flex-start;
+  background-color: #000000;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.main .frame-10 {
+  align-items: center;
+  align-self: stretch;
+  background-color: #000000;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: scroll;
+  padding: 10px 10px 20px;
+  position: relative;
+  width: 100%;
+}
+
+.main .design-component-instance-node {
+  align-self: stretch !important;
+  flex: 0 0 auto !important;
+  width: 100% !important;
+}
+
+.main .navi-bar-instance {
+  height: 15px !important;
+  left: 12px !important;
+  top: 8px !important;
+  width: 7px !important;
+}
+
+.main .logo-bar-instance {
+  align-self: stretch !important;
+  width: 100% !important;
+}
+
+.main .dashboard {
+  align-self: stretch;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.main .frame-11 {
+  align-items: center;
+  align-self: stretch;
+  background: radial-gradient(50% 50% at 50% 50%, rgb(28, 28, 30) 0%, rgb(17.09, 17.09, 17.09) 100%);
+  border-radius: 20px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 10px;
+  position: relative;
+  width: 100%;
+}
+
+.main .frame-12 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  position: relative;
+  width: 100%;
+}
+
+.main .status-instance {
+  background-color: #00000033 !important;
+  flex: 0 0 auto !important;
+}
+
+.main .frame-13 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 6px;
+  position: relative;
+}
+
+.main .count-down {
+  -webkit-backdrop-filter: blur(10.8px) brightness(100%);
+  align-items: center;
+  backdrop-filter: blur(10.8px) brightness(100%);
+  background-color: #00000033;
+  border-radius: 10px;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  height: 30px;
+  justify-content: center;
+  overflow: hidden;
+  padding: 4px 10px;
+  position: relative;
+}
+
+.main .union-wrapper {
+  background-image: url(../../../static/img/vector-6.png);
+  background-size: 100% 100%;
+  height: 24px;
+  margin-bottom: -1px;
+  margin-top: -1px;
+  position: relative;
+  width: 24px;
+}
+
+.main .union {
+  height: 14px;
+  left: 6px;
+  position: absolute;
+  top: 5px;
+  width: 12px;
+}
+
+.main .element-m-s {
+  color: var(--variable-collection-grey);
+  font-family: "SF Pro Display-Medium", Helvetica;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.main .frame-14 {
+  align-items: center;
+  align-self: stretch;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 185.84, 27.49, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  gap: 4px;
+  position: relative;
+  width: 100%;
+}
+
+.main .img-2 {
+  height: 92px;
+  object-fit: cover;
+  position: relative;
+  width: 189px;
+}
+
+.main .text-wrapper-5 {
+  color: var(--variable-collection-yellow);
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.main .frame-15 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  position: relative;
+  width: 100%;
+}
+
+.main .buttom-instance {
+  flex: 1 !important;
+  flex-grow: 1 !important;
+  width: unset !important;
+}
+
+.main .icon-instance-node {
+  height: 22px !important;
+  position: relative !important;
+  width: 22px !important;
+}
+
+.main .frame-16 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  padding: 20px 0px;
+  position: relative;
+  width: 100%;
+}
+
+.main .social-app-logo {
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  height: 32px;
+  overflow: hidden;
+  position: relative;
+  width: 32px;
+}
+
+.main .sphere-wrapper {
+  height: 48px;
+  left: -8px;
+  position: relative;
+  top: -8px;
+  width: 48px;
+}
+
+.main .sphere-2 {
+  height: 16px !important;
+  left: 16px !important;
+  position: absolute !important;
+  top: 16px !important;
+  width: 16px !important;
+}
+
+.main .social-app-logo-2 {
+  height: 32px;
+  position: relative;
+  width: 32px;
+}
+
+.main .x-1 {
+  height: 14px !important;
+  left: 9px !important;
+  position: absolute !important;
+  top: 9px !important;
+  width: 14px !important;
+}

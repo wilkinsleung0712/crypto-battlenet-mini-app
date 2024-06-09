@@ -1,0 +1,1 @@
+export { ConfirmPredict } from "./ConfirmPredict";

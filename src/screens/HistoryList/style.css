@@ -1,0 +1,218 @@
+.history-list {
+  align-items: flex-start;
+  background-color: #1c1c1d;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.history-list .leaderboard-top {
+  align-items: center;
+  align-self: stretch;
+  background-color: #1a1a1a;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+}
+
+.history-list .frame-38 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 240px;
+  position: relative;
+  width: 100%;
+}
+
+.history-list .div-wrapper {
+  align-items: center;
+  align-self: stretch;
+  border-color: #ffffff1a;
+  border-top-style: solid;
+  border-top-width: 0.5px;
+  display: flex;
+  gap: 8px;
+  height: 75px;
+  padding: 12px 20px;
+  position: relative;
+  width: 100%;
+}
+
+.history-list .frame-39 {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  gap: 12px;
+  margin-bottom: -3px;
+  margin-top: -3px;
+  position: relative;
+}
+
+.history-list .icon-instance-node-3 {
+  height: 32px !important;
+  position: relative !important;
+  width: 32px !important;
+}
+
+.history-list .body {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+  padding: 10px 0px;
+  position: relative;
+}
+
+.history-list .frame-40 {
+  align-items: center;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.history-list .text-wrapper-10 {
+  color: #ffffff;
+  font-family: "SF Pro Display-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.history-list .text-wrapper-11 {
+  color: var(--variable-collection-green4);
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.history-list .subtitle {
+  color: #979797;
+  font-family: "SF Pro-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+  line-height: 18px;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.history-list .list-item-right {
+  align-items: flex-end;
+  display: inline-flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0px 10px 8px;
+  position: relative;
+}
+
+.history-list .frame-41 {
+  align-items: center;
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 4px;
+  justify-content: flex-end;
+  position: relative;
+}
+
+.history-list .image-2 {
+  height: 12px;
+  position: relative;
+  width: 12px;
+}
+
+.history-list .label {
+  color: var(--variable-collection-yellow);
+  font-family: "SF Pro-Semibold", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 22px;
+  margin-top: -1px;
+  position: relative;
+  text-align: right;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.history-list .arrow-right {
+  height: 12px;
+  position: relative;
+  width: 7.49px;
+}
+
+.history-list .frame-42 {
+  align-items: center;
+  align-self: stretch;
+  border-color: #ffffff1a;
+  border-top-style: solid;
+  border-top-width: 0.5px;
+  display: flex;
+  gap: 32px;
+  height: 75px;
+  padding: 12px 20px;
+  position: relative;
+  width: 100%;
+}
+
+.history-list .text-wrapper-12 {
+  color: var(--variable-collection-red);
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: normal;
+  position: relative;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.history-list .tab-bar {
+  -webkit-backdrop-filter: blur(20px) brightness(100%);
+  align-items: flex-start;
+  align-self: stretch;
+  backdrop-filter: blur(20px) brightness(100%);
+  background-blend-mode: hard-light;
+  background-color: #000000;
+  border-color: #3c3c435c;
+  border-top-style: solid;
+  border-top-width: 0.33px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: column;
+  margin-bottom: -0.33px;
+  margin-left: -0.33px;
+  margin-right: -0.33px;
+  position: relative;
+  width: 100%;
+}
+
+.history-list .home-indicator-instance {
+  position: relative !important;
+}
