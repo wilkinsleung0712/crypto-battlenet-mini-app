@@ -35,6 +35,9 @@ export const Main = () => {
         />
         <LogoBar className="logo-bar-instance" frame="/img/frame-307265693-1.svg" />
         <img className="dashboard" alt="Dashboard" src="/img/dashboard.svg" />
+
+
+        
         <div className="frame-11">
           <div className="frame-12">
             <Status className="status-instance" property1="live" text="Next #000235" />
