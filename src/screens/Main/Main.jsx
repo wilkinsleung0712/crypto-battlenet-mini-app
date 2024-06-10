@@ -9,6 +9,9 @@ import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
 import { Sphere2 } from "../../icons/Sphere2";
 import { X1 } from "../../icons/X1";
 import "./style.css";
+import { useState } from 'react';
+// import PastRound from '../../components/PastRound';
+
 export const MediaBar = {
   // need to be updated
   social_link_haya: "https://example.com/sphere2",
@@ -24,6 +27,20 @@ export const MediaBar = {
 
 
 export const Main = () => {
+  const [amount, setAmount] = useState(0);
+  const roundId = "123"; // 这里可以设置你的 roundId
+
+  const handleBet = async (direction) => {
+    const response = await fetch('/api/bet', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount, direction, roundId })
+    });
+    const data = await response.json();
+    console.log(data);
+
+
+  };
   return (
     <div className="main">
       <div className="frame-10">
@@ -35,9 +52,17 @@ export const Main = () => {
         />
         <LogoBar className="logo-bar-instance" frame="/img/frame-307265693-1.svg" />
         <img className="dashboard" alt="Dashboard" src="/img/dashboard.svg" />
+          {/* <PastRound
+        liveStatus={liveData.liveStatus}
+        lastPrice={liveData.lastPrice}
+        priceChange={liveData.priceChange}
+        lockedPrice={liveData.lockedPrice}
+        prizePool={liveData.prizePool}
+        roundId={roundId}
+        timeRemaining={liveData.timeRemaining}
+      /> */}
 
 
-        
         <div className="frame-11">
           <div className="frame-12">
             <Status className="status-instance" property1="live" text="Next #000235" />
@@ -90,7 +115,7 @@ export const Main = () => {
         </div>
         {/* media bar completed */}
 
-      </div>
+        </div>
     </div>
   );
 };
