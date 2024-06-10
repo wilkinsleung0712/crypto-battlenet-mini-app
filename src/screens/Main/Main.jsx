@@ -68,24 +68,25 @@ export const Main = () => {
             />
           </div>
         </div>
+
+
+        {/* media bar completed */}
         <div className="frame-16">
+          <a href={MediaBar.social_link_haya} className="social-app-logo-3">
+            <img alt="Social app logo" src={MediaBar.social_logo_haya} />
+          </a>
+          <a href={MediaBar.social_link_exchangehaya} className="social-app-logo-4">
+            <img alt="Social app logo" src={MediaBar.social_logo_exchangehaya} />
+          </a>
+          <a href={MediaBar.social_link_twitter} className="social-app-logo-3">
+            <img alt="Social app logo" src={MediaBar.social_logo_twitter} />
+          </a>
+          <a href={MediaBar.social_link_telegram} className="social-app-logo-4">
+            <img alt="Social app logo" src={MediaBar.social_logo_telegram} />
+          </a>
+        </div>
+        {/* media bar completed */}
 
-
-      <a href={MediaBar.social_link_haya} className="social-app-logo-3">
-      <img alt="Social app logo" src={MediaBar.social_logo_haya} />
-
-      </a>
-      <a href={MediaBar.social_link_exchangehaya} className="social-app-logo-4">
-        <img alt="Social app logo" src={MediaBar.social_logo_exchangehaya}/>
-      </a>
-      <a href={MediaBar.social_link_twitter} className="social-app-logo-3">
-        <img alt="Social app logo" src={MediaBar.social_logo_twitter} />
-      </a>
-      
-      <a href={MediaBar.social_link_telegram} className="social-app-logo-4">
-        <img alt="Social app logo" src={MediaBar.social_logo_telegram}/>
-      </a>
-    </div>
       </div>
     </div>
   );
