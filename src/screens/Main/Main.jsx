@@ -10,7 +10,7 @@ import { Sphere2 } from "../../icons/Sphere2";
 import { X1 } from "../../icons/X1";
 import "./style.css";
 import { useState } from 'react';
-// import PastRound from '../../components/PastRound';
+import { PastRound } from "../../components/PastRound";
 
 export const MediaBar = {
   // need to be updated
@@ -51,7 +51,7 @@ export const Main = () => {
           vector="/img/vector-5.svg"
         />
         <LogoBar className="logo-bar-instance" frame="/img/frame-307265693-1.svg" />
-        <img className="dashboard" alt="Dashboard" src="/img/dashboard.svg" />
+        {/* <img className="dashboard" alt="Dashboard" src="/img/dashboard.svg" /> */}
           {/* <PastRound
         liveStatus={liveData.liveStatus}
         lastPrice={liveData.lastPrice}
@@ -61,7 +61,8 @@ export const Main = () => {
         roundId={roundId}
         timeRemaining={liveData.timeRemaining}
       /> */}
-
+ <PastRound />
+     
 
         <div className="frame-11">
           <div className="frame-12">
@@ -79,7 +80,13 @@ export const Main = () => {
             <img className="img-2" alt="Img" src="/img/c615243f461cb78df5e453595f63941816b0182628704-xahsk8-2.png" />
             <div className="text-wrapper-5">1 Prize Pool: 688,888,888 Coin</div>
           </div>
-          <InputBar className="design-component-instance-node" property1="amount-0" />
+          {/* <InputBar className="design-component-instance-node" property1="amount-0" /> */}
+          <InputBar
+        className="design-component-instance-node"
+        property1="amount-0"
+        amount={amount}
+        setAmount={setAmount}
+      />
           <div className="frame-15">
             <Buttom
               className="buttom-instance"
