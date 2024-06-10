@@ -9,6 +9,19 @@ import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
 import { Sphere2 } from "../../icons/Sphere2";
 import { X1 } from "../../icons/X1";
 import "./style.css";
+export const MediaBar = {
+  // need to be updated
+  social_link_haya: "https://example.com/sphere2",
+  social_link_exchangehaya: "https://example.com/x1",
+  social_link_twitter: "https://example.com/logo26",
+  social_link_telegram: "https://example.com/logo24",
+  social_logo_haya: "/img/social-app-logo-24.svg",
+  social_logo_exchangehaya: "/img/social-app-logo-24.svg",
+  social_logo_twitter: "/img/social-app-logo-24.svg",
+  social_logo_telegram: "/img/social-app-logo-24.svg",
+
+};
+
 
 export const Main = () => {
   return (
@@ -36,7 +49,7 @@ export const Main = () => {
           </div>
           <div className="frame-14">
             <img className="img-2" alt="Img" src="/img/c615243f461cb78df5e453595f63941816b0182628704-xahsk8-2.png" />
-            <div className="text-wrapper-5">Prize Pool: 688,888,888 Coin</div>
+            <div className="text-wrapper-5">1 Prize Pool: 688,888,888 Coin</div>
           </div>
           <InputBar className="design-component-instance-node" property1="amount-0" />
           <div className="frame-15">
@@ -56,17 +69,23 @@ export const Main = () => {
           </div>
         </div>
         <div className="frame-16">
-          <div className="social-app-logo">
-            <div className="sphere-wrapper">
-              <Sphere2 className="sphere-2" />
-            </div>
-          </div>
-          <img className="social-app-logo-2" alt="Social app logo" src="/img/social-app-logo-26.svg" />
-          <div className="social-app-logo">
-            <X1 className="x-1" />
-          </div>
-          <img className="social-app-logo-2" alt="Social app logo" src="/img/social-app-logo-24.svg" />
-        </div>
+
+
+      <a href={MediaBar.social_link_haya} className="social-app-logo-3">
+      <img alt="Social app logo" src={MediaBar.social_logo_haya} />
+
+      </a>
+      <a href={MediaBar.social_link_exchangehaya} className="social-app-logo-4">
+        <img alt="Social app logo" src={MediaBar.social_logo_exchangehaya}/>
+      </a>
+      <a href={MediaBar.social_link_twitter} className="social-app-logo-3">
+        <img alt="Social app logo" src={MediaBar.social_logo_twitter} />
+      </a>
+      
+      <a href={MediaBar.social_link_telegram} className="social-app-logo-4">
+        <img alt="Social app logo" src={MediaBar.social_logo_telegram}/>
+      </a>
+    </div>
       </div>
     </div>
   );
