@@ -61,8 +61,15 @@ export const Main = () => {
         roundId={roundId}
         timeRemaining={liveData.timeRemaining}
       /> */}
- <PastRound />
-     
+<PastRound
+        live={true}
+        lastPrice="$104.2207"
+        priceChange="+$0.0934"
+        lockedPrice="$104.2207"
+        prizePool="0,000,000,000"
+        roundId={roundId}
+        timeLeft="4m30s"
+      />     
 
         <div className="frame-11">
           <div className="frame-12">
