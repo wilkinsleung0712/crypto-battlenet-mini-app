@@ -1,0 +1,88 @@
+.history-item {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 20px;
+  border-top: 0.5px solid #ffffff1a;
+}
+
+.history-item .icon-instance-node-3 {
+  height: 32px;
+  width: 32px;
+}
+
+.history-item .body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.history-item .frame-40 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.history-item .text-wrapper-10 {
+  color: #ffffff;
+  font-family: "SF Pro Display-Bold", Helvetica;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.history-item .text-wrapper-11 {
+  color: var(--variable-collection-green4);
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.history-item .text-wrapper-12 {
+  color: var(--variable-collection-red);
+  font-family: "SF Pro Display-Semibold", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.history-item .subtitle {
+  color: #979797;
+  font-family: "SF Pro-Regular", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.15px;
+}
+
+.history-item .list-item-right {
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 8px;
+}
+
+.history-item .frame-41 {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.history-item .image-2 {
+  height: 12px;
+  width: 12px;
+}
+
+.history-item .label {
+  color: var(--variable-collection-yellow);
+  font-family: "SF Pro-Semibold", Helvetica;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: right;
+}
+
+.history-item .arrow-right {
+  height: 12px;
+  width: 7.49px;
+}
