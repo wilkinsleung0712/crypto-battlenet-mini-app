@@ -7,9 +7,12 @@ import { PurchaseConfirm } from "./screens/PurchaseConfirm";
 import { ConfirmPredictUp } from "./screens/ConfirmPredictUp";
 import { ConfirmPredictDown } from "./screens/ConfirmPredictDown";
 import { ConfirmPredictSuccess } from "./screens/ConfirmPredictSuccess";
+import { RewardWin } from "./screens/RewardWin";
+import { RewardLose } from "./screens/RewardLose";
+
 
 import { Lose } from "./screens/Lose";
-import { Win } from "./screens/Win";
+// import { Win } from "./screens/Win";
 
 const router = createBrowserRouter([
   {
@@ -45,15 +48,22 @@ const router = createBrowserRouter([
     path: "/confirm-predictsuccess",
     element: <ConfirmPredictSuccess/>,
   },
-  
+  {
+    path: "/RewardWin",
+    element: <RewardWin />,
+  },
+  {
+    path: "/RewardLose",
+    element: <RewardLose/>,
+  },
   {
     path: "/lose",
     element: <Lose />,
   },
-  {
-    path: "/win",
-    element: <Win />,
-  },
+  // {
+  //   path: "/win",
+  //   element: <Win />,
+  // },
 ]);
 
 export const App = () => {
