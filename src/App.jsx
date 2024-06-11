@@ -22,10 +22,7 @@ const router = createBrowserRouter([
     path: "/purchase",
     element: <Purchase />,
   },
-  {
-    path: "/main-2",
-    element: <MainScreen />,
-  },
+  
   {
     path: "/history-list",
     element: <HistoryList />,
