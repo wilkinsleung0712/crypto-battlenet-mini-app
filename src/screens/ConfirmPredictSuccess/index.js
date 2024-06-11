@@ -1,0 +1,1 @@
+export { ConfirmPredictSuccess } from "./ConfirmPredictSuccess";

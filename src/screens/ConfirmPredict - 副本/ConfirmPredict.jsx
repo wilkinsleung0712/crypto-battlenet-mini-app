@@ -37,8 +37,8 @@ export const ConfirmPredict = () => {
         <CloseOne1 className="close-one-9" />
       </div>
       <div className="frame-48">
-        <CheckOne className="icon-instance-node-4" />
-        <div className="text-wrapper-21">Success</div>
+      <CheckOne1 className="check-one" />
+      <div className="text-wrapper-21">Success</div>
         <div className="frame-49">
           <p className="p">Bid 00000 COIN to predict UP! for 0.00X payout</p>
         </div>

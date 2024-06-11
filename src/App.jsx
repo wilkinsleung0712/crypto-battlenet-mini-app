@@ -2,10 +2,12 @@ import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Main } from "./screens/Main";
 import { Purchase } from "./screens/Purchase";
-import { MainScreen } from "./screens/MainScreen";
 import { HistoryList } from "./screens/HistoryList";
 import { PurchaseConfirm } from "./screens/PurchaseConfirm";
-import { ConfirmPredict } from "./screens/ConfirmPredict";
+import { ConfirmPredictUp } from "./screens/ConfirmPredictUp";
+import { ConfirmPredictDown } from "./screens/ConfirmPredictDown";
+import { ConfirmPredictSuccess } from "./screens/ConfirmPredictSuccess";
+
 import { Lose } from "./screens/Lose";
 import { Win } from "./screens/Win";
 
@@ -32,9 +34,18 @@ const router = createBrowserRouter([
     element: <PurchaseConfirm />,
   },
   {
-    path: "/confirm-predict-1",
-    element: <ConfirmPredict />,
+    path: "/confirm-predictup",
+    element: <ConfirmPredictUp/>,
   },
+  {
+    path: "/confirm-predictdown",
+    element: <ConfirmPredictDown/>,
+  },
+  {
+    path: "/confirm-predictsuccess",
+    element: <ConfirmPredictSuccess/>,
+  },
+  
   {
     path: "/lose",
     element: <Lose />,
