@@ -9,6 +9,7 @@ import { ConfirmPredictDown } from "./screens/ConfirmPredictDown";
 import { ConfirmPredictSuccess } from "./screens/ConfirmPredictSuccess";
 import { RewardWin } from "./screens/RewardWin";
 import { RewardLose } from "./screens/RewardLose";
+import { ResultWin } from "./screens/ResultWin";
 
 
 import { Lose } from "./screens/Lose";
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
   {
     path: "/RewardLose",
     element: <RewardLose/>,
+  },
+  {
+    path: "/ResultWin",
+    element: <ResultWin />,
   },
   {
     path: "/lose",

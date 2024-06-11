@@ -1,0 +1,1 @@
+export { ResultWin } from "./ResultWin";
