@@ -4,11 +4,10 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  padding: 20px  16px;
+  padding: 20px 16px;
   min-height: 100vh;
   position: relative;
 }
-
 
 .purchase .frame-17 {
   align-items: center;

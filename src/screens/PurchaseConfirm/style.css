@@ -1,4 +1,29 @@
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.purchase-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 1000;
+}
+
 .purchase-confirm {
+  animation: slideUp 0.3s ease-out;
   align-items: center;
   background-color: #1c1c1d;
   display: flex;
@@ -6,6 +31,9 @@
   gap: 20px;
   padding: 20px 10px 60px;
   position: relative;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 10px 10px 0 0;
 }
 
 .purchase-confirm .frame-43 {
