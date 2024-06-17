@@ -1,0 +1,586 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Crypto Battle Net API",
+    "description": "Crypto Battle Net Information",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/users/{userId}": {
+      "get": {
+        "tags": [
+          "user-api"
+        ],
+        "operationId": "getUserById",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "user-api"
+        ],
+        "operationId": "updateUser",
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/register": {
+      "post": {
+        "tags": [
+          "user-api"
+        ],
+        "operationId": "registerUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contests/{contestId}/rounds/{roundId}/bets": {
+      "post": {
+        "tags": [
+          "bet-api"
+        ],
+        "operationId": "placeBet",
+        "parameters": [
+          {
+            "name": "contestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "roundId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BetRegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/contests/register": {
+      "post": {
+        "tags": [
+          "contest-controller"
+        ],
+        "operationId": "registerForContest",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ContestRegisterRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contest"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/contests/{contestId}": {
+      "get": {
+        "tags": [
+          "contest-controller"
+        ],
+        "operationId": "getContestById",
+        "parameters": [
+          {
+            "name": "contestId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contest"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UpdateUserRequest": {
+        "required": [
+          "points"
+        ],
+        "type": "object",
+        "properties": {
+          "points": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "Bet": {
+        "required": [
+          "betAmount",
+          "createdAt",
+          "option",
+          "round",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "round": {
+            "$ref": "#/components/schemas/Round"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "betAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "option": {
+            "$ref": "#/components/schemas/Option"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Contest": {
+        "required": [
+          "content",
+          "createdAt",
+          "createdBy",
+          "maxBetAmount",
+          "minBetAmount",
+          "options",
+          "rounds"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "minBetAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maxBetAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "createdBy": {
+            "$ref": "#/components/schemas/User"
+          },
+          "rounds": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Round"
+            }
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Option"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Option": {
+        "required": [
+          "bets",
+          "createdAt",
+          "optionText"
+        ],
+        "type": "object",
+        "properties": {
+          "optionText": {
+            "type": "string"
+          },
+          "bets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bet"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Round": {
+        "required": [
+          "bets",
+          "contest",
+          "createdAt",
+          "endDateTime",
+          "startDateTime",
+          "startPrice",
+          "status",
+          "transactions"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "OPEN",
+              "STARTED",
+              "CLOSED"
+            ]
+          },
+          "contest": {
+            "$ref": "#/components/schemas/Contest"
+          },
+          "bets": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Bet"
+            }
+          },
+          "startPrice": {
+            "type": "number",
+            "format": "float"
+          },
+          "endPrice": {
+            "type": "number",
+            "format": "float"
+          },
+          "startDateTime": {
+            "type": "string"
+          },
+          "endDateTime": {
+            "type": "string"
+          },
+          "priceFactor": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "winner": {
+            "$ref": "#/components/schemas/Option"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Transaction": {
+        "required": [
+          "amount",
+          "createdAt",
+          "moneyType",
+          "round",
+          "transactionType",
+          "user"
+        ],
+        "type": "object",
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "amount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "transactionType": {
+            "type": "string",
+            "enum": [
+              "POINT"
+            ]
+          },
+          "moneyType": {
+            "type": "string",
+            "enum": [
+              "MONEY_OUT",
+              "MONEY_IN"
+            ]
+          },
+          "round": {
+            "$ref": "#/components/schemas/Round"
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "User": {
+        "required": [
+          "address",
+          "createdAt",
+          "metadata",
+          "points",
+          "telegramId",
+          "transactions",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string"
+          },
+          "telegramId": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "referralCode": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "string"
+          },
+          "points": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "transactions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          },
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "UserRegisterRequest": {
+        "required": [
+          "telegramId",
+          "tonConnectWalletAddress",
+          "username"
+        ],
+        "type": "object",
+        "properties": {
+          "tonConnectWalletAddress": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "telegramId": {
+            "type": "string"
+          }
+        }
+      },
+      "BetRegisterRequest": {
+        "required": [
+          "amount",
+          "optionId",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "optionId": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ContestRegisterRequest": {
+        "required": [
+          "content",
+          "contestEndDateTime",
+          "contestStartDateTime",
+          "maxBetAmount",
+          "minBetAmount",
+          "options",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string"
+          },
+          "minBetAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "maxBetAmount": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "contestStartDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "contestEndDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
