@@ -39,14 +39,16 @@ export const Main = () => {
   };
 
   return (
-      <div className="main">
+      <div className="main w-full grid gap-2.5">
         <NaviBar
             className="design-component-instance-node"
             group="/img/group-48095409-1.png"
             groupClassName="navi-bar-instance"
             vector="/img/vector-5.svg"
         />
-        <LogoBar className="logo-bar-instance" frame="/img/frame-307265693-1.svg" />
+        <div className='px-2.5'>
+          <LogoBar className="logo-bar-instance" frame="/img/frame-307265693-1.svg" />
+        </div>
         {/*<User />  // 添加 User*/}
         {/*<Contest />  // 添加 Contest*/}
         <PastRound
@@ -64,7 +66,7 @@ export const Main = () => {
             amount={amount}
             setAmount={setAmount}
         />
-        <div className="frame-15">
+        <div className="frame-15 px-2.5">
           <Buttom
               className="buttom-instance"
               icon={<ArrowRightUp3 className="icon-instance-node" />}
@@ -73,10 +75,10 @@ export const Main = () => {
               to="/confirm-predict-1"
           />
           <Buttom
-              className="buttom-instance"
-              icon={<ArrowRightDown className="icon-instance-node" />}
-              pressing={false}
-              property1="DOWN"
+            className="buttom-instance"
+            icon={<ArrowRightDown className="icon-instance-node" />}
+            pressing={false}
+            property1="DOWN"
           />
         </div>
         <div className="frame-16">
