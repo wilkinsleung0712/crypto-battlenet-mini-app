@@ -2,7 +2,6 @@
   background: url('https://cdn.animaapp.com/projects/66641dbc59e6661189d283f3/releases/6666d488bd5d11b47331080a/img/dashboard.svg') no-repeat center center;
   background-size: cover;
   border-radius: 15px;
-  padding: 20px;
   color: white;
   width: 100%;
 }
@@ -11,27 +10,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-
-.status {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.live-status {
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.time-left {
-  font-size: 14px;
-}
-
-.price-info {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
 }
 
 .last-price,

@@ -16,11 +16,10 @@ export const Buttom = ({ property1, pressing, className, icon = <ArrowRightUp1 c
         {icon}
         <div className="UP-2">
           {["UP", "pressing"].includes(property1) && <>UP</>}
-
           {["DOWN", "variant-4"].includes(property1) && <>DOWN</>}
         </div>
       </Link>
-      <div className="element-payout">0.00X&nbsp;&nbsp;Payout</div>
+      <div className="element-payout font-bold underline">0.00X&nbsp;&nbsp;Payout</div>
     </div>
   );
 };

@@ -49,7 +49,7 @@
 
 .navi-bar .text-wrapper {
   color: #ffffff;
-  font-family: "SF Pro-Medium", Helvetica;
+  font-family: var(--font-family-sf_pro-medium);
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.15px;

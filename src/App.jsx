@@ -10,8 +10,6 @@ import { ConfirmPredictSuccess } from "./screens/ConfirmPredictSuccess";
 import { RewardWin } from "./screens/RewardWin";
 import { RewardLose } from "./screens/RewardLose";
 import { ResultWin } from "./screens/ResultWin";
-
-
 import { Lose } from "./screens/Lose";
 // import { Win } from "./screens/Win";
 

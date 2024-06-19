@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { TrendingUp } from "../../icons/TrendingUp";
 import "./PastRound.style.css";
 
 export const PastRound = ({ contestId }) => {
@@ -88,27 +89,37 @@ export const PastRound = ({ contestId }) => {
     };
 
     return (
-        <div className="past-round">
+        <div className="w-full px-2.5">
+            <div className="past-round p-2.5">
             <div className="header">
-                <div className="status">
-                    <span className="live-status">{contest.live ? "Live" : "Not Live"} #{contest.roundId}</span>
-                    <span className="time-left">{formatTimeLeft()}</span>
+                <div className="flex justify-between items-center rounded-[10px]">
+                    <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">{contest.live ? "Live" : "Not Live"} #{contest.roundId}</span>
+                    <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">{formatTimeLeft()}</span>
                 </div>
-                <div className="price-info">
-                    <div className="last-price">
-                        <span>H2O Last Price</span>
-                        <span className="price">{contest.lastPrice}</span>
-                        <span className="change">{contest.priceChange}</span>
+                <div className="flex flex-col gap-6">
+                    <div className='flex items-center justify-between'>
+                        <div className="flex flex-col last-price items-start gap-1">
+                            <span className='text-xs text-grey'>H2O Last Price</span>
+                            <div className='flex items-center gap-2'>
+                                <span className="font-bold text-xl">{contest.lastPrice}</span>
+                                <span className="change font-semibold">{contest.priceChange}</span>
+                            </div>
+                        </div>
+                        <TrendingUp />
                     </div>
+                    
+                    <div className='flex flex-col gap-2'>
                     <div className="locked-price">
-                        <span>Locked Price</span>
-                        <span className="price">{contest.lockedPrice}</span>
+                        <span className='text-xs text-grey'>Locked Price</span>
+                        <span className="price font-semibold">{contest.lockedPrice}</span>
                     </div>
                     <div className="prize-pool">
-                        <span>Prize Pool</span>
-                        <span className="prize">{contest.prizePool}</span>
+                        <span className='text-xs text-grey'>Prize Pool</span>
+                        <span className="prize font-semibold">{contest.prizePool}</span>
+                    </div>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

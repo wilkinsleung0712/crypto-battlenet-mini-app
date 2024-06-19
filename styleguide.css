@@ -57,6 +57,15 @@
   --variable-collection-TG-blue: rgba(0, 122, 255, 1);
   --variable-collection-white: rgba(255, 255, 255, 1);
   --variable-collection-yellow: rgba(255, 191, 27, 1);
+  --font-family-inter: "Inter", Helvetica;
+  --font-family-sf_pro-bold: "SF Pro-Bold", Helvetica;
+  --font-family-sf_pro-medium: "SF Pro-Medium", Helvetica;
+  --font-family-sf_pro-regular: "SF Pro-Regular", Helvetica;
+  --font-family-sf_pro-semibold: "SF Pro-Semibold", Helvetica;
+  --font-family-sf_pro_display-bold: "SF Pro Display-Bold", Helvetica;
+  --font-family-sf_pro_display-medium: "SF Pro Display-Medium", Helvetica;
+  --font-family-sf_pro_display-regular: "SF Pro Display-Regular", Helvetica;
+  --font-family-sf_pro_display-semibold: "SF Pro Display-Semibold", Helvetica;
 }
 
 /*
