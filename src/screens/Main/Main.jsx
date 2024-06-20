@@ -6,12 +6,13 @@ import { NaviBar } from "../../components/NaviBar";
 import { Status } from "../../components/Status";
 import { ArrowRightDown } from "../../icons/ArrowRightDown";
 import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
-import { Sphere2 } from "../../icons/Sphere2";
+import { SocialMedia1, SocialMedia2, SocialMedia3, SocialMedia4 } from "../../icons/SocialMedia";
 import { X1 } from "../../icons/X1";
 import "./style.css";
 import { PastRound } from "../../components/PastRound";
 import { User } from "../../components/User"; // 引入 User
 import { Contest } from "../../components/Contest"; // 引入 Contest
+import { PrizePool } from "../../components/PrizePool/PrizePool";
 
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
@@ -25,7 +26,6 @@ export const MediaBar = {
 };
 
 export const Main = () => {
-  const [amount, setAmount] = useState(0);
   const roundId = "123"; // 这里可以设置你的 roundId
 
   const handleBethandleBet = async (direction) => {
@@ -48,7 +48,6 @@ export const Main = () => {
           vector="/img/vector-5.svg"
         />
       </div>
-
       <div className="px-2.5">
         <LogoBar
           className="logo-bar-instance"
@@ -66,12 +65,7 @@ export const Main = () => {
         roundId={roundId}
         timeLeft="4m30s"
       />
-      <InputBar
-        className="design-component-instance-node"
-        property1="amount-0"
-        amount={amount}
-        setAmount={setAmount}
-      />
+      <PrizePool />
       <div className="frame-15 px-2.5">
         <Buttom
           className="buttom-instance"
@@ -89,20 +83,20 @@ export const Main = () => {
       </div>
       <div className="frame-16">
         {/* Media links */}
-        <a href={MediaBar.social_link_haya} className="social-app-logo-3">
-          <img alt="Social app logo" src={MediaBar.social_logo_haya} />
+        <a href={MediaBar.social_link_haya} className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center">
+          <SocialMedia1 />
         </a>
         <a
           href={MediaBar.social_link_exchangehaya}
-          className="social-app-logo-4"
+          className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center"
         >
-          <img alt="Social app logo" src={MediaBar.social_logo_exchangehaya} />
+        <SocialMedia2 />
         </a>
-        <a href={MediaBar.social_link_twitter} className="social-app-logo-3">
-          <img alt="Social app logo" src={MediaBar.social_logo_twitter} />
+        <a href={MediaBar.social_link_twitter} className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center">
+          <SocialMedia3 />
         </a>
-        <a href={MediaBar.social_link_telegram} className="social-app-logo-4">
-          <img alt="Social app logo" src={MediaBar.social_logo_telegram} />
+        <a href={MediaBar.social_link_telegram} className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center">
+          <SocialMedia4 />
         </a>
       </div>
     </div>
