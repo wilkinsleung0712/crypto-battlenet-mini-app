@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import React, { useState, useEffect } from "react";
 import { Plus2 } from "../../icons/Plus2";
+import { QuestionIcon } from '../../icons/Question';
 import { Link } from "react-router-dom";
 import "./style.css";
 
 export const NaviBar = ({
                             className,
-                            groupClassName,
-                            group = "/img/group-48095409.png",
                             vector = "/img/vector-4.svg",
                         }) => {
     const [user, setUser] = useState({ username: 'Dummy User', points: 3559 });
@@ -45,13 +44,11 @@ export const NaviBar = ({
                     </Link>
                 </div>
             </div>
-            <div className="frame-3">
-                <Link to="/some-page" className="frame-4">
-                    <div className="ellipse" />
-                    <img className={`group ${groupClassName}`} alt="Group" src={group} />
+            <div className="flex gap-2 relative">
+                <Link to="/some-page" className="rounded-[99px] bg-[#1c1c1e] relative w-[30px] h-[30px] flex items-center justify-center">
+                    <QuestionIcon />
                 </Link>
-                <Link to="/help" className="frame-4">
-                    <div className="ellipse" />
+                <Link to="/help" className="rounded-[99px] bg-[#1c1c1e] relative w-[30px] h-[30px] flex items-center justify-center">
                     <img className="vector" alt="Vector" src={vector} />
                 </Link>
             </div>
@@ -61,7 +58,5 @@ export const NaviBar = ({
 
 NaviBar.propTypes = {
     className: PropTypes.string,
-    groupClassName: PropTypes.string,
-    group: PropTypes.string,
     vector: PropTypes.string,
 };

@@ -1,72 +1,50 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 import "./style.css";
+import {Slider} from '../Slider';
 
-export const InputBar = ({ property1, className, amount, setAmount }) => {
-  const handleMaxClick = () => {
-    setAmount(1000000); // Replace with your MAX value
-  };
+export const InputBar = ({ property1, amount, setAmount }) => {
+  const max = 10000;
 
   const handleInputChange = (e) => {
     setAmount(e.target.value);
   };
 
-  const handleSliderChange = (e) => {
-    setAmount(e.target.value);
+  const handleSliderChange = (values) => {
+    setAmount(values?.[0] ?? 50);
   };
 
-  return (
-    <div className={`input-bar ${className}`}>
-      <div className="frame-5">
-        <div className="frame-6">
-          <div className="text-wrapper-2">Enter an amount</div>
-          <div className="frame-7">
-            <div className="text-wrapper-3">My Prediction:</div>
-            <div className="none">
-              {property1 === "zero" && <>None</>}
+  const handleMaxClick = () => {
+    handleSliderChange([max]); // Replace with your MAX value
+  };
 
+  useEffect(() => {
+    console.log('now the amount is: ', amount)
+  }, [amount]);
+
+  return (
+    <div className={'w-full flex flex-col gap-2 justify-center relative items-start'}>
+      <div className="w-full flex relative flex-col gap-2">
+        <section className="w-full flex items-center justify-between px-2.5">
+          <div className="text-grey text-xs">Enter an amount</div>
+          <div className="flex items-center gap-1">
+            <span className="text-xs text-grey">My Prediction:</span>
+            <div className="text-xs text-white font-medium">
+              {property1 === "zero" && <>None</>}
               {["amount-0", "wrong"].includes(property1) && <>1000 UP</>}
             </div>
           </div>
-        </div>
-        <div className={`frame-wrapper ${property1}`}>
-          <div className="frame-8">
-            <input
-              type="number"
-              value={amount}
-              onChange={handleInputChange}
-              className="cursor"
-            />
-            <div className="text-wrapper-4" onClick={handleMaxClick}>MAX</div>
-          </div>
+        </section>
+        <div className="flex h-[50px] w-full items-center rounded-[10px] border border-solid border-white/30 bg-black focus-within:border-blue">
+          <input
+            type="number"
+            value={amount}
+            onChange={handleInputChange}
+            className="h-full w-full rounded bg-transparent font-bold px-3.5 text-xl text-white outline-none transition-colors duration-150 ease-linear disabled:cursor-not-allowed disabled:text-grey disabled:placeholder:text-grey border-transparent"
+          />
+          <div className="font-regular font-semibold text-sm text-blue inline-flex h-full shrink-0 select-none items-center justify-center bg-grey-light px-3.5 rounded-r" onClick={handleMaxClick}>MAX</div>
         </div>
       </div>
-      <div className="overlap-group-wrapper">
-        <div className="overlap-group">
-          <div className="div-2" />
-          <div className="slider-wrapper">
-            <input
-              type="range"
-              min="0"
-              max="1000000"
-              value={amount}
-              onChange={handleSliderChange}
-              className={`div-3 property-1-3-${property1}`}
-            />
-            <div
-              className="slider-track"
-              style={{ width: `${(amount / 1000000) * 100}%` }}
-            />
-          </div>
-          <div className={`div-4 property-1-4-${property1}`} />
-        </div>
-      </div>
+      <Slider max={max} onValueChange={handleSliderChange} value={amount} />
     </div>
   );
-};
-
-InputBar.propTypes = {
-  property1: PropTypes.oneOf(["zero", "wrong", "amount-0"]),
-  amount: PropTypes.number.isRequired,
-  setAmount: PropTypes.func.isRequired,
 };

@@ -111,11 +111,11 @@ export const PastRound = ({ contestId }) => {
                     <div className='flex flex-col gap-2'>
                     <div className="locked-price">
                         <span className='text-xs text-grey'>Locked Price</span>
-                        <span className="price font-semibold">{contest.lockedPrice}</span>
+                        <span className="text-base font-semibold">{contest.lockedPrice}</span>
                     </div>
                     <div className="prize-pool">
                         <span className='text-xs text-grey'>Prize Pool</span>
-                        <span className="prize font-semibold">{contest.prizePool}</span>
+                        <span className="text-base font-semibold">{contest.prizePool}</span>
                     </div>
                     </div>
                 </div>
