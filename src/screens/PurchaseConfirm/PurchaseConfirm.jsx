@@ -4,7 +4,12 @@ import { CloseOne1 } from "../../icons/CloseOne1";
 import { Ton1 } from "../../icons/Ton1";
 import "./style.css";
 
-export const PurchaseConfirm = ({ onClose, tonAmount, onWalletClick, onTonConnectClick }) => {
+export const PurchaseConfirm = ({
+  onClose,
+  tonAmount,
+  onWalletClick,
+  onTonConnectClick,
+}) => {
   return (
     <div className="purchase-confirm-overlay" onClick={onClose}>
       <div className="purchase-confirm" onClick={(e) => e.stopPropagation()}>

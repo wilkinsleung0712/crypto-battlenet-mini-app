@@ -15,7 +15,9 @@ export const HistoryItem = ({ isUp, price, change, date, coinAmount }) => {
       <div className="body">
         <div className="frame-40">
           <div className="text-wrapper-10">{price}</div>
-          <div className={isUp ? "text-wrapper-11" : "text-wrapper-12"}>{change}</div>
+          <div className={isUp ? "text-wrapper-11" : "text-wrapper-12"}>
+            {change}
+          </div>
         </div>
         <div className="subtitle">{date}</div>
       </div>
@@ -25,7 +27,11 @@ export const HistoryItem = ({ isUp, price, change, date, coinAmount }) => {
           <div className="label">{coinAmount}</div>
         </div>
       </div>
-      <img className="arrow-right" alt="Arrow right" src="/img/arrow-right.png" />
+      <img
+        className="arrow-right"
+        alt="Arrow right"
+        src="/img/arrow-right.png"
+      />
     </div>
   );
 };

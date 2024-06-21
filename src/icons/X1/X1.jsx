@@ -26,7 +26,13 @@ export const X1 = ({ className }) => {
       </g>
       <defs className="defs">
         <clipPath className="clip-path" id="clip0_1_459">
-          <rect className="rect" fill="white" height="14" transform="translate(0.5 0.791382)" width="14" />
+          <rect
+            className="rect"
+            fill="white"
+            height="14"
+            transform="translate(0.5 0.791382)"
+            width="14"
+          />
         </clipPath>
       </defs>
     </svg>

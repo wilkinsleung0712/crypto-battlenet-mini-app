@@ -43,7 +43,11 @@
 .main .frame-11 {
   align-items: center;
   align-self: stretch;
-  background: radial-gradient(50% 50% at 50% 50%, rgb(28, 28, 30) 0%, rgb(17.09, 17.09, 17.09) 100%);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgb(28, 28, 30) 0%,
+    rgb(17.09, 17.09, 17.09) 100%
+  );
   border-radius: 20px;
   display: flex;
   flex: 0 0 auto;
@@ -126,7 +130,11 @@
 .main .frame-14 {
   align-items: center;
   align-self: stretch;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 185.84, 27.49, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+  background: radial-gradient(
+    50% 50% at 50% 50%,
+    rgba(255, 185.84, 27.49, 0.2) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
   display: flex;
   flex: 0 0 auto;
   flex-direction: column;

@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     path: "/purchase",
     element: <Purchase />,
   },
-  
+
   {
     path: "/history-list",
     element: <HistoryList />,
@@ -37,23 +37,23 @@ const router = createBrowserRouter([
   },
   {
     path: "/confirm-predictup",
-    element: <ConfirmPredictUp/>,
+    element: <ConfirmPredictUp />,
   },
   {
     path: "/confirm-predictdown",
-    element: <ConfirmPredictDown/>,
+    element: <ConfirmPredictDown />,
   },
   {
     path: "/confirm-predictsuccess",
-    element: <ConfirmPredictSuccess/>,
+    element: <ConfirmPredictSuccess />,
   },
   {
-    path: "/RewardWin",
+    path: "/reward-win",
     element: <RewardWin />,
   },
   {
-    path: "/RewardLose",
-    element: <RewardLose/>,
+    path: "/reward-lose",
+    element: <RewardLose />,
   },
   {
     path: "/ResultWin",

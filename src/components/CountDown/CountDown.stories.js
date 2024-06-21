@@ -16,6 +16,7 @@ export const Default = {
     property1: "sixty-s",
     className: {},
     frameClassName: {},
-    union: "https://cdn.animaapp.com/projects/66641dbc59e6661189d283f3/releases/66641de4dc5f7759f1404660/img/union.svg",
+    union:
+      "https://cdn.animaapp.com/projects/66641dbc59e6661189d283f3/releases/66641de4dc5f7759f1404660/img/union.svg",
   },
 };

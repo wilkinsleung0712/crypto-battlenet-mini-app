@@ -3,8 +3,7 @@ import { CheckOne } from "../../icons/CheckOne";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 
-
-export const ConfirmPredictSuccess = ({ onClose }) => {
+export const ConfirmPredictSuccess = () => {
   const [showToast, setShowToast] = useState(false);
 
   const handleConfirm = () => {
@@ -14,15 +13,20 @@ export const ConfirmPredictSuccess = ({ onClose }) => {
       onClose();
     }, 2000);
   };
+
+  const onClose = () => {
+    window.location.href = "/"; // Navigate to the main page
+  };
+
   return (
-      <div className="confirm-predict">
-        <div className="div-6">
+    <div className="confirm-predict">
+      <div className="div-6">
         <div className="frame-8">
           <div className="text-wrapper-9">Predict Succeed</div>
           <CloseOne1 className="close-one-instance" onClick={onClose} />
         </div>
         <div className="frame-9">
-        <CheckOne className="check-one" />
+          <CheckOne className="check-one" />
           <div className="text-wrapper-10">Success</div>
           <div className="div-wrapper">
             <p className="p">Bid 00000 COIN to predict UP! for 0.00X payout</p>
@@ -44,7 +48,6 @@ export const ConfirmPredictSuccess = ({ onClose }) => {
           </div>
         )}
       </div>
-      </div>
-
+    </div>
   );
 };

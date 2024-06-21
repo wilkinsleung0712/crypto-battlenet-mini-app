@@ -5,14 +5,62 @@ import "./style.css";
 
 export const HistoryList = () => {
   const historyItems = [
-    { isUp: true, price: "$104.2207", change: "+$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: true, price: "$104.2207", change: "+$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: false, price: "$104.2207", change: "−$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: false, price: "$104.2207", change: "−$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: true, price: "$104.2207", change: "+$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: false, price: "$104.2207", change: "−$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: true, price: "$104.2207", change: "+$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
-    { isUp: true, price: "$104.2207", change: "+$0.0934", date: "2024.00.00 00:00:00", coinAmount: "+00000" },
+    {
+      isUp: true,
+      price: "$104.2207",
+      change: "+$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: true,
+      price: "$104.2207",
+      change: "+$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: false,
+      price: "$104.2207",
+      change: "−$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: false,
+      price: "$104.2207",
+      change: "−$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: true,
+      price: "$104.2207",
+      change: "+$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: false,
+      price: "$104.2207",
+      change: "−$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: true,
+      price: "$104.2207",
+      change: "+$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
+    {
+      isUp: true,
+      price: "$104.2207",
+      change: "+$0.0934",
+      date: "2024.00.00 00:00:00",
+      coinAmount: "+00000",
+    },
   ];
 
   return (

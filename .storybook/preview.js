@@ -11,6 +11,8 @@ const preview = {
   },
 };
 
-export const decorators = [(Story, context) => <Story key={JSON.stringify(context.args)} />];
+export const decorators = [
+  (Story, context) => <Story key={JSON.stringify(context.args)} />,
+];
 
 export default preview;

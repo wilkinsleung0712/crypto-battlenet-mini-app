@@ -3,7 +3,7 @@
     "@parcel/config-default"
   ],
   "transformers": {
-    "*.{js,mjs,jsx,cjs,ts,tsx}": [
+    "*.{js,mjs,jsx,cjs}": [
       "@parcel/transformer-js",
       "@parcel/transformer-react-refresh-wrap"
     ],

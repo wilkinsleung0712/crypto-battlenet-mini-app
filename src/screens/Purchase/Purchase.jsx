@@ -63,7 +63,7 @@ export const Purchase = () => {
               onClick={() => handleItemClick(coinItems[i + 1])}
             />
           )}
-        </div>
+        </div>,
       );
     }
     return rows;
@@ -82,16 +82,16 @@ export const Purchase = () => {
           <div className="text-wrapper-7">0000000</div>
         </div>
       </div>
-      <div className="frame-21">
-        {renderRows()}
-      </div>
+      <div className="frame-21">{renderRows()}</div>
       <div className="saved-messages-wrapper">
         <div className="saved-messages">Close</div>
       </div>
       {showConfirm && (
         <PurchaseConfirm
           onClose={handleCloseConfirm}
-          tonAmount={selectedCoin ? selectedCoin.amount / 1000 + " TON" : "0 TON"}
+          tonAmount={
+            selectedCoin ? selectedCoin.amount / 1000 + " TON" : "0 TON"
+          }
           onWalletClick={() => console.log("Wallet clicked")}
           onTonConnectClick={() => console.log("TON Connect clicked")}
         />
