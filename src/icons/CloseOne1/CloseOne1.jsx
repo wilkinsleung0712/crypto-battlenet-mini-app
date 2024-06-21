@@ -5,7 +5,7 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 
 import React from "react";
 
-export const CloseOne1 = ({ className }) => {
+export const CloseOne1 = ({ className, ...restProps }) => {
   return (
     <svg
       className={`close-one-1 ${className}`}
@@ -14,6 +14,7 @@ export const CloseOne1 = ({ className }) => {
       viewBox="0 0 32 32"
       width="32"
       xmlns="http://www.w3.org/2000/svg"
+      {...restProps}
     >
       <path
         className="path"

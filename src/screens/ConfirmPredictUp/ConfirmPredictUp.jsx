@@ -3,7 +3,7 @@ import { CircleRightUp1 } from "../../icons/CircleRightUp1";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 
-export const ConfirmPredictUp = ({ onClose }) => {
+export const ConfirmPredictUp = () => {
   const [showToast, setShowToast] = useState(false);
 
   const handleConfirmClick = () => {
@@ -11,6 +11,10 @@ export const ConfirmPredictUp = ({ onClose }) => {
     setTimeout(() => {
       setShowToast(false);
     }, 3000);
+  };
+
+  const onClose = () => {
+    window.location.href = "/"; // Navigate to the main page
   };
 
   return (

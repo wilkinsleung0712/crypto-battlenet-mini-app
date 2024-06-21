@@ -24,7 +24,11 @@ export const Lose = () => {
           <div className="text-wrapper-26">#00000</div>
         </div>
         <TrendingDown2 className="trending-down" />
-        <img className="animatedemojies" alt="Animatedemojies" src="/img/animatedemojies-512px-67.gif" />
+        <img
+          className="animatedemojies"
+          alt="Animatedemojies"
+          src="/img/animatedemojies-512px-67.gif"
+        />
       </div>
       <div className="frame-57">
         <div className="frame-58">

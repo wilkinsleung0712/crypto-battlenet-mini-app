@@ -3,7 +3,7 @@ import { CircleRightDown1 } from "../../icons/CircleRightDown1";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 
-export const ConfirmPredictDown = ({ onClose }) => {
+export const ConfirmPredictDown = () => {
   const [showToast, setShowToast] = useState(false);
 
   const handleConfirmClick = () => {
@@ -13,17 +13,20 @@ export const ConfirmPredictDown = ({ onClose }) => {
     }, 3000);
   };
 
+  const onClose = () => {
+    window.location.href = "/"; // Navigate to the main page
+  };
+
   return (
     <div className="confirm-predict">
       <div className="div-6">
         <div className="frame-47">
           <div className="text-wrapper-16">Confirm Predict</div>
           <CloseOne1 className="close-one-9" onClick={onClose} />
-          
         </div>
         <div className="frame-48">
-        <CircleRightDown1 className="icon-instance-node-4" />
-        <div className="text-wrapper-19">DOWN!</div>
+          <CircleRightDown1 className="icon-instance-node-4" />
+          <div className="text-wrapper-19">DOWN!</div>
           <div className="frame-49">
             <div className="element-x-payout">0.00X&nbsp;&nbsp;Payout</div>
             <p className="bid-coin">

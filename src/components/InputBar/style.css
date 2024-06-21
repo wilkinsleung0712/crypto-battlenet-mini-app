@@ -162,7 +162,7 @@
   background: none;
   outline: none;
   opacity: 0.7;
-  transition: opacity .2s;
+  transition: opacity 0.2s;
 }
 
 .input-bar .div-3::-webkit-slider-thumb {
@@ -172,7 +172,9 @@
   height: 28px;
   background: #ffffff;
   border-radius: 100px;
-  box-shadow: 0px 6px 13px #0000001f, 0px 0.5px 4px #0000001f;
+  box-shadow:
+    0px 6px 13px #0000001f,
+    0px 0.5px 4px #0000001f;
   cursor: pointer;
 }
 
@@ -181,7 +183,9 @@
   height: 28px;
   background: #ffffff;
   border-radius: 100px;
-  box-shadow: 0px 6px 13px #0000001f, 0px 0.5px 4px #0000001f;
+  box-shadow:
+    0px 6px 13px #0000001f,
+    0px 0.5px 4px #0000001f;
   cursor: pointer;
 }
 

@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React from "react";
 import { Buttom } from "../../components/Buttom";
-import { InputBar } from "../../components/InputBar";
 import { LogoBar } from "../../components/LogoBar";
 import { NaviBar } from "../../components/NaviBar";
-import { Status } from "../../components/Status";
 import { ArrowRightDown } from "../../icons/ArrowRightDown";
 import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
-import { SocialMedia1, SocialMedia2, SocialMedia3, SocialMedia4 } from "../../icons/SocialMedia";
-import { X1 } from "../../icons/X1";
+import {
+  SocialMedia1,
+  SocialMedia2,
+  SocialMedia3,
+  SocialMedia4,
+} from "../../icons/SocialMedia";
 import "./style.css";
 import { PastRound } from "../../components/PastRound";
-import { User } from "../../components/User"; // 引入 User
-import { Contest } from "../../components/Contest"; // 引入 Contest
 import { PrizePool } from "../../components/PrizePool/PrizePool";
-
+import {
+  BottomDrawerRoot,
+  BottomDrawerContent,
+  BottomDrawerTrigger,
+  BottomDrawerPortal,
+  BottomDrawerOverlay,
+} from "../../components/BottomDrawer";
+import { ConfirmPredictUp } from "../../blocks/confirm-predict-up";
+import { ConfirmPredictDown } from "../../blocks/confirm-predict-down";
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
   social_link_exchangehaya: "https://example.com/x1",
@@ -27,6 +35,7 @@ export const MediaBar = {
 
 export const Main = () => {
   const roundId = "123"; // 这里可以设置你的 roundId
+  const amount = 1;
 
   const handleBethandleBet = async (direction) => {
     const response = await fetch("/api/bet", {
@@ -43,8 +52,6 @@ export const Main = () => {
       <div className="px-2.5">
         <NaviBar
           className="flex-0 p-2.5 w-full"
-          group="/img/group-48095409-1.png"
-          groupClassName="navi-bar-instance"
           vector="/img/vector-5.svg"
         />
       </div>
@@ -57,45 +64,71 @@ export const Main = () => {
       {/*<User />  // 添加 User*/}
       {/*<Contest />  // 添加 Contest*/}
       <PastRound
-        live={true}
-        lastPrice="$104.2207"
-        priceChange="+$0.0934"
-        lockedPrice="$104.2207"
-        prizePool="0,000,000,000"
-        roundId={roundId}
-        timeLeft="4m30s"
+        contestId='111'
       />
       <PrizePool />
-      <div className="frame-15 px-2.5">
-        <Buttom
-          className="buttom-instance"
-          icon={<ArrowRightUp3 className="icon-instance-node" />}
-          pressing={false}
-          property1="UP"
-          to="/confirm-predict-1"
-        />
-        <Buttom
-          className="buttom-instance"
-          icon={<ArrowRightDown className="icon-instance-node" />}
-          pressing={false}
-          property1="DOWN"
-        />
+      <div className="flex items-center gap-2.5 px-2.5">
+        <BottomDrawerRoot shouldScaleBackground={false}>
+          <BottomDrawerTrigger asChild>
+            <div className="w-full">
+              <Buttom
+                className="buttom-instance"
+                icon={<ArrowRightUp3 className="icon-instance-node" />}
+                pressing={false}
+                property1="UP"
+              />
+            </div>
+          </BottomDrawerTrigger>
+          <BottomDrawerPortal>
+            <BottomDrawerOverlay />
+            <BottomDrawerContent>
+              <ConfirmPredictUp />
+            </BottomDrawerContent>
+          </BottomDrawerPortal>
+        </BottomDrawerRoot>
+        <BottomDrawerRoot shouldScaleBackground={false}>
+          <BottomDrawerTrigger asChild>
+            <div className="w-full">
+              <Buttom
+                className="buttom-instance"
+                icon={<ArrowRightDown className="icon-instance-node" />}
+                pressing={false}
+                property1="DOWN"
+              />
+            </div>
+          </BottomDrawerTrigger>
+          <BottomDrawerPortal>
+            <BottomDrawerOverlay />
+            <BottomDrawerContent>
+              <ConfirmPredictDown />
+            </BottomDrawerContent>
+          </BottomDrawerPortal>
+        </BottomDrawerRoot>
       </div>
       <div className="frame-16">
         {/* Media links */}
-        <a href={MediaBar.social_link_haya} className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center">
+        <a
+          href={MediaBar.social_link_haya}
+          className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center"
+        >
           <SocialMedia1 />
         </a>
         <a
           href={MediaBar.social_link_exchangehaya}
           className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center"
         >
-        <SocialMedia2 />
+          <SocialMedia2 />
         </a>
-        <a href={MediaBar.social_link_twitter} className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center">
+        <a
+          href={MediaBar.social_link_twitter}
+          className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center"
+        >
           <SocialMedia3 />
         </a>
-        <a href={MediaBar.social_link_telegram} className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center">
+        <a
+          href={MediaBar.social_link_telegram}
+          className="bg-[#1b1b1b] rounded-[10px] w-8 h-8 flex items-center justify-center"
+        >
           <SocialMedia4 />
         </a>
       </div>
