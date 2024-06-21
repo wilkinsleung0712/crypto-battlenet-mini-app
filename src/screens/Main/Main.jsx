@@ -50,10 +50,7 @@ export const Main = () => {
   return (
     <div className="main w-full grid gap-2.5">
       <div className="px-2.5">
-        <NaviBar
-          className="flex-0 p-2.5 w-full"
-          vector="/img/vector-5.svg"
-        />
+        <NaviBar className="flex-0 p-2.5 w-full" vector="/img/vector-5.svg" />
       </div>
       <div className="px-2.5">
         <LogoBar
@@ -63,9 +60,7 @@ export const Main = () => {
       </div>
       {/*<User />  // 添加 User*/}
       {/*<Contest />  // 添加 Contest*/}
-      <PastRound
-        contestId='111'
-      />
+      <PastRound contestId="111" />
       <PrizePool />
       <div className="flex items-center gap-2.5 px-2.5">
         <BottomDrawerRoot shouldScaleBackground={false}>

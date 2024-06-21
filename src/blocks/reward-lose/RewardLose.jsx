@@ -44,11 +44,11 @@ export const RewardLose = () => {
               <div className="saved-messages-8">Share</div>
             </div>
           </div>
-          <div className="frame-66">
-            <BottomDrawerClose asChild>
+          <BottomDrawerClose asChild>
+            <div className="flex w-full justify-center bg-white items-center flex h-[50px] rounded-xl flex-1 leading-[50px]">
               <div className="saved-messages-7">Next game</div>
-            </BottomDrawerClose>
-          </div>
+            </div>
+          </BottomDrawerClose>
         </div>
       </div>
     </div>

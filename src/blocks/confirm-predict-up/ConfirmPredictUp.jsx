@@ -17,23 +17,23 @@ export const ConfirmPredictUp = () => {
     setTimeout(() => {
       setShowToast(false);
     }, 3000);
-    setPredictResult(`${Math.round(Math.random())}`)
+    setPredictResult(`${Math.round(Math.random())}`);
   };
 
   useEffect(() => {
     return () => {
       resetMain();
-    }
-  }, [])
-  
+    };
+  }, []);
 
-  if (predictResult === '0') { // lose
-    return <RewardLose />
+  if (predictResult === "0") {
+    // lose
+    return <RewardLose />;
   }
 
   // win
-  if (predictResult === '1') { 
-    return <RewardWin />
+  if (predictResult === "1") {
+    return <RewardWin />;
   }
 
   return (
