@@ -1,6 +1,7 @@
 import React from "react";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
+import { BottomDrawerClose } from "../../components/BottomDrawer";
 
 // Example function to share on Telegram
 const shareOnTelegram = () => {
@@ -10,18 +11,16 @@ const shareOnTelegram = () => {
   window.open(telegramShareUrl, "_blank");
 };
 
-export const RewardWin = ({ onClose }) => {
-  const handleNextGame = () => {
-    window.location.href = "/main"; // Navigate to the main page
-    onClose(); // Close the dialog
-  };
+export const RewardWin = () => {
 
   return (
-    <div className="win-overlay" onClick={onClose}>
+    <div className="win-overlay">
       <div className="win" onClick={(e) => e.stopPropagation()}>
         <div className="frame-47">
           <div className="text-wrapper-16">Congratulation</div>
-          <CloseOne1 className="close-one-9" onClick={onClose} />
+          <BottomDrawerClose asChild>
+            <CloseOne1 className="close-one-9" />
+          </BottomDrawerClose>
         </div>
         <img
           className="animatedemojies-2"
@@ -48,9 +47,9 @@ export const RewardWin = ({ onClose }) => {
             </div>
           </div>
           <div className="frame-66">
-            <div className="frame-67" onClick={handleNextGame}>
+            <BottomDrawerClose asChild>
               <div className="saved-messages-7">Next game</div>
-            </div>
+            </BottomDrawerClose>
           </div>
         </div>
       </div>
