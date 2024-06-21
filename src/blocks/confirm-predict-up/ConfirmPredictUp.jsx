@@ -1,18 +1,40 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CircleRightUp1 } from "../../icons/CircleRightUp1";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import { BottomDrawerClose } from "../../components/BottomDrawer";
 import "./style.css";
+import { useSnapshot } from "valtio";
+import { mainManager, resetMain, setPredictResult } from "../../models/main";
+import { RewardLose } from "../reward-lose";
+import { RewardWin } from "../reward-win";
 
 export const ConfirmPredictUp = () => {
   const [showToast, setShowToast] = useState(false);
+  const { predictResult } = useSnapshot(mainManager);
 
   const handleConfirmClick = () => {
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
     }, 3000);
+    setPredictResult(`${Math.round(Math.random())}`)
   };
+
+  useEffect(() => {
+    return () => {
+      resetMain();
+    }
+  }, [])
+  
+
+  if (predictResult === '0') { // lose
+    return <RewardLose />
+  }
+
+  // win
+  if (predictResult === '1') { 
+    return <RewardWin />
+  }
 
   return (
     <div className="confirm-predict">
