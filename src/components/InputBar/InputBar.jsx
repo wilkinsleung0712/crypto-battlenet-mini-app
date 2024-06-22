@@ -8,7 +8,8 @@ export const InputBar = ({ property1 }) => {
   const { amount, maxAmount } = useSnapshot(mainManager);
 
   const handleInputChange = (e) => {
-    setAmount(e.target.value);
+    const value = e.target.value.replace(/[^\d]/g, "");
+    setAmount(value);
   };
 
   const handleSliderChange = (values) => {
@@ -45,6 +46,7 @@ export const InputBar = ({ property1 }) => {
             type="number"
             value={amount}
             max={maxAmount}
+            step={1}
             onChange={handleInputChange}
             className="h-full w-full rounded bg-transparent font-bold px-3.5 text-xl text-white outline-none transition-colors duration-150 ease-linear disabled:cursor-not-allowed disabled:text-grey disabled:placeholder:text-grey border-transparent"
           />

@@ -51,6 +51,9 @@ const config = {
         blue: {
           DEFAULT: "#007aff",
         },
+        yellow: {
+          DEFAULT: '#FFBF1B',
+        }
       },
     },
   },
