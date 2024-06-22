@@ -1,28 +1,26 @@
 import React, { useEffect, useState, useRef } from "react";
 import { TrendingUp } from "../../icons/TrendingUp";
+import { TrendingDown } from '../../icons/TrendingDown';
 import "./PastRound.style.css";
 import { useSnapshot } from "valtio";
 import { mainManager } from "../../models/main";
 import Countdown from 'react-countdown';
+import { formatCurrency } from '../../utils';
+import { cva } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
 
 export const PastRound = () => {
   const { pastRound } = useSnapshot(mainManager);
+  const { lockedPrice, endPrice, endTime, prizePool, roundId, lastPrice } = pastRound || {};
 
-  const [contest, setContest] = useState({
-    live: false,
-    lastPrice: "N/A",
-    priceChange: "N/A",
-    lockedPrice: "N/A",
-    prizePool: "N/A",
-    roundId: "N/A",
-    timeLeft: new Date(), // 初始化为当前时间
-  });
   const intervalId = useRef(null);
 
+  const priceChange = Number(((lastPrice * 100 - Number(lockedPrice) * 100) / 100).toFixed(2));
+  
   useEffect(() => {
     const fetchContestById = async () => {
       try {
-        const response = await fetch(`/contests/${pastRound.roundId}`);
+        const response = await fetch(`/contests/${roundId}`);
         const contentType = response.headers.get("content-type");
 
         // @ts-ignore
@@ -46,43 +44,20 @@ export const PastRound = () => {
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
-      updateTimer();
+      // updateTimer();
     }, 1000);
 
     return () => clearInterval(intervalId.current);
   }, []);
 
-  const updateTimer = () => {
-    setContest((prevContest) => {
-      const now = new Date();
-      const timeDiff = prevContest.timeLeft - now;
-      if (timeDiff <= 0) {
-        clearInterval(intervalId.current);
-        return { ...prevContest, live: false, timeLeft: new Date() }; // 如果时间结束，更新竞赛状态为非活跃
-      }
-      return {
-        ...prevContest,
-        timeLeft: new Date(prevContest.timeLeft.getTime() - 1000),
-      }; // 每秒递减一秒
-    });
-  };
-
   const setDefaultContest = () => {
     const mockCreatedAt = new Date();
     const mockDeadline = new Date(mockCreatedAt.getTime() + 5 * 60000);
-    setContest({
-      live: true,
-      lastPrice: "$100.00",
-      priceChange: "1.00",
-      lockedPrice: "99.00",
-      prizePool: "1000",
-      roundId: "15",
-      timeLeft: mockDeadline,
-      createdAt: mockCreatedAt,
-    });
   };
 
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  console.log('rrrrr', endTime)
+
+  const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
       // Render a completed state
       return '0s';
@@ -92,16 +67,26 @@ export const PastRound = () => {
     }
   };
 
+  const priceChangeVariants = cva('text-lg font-semibold', {
+    variants: {
+      status: {
+        up: 'text-green',
+        down: 'text-pink',
+        none: 'hidden'
+      }
+    }
+  })
+
   return (
     <div className="w-full px-2.5">
-      <div className="past-round p-2.5">
+      <div className={twMerge('past-round p-2.5', priceChange < 0 ? 'down' : '')}>
         <div className="header">
           <div className="flex justify-between items-center rounded-[10px]">
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
-              {contest.live ? "Live" : "Not Live"} #{contest.roundId}
+              {roundId ? "Live" : "Not Live"} #{roundId ?? '-'}
             </span>
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
-              <Countdown date={contest.timeLeft} renderer={renderer} />
+              <Countdown date={endTime} renderer={renderer} />
             </span>
           </div>
           <div className="flex flex-col gap-6">
@@ -109,26 +94,26 @@ export const PastRound = () => {
               <div className="flex flex-col last-price items-start gap-1">
                 <span className="text-xs text-grey">H2O Last Price</span>
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-xl">{contest.lastPrice}</span>
-                  <span className="change font-semibold">
-                    {contest.priceChange}
+                  <span className="font-bold text-xl">${formatCurrency(lastPrice)}</span>
+                  <span className={priceChangeVariants({ status: priceChange > 0 ? 'up' : priceChange < 0 ? 'down' : 'none'})}>
+                    {priceChange > 0 ? `+${formatCurrency(priceChange)}` : `${formatCurrency(priceChange)}`}
                   </span>
                 </div>
               </div>
-              <TrendingUp />
+              {priceChange > 0 ? <TrendingUp /> : priceChange < 0 ? <TrendingDown /> : null}
             </div>
 
             <div className="flex flex-col gap-2">
               <div className="locked-price">
                 <span className="text-xs text-grey">Locked Price</span>
                 <span className="text-base font-semibold">
-                  {contest.lockedPrice}
+                  ${formatCurrency(lockedPrice)}
                 </span>
               </div>
               <div className="prize-pool">
                 <span className="text-xs text-grey">Prize Pool</span>
                 <span className="text-base font-semibold">
-                  {contest.prizePool}
+                  {prizePool}
                 </span>
               </div>
             </div>

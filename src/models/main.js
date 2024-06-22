@@ -27,7 +27,7 @@ const initialState = {
   amount: 0,
   maxAmount: faker.number.int({ min: 100, max: 999999}),
   predictResult: "-1",
-  pastRound: {...initRound},
+  pastRound: {...initRound, lastPrice: 0},
   openRound: {...initRound},
   closedRound: {...initRound}
 };

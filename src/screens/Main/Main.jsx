@@ -53,7 +53,12 @@ export const Main = () => {
   };
 
   useSubscription("/topic/rounds", (message) =>{
-    console.log(`Recieved: ${message.body}`)
+    try {
+      const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
+      setRounds(parsedMessage.roundInfo);
+    } catch (err) {
+      console.log('Round Error');
+    }
   });
 
   useEffect(() => {
@@ -72,6 +77,7 @@ export const Main = () => {
       "startTime": faker.date.soon(),
       "endTime": faker.date.soon(),
       "prizePool": faker.number.int(),
+      "lastPrice": faker.number.int({ max: 9999 }),
       "status": "STARTED",
     }])
     return () => {
