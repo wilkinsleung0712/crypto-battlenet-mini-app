@@ -11,6 +11,10 @@ import { RewardWin } from "./screens/RewardWin";
 import { RewardLose } from "./screens/RewardLose";
 import { ResultWin } from "./screens/ResultWin";
 import { Lose } from "./screens/Lose";
+import {
+  StompSessionProvider,
+  useSubscription,
+} from "react-stomp-hooks";
 // import { Win } from "./screens/Win";
 
 const router = createBrowserRouter([
@@ -70,5 +74,13 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
+  return (
+    <StompSessionProvider
+      url={"wss://e407-115-194-133-246.ngrok-free.app/crypto-battlenet"}
+      //All options supported by @stomp/stompjs can be used here
+    >
+      <RouterProvider router={router} />
+    </StompSessionProvider>
+  )
   return <RouterProvider router={router} />;
 };

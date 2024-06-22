@@ -22,7 +22,7 @@ export const PrizePool = () => {
   return (
     <div className="w-full px-2.5 rounded-15" style={{
       background: `radial-gradient(99.95% 99.95% at 50% 0.05%, #1C1C1E 0%, #111111 100%);
-border-radius: 20px;`
+border-radius: 20px`
     }}>
       <header className="w-full p-2.5 grid gap-2.5">
         <div className="w-full flex items-center">
