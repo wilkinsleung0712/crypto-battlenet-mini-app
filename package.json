@@ -12,7 +12,9 @@
     "format": "prettier -w -u --cache ."
   },
   "dependencies": {
+    "@faker-js/faker": "8.2.0",
     "axios": "^1.7.2",
+    "dayjs": "^1.11.11",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -28,6 +30,7 @@
     "@parcel/transformer-react-refresh-wrap": "^2.12.0",
     "@parcel/transformer-svg-react": "^2.12.0",
     "@radix-ui/react-slider": "^1.2.0",
+    "@stomp/stompjs": "^7.0.0",
     "@storybook/addon-essentials": "^7.6.19",
     "@storybook/addon-interactions": "7.0.3",
     "@storybook/addon-links": "7.0.3",
@@ -48,12 +51,14 @@
     "prettier-plugin-packagejson": "2.4.6",
     "prettier-plugin-tailwindcss": "0.5.6",
     "process": "^0.11.10",
+    "react-countdown": "^2.3.5",
     "storybook": "^8.1.9",
     "tailwind-merge": "^2.3.0",
     "tailwindcss": "^3.4.4",
     "tailwindcss-animate": "^1.0.7",
     "valtio": "^1.13.2",
-    "vaul": "^0.9.1"
+    "vaul": "^0.9.1",
+    "ws": "^8.17.1"
   },
   "@parcel/transformer-css": {
     "errorRecovery": true

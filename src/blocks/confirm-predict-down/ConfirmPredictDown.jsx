@@ -5,13 +5,13 @@ import { BottomDrawerClose } from "../../components/BottomDrawer";
 
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { mainManager, resetMain, setPredictResult } from "../../models/main";
+import { mainManager, resetMainPredict, setPredictResult } from "../../models/main";
 import { RewardWin } from "../reward-win";
 import { RewardLose } from "../reward-lose";
 
 export const ConfirmPredictDown = () => {
   const [showToast, setShowToast] = useState(false);
-  const { predictResult } = useSnapshot(mainManager);
+  const { amount, predictResult } = useSnapshot(mainManager);
 
   const handleConfirmClick = () => {
     setShowToast(true);
@@ -23,7 +23,7 @@ export const ConfirmPredictDown = () => {
 
   useEffect(() => {
     return () => {
-      resetMain();
+      resetMainPredict();
     };
   }, []);
 
@@ -53,7 +53,7 @@ export const ConfirmPredictDown = () => {
             <div className="element-x-payout">0.00X&nbsp;&nbsp;Payout</div>
             <p className="bid-coin">
               <span className="text-wrapper-17">Bid </span>
-              <span className="text-wrapper-18">0000000 Coin</span>
+              <span className="text-wrapper-18">{amount} Coin</span>
             </p>
           </div>
         </div>

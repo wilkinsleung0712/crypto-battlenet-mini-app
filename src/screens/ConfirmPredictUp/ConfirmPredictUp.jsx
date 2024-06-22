@@ -2,8 +2,12 @@ import React, { useState } from "react";
 import { CircleRightUp1 } from "../../icons/CircleRightUp1";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
+import { useSnapshot } from "valtio";
+import { mainManager } from "../../models/main";
 
 export const ConfirmPredictUp = () => {
+  const { amount } = useSnapshot(mainManager);
+
   const [showToast, setShowToast] = useState(false);
 
   const handleConfirmClick = () => {
@@ -31,7 +35,7 @@ export const ConfirmPredictUp = () => {
             <div className="element-x-payout">0.00X&nbsp;&nbsp;Payout</div>
             <p className="bid-coin">
               <span className="text-wrapper-17">Bid </span>
-              <span className="text-wrapper-18">0000000 Coin</span>
+              <span className="text-wrapper-18">{amount} Coin</span>
             </p>
           </div>
         </div>

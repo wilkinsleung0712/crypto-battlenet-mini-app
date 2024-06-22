@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Buttom } from "../../components/Buttom";
 import { LogoBar } from "../../components/LogoBar";
 import { NaviBar } from "../../components/NaviBar";
@@ -22,6 +22,9 @@ import {
 } from "../../components/BottomDrawer";
 import { ConfirmPredictUp } from "../../blocks/confirm-predict-up";
 import { ConfirmPredictDown } from "../../blocks/confirm-predict-down";
+import { resetUserManager } from "../../models/user";
+import { resetMain, resetMainManager, setRounds } from "../../models/main";
+import { faker } from "@faker-js/faker";
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
   social_link_exchangehaya: "https://example.com/x1",
@@ -47,6 +50,31 @@ export const Main = () => {
     console.log(data);
   };
 
+  useEffect(() => {
+    setRounds([{
+      "roundId": faker.number.int({ max: 999999 }),
+      "lockedPrice": faker.number.int({ max: 9999 }),
+      "endPrice": null,
+      "startTime": faker.date.soon(),
+      "endTime": "2024-06-18T07:59:52",
+      "prizePool": faker.number.int(),
+      "status": "OPEN",
+    }, {
+      "roundId": faker.number.int({ max: 999999 }),
+      "lockedPrice": faker.number.int({ max: 9999 }),
+      "endPrice": null,
+      "startTime": faker.date.soon(),
+      "endTime": faker.date.soon(),
+      "prizePool": faker.number.int(),
+      "status": "STARTED",
+    }])
+    return () => {
+      resetUserManager();
+      resetMainManager();
+    }
+  }, [])
+  
+
   return (
     <div className="main w-full grid gap-2.5">
       <div className="px-2.5">
@@ -60,7 +88,7 @@ export const Main = () => {
       </div>
       {/*<User />  // 添加 User*/}
       {/*<Contest />  // 添加 Contest*/}
-      <PastRound contestId="111" />
+      <PastRound />
       <PrizePool />
       <div className="flex items-center gap-2.5 px-2.5">
         <BottomDrawerRoot shouldScaleBackground={false}>

@@ -5,7 +5,7 @@ Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcN
 
 import React from "react";
 
-export const TrendingUp = ({ className }) => {
+export const TrendingUp = ({ className = '' }) => {
   return (
     <svg
       className={`trending-up ${className}`}

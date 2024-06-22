@@ -1,8 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { TrendingUp } from "../../icons/TrendingUp";
 import "./PastRound.style.css";
+import { useSnapshot } from "valtio";
+import { mainManager } from "../../models/main";
+import Countdown from 'react-countdown';
 
-export const PastRound = ({ contestId }) => {
+export const PastRound = () => {
+  const { pastRound } = useSnapshot(mainManager);
+
   const [contest, setContest] = useState({
     live: false,
     lastPrice: "N/A",
@@ -17,7 +22,7 @@ export const PastRound = ({ contestId }) => {
   useEffect(() => {
     const fetchContestById = async () => {
       try {
-        const response = await fetch(`/contests/${contestId}`);
+        const response = await fetch(`/contests/${pastRound.roundId}`);
         const contentType = response.headers.get("content-type");
 
         // @ts-ignore
@@ -30,10 +35,6 @@ export const PastRound = ({ contestId }) => {
         const data = await response.json();
         const createdAt = new Date(data.createdAt || new Date());
         const deadline = new Date(createdAt.getTime() + 5 * 60000);
-        setContest({
-          ...data,
-          timeLeft: deadline,
-        });
       } catch (error) {
         console.error("Error fetching contest:", error);
         setDefaultContest();
@@ -41,7 +42,7 @@ export const PastRound = ({ contestId }) => {
     };
 
     fetchContestById();
-  }, [contestId]);
+  }, [pastRound.roundId]);
 
   useEffect(() => {
     intervalId.current = setInterval(() => {
@@ -49,7 +50,7 @@ export const PastRound = ({ contestId }) => {
     }, 1000);
 
     return () => clearInterval(intervalId.current);
-  }, [contest.timeLeft]);
+  }, []);
 
   const updateTimer = () => {
     setContest((prevContest) => {
@@ -72,24 +73,23 @@ export const PastRound = ({ contestId }) => {
     setContest({
       live: true,
       lastPrice: "$100.00",
-      priceChange: "+$1.00",
-      lockedPrice: "$99.00",
-      prizePool: "$1000",
+      priceChange: "1.00",
+      lockedPrice: "99.00",
+      prizePool: "1000",
       roundId: "15",
       timeLeft: mockDeadline,
       createdAt: mockCreatedAt,
     });
   };
 
-  const formatTimeLeft = () => {
-    const now = new Date();
-    const timeDiff = contest.timeLeft - now;
-    if (timeDiff <= 0) {
-      return "0m 0s";
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return '0s';
+    } else {
+      // Render a countdown
+      return <span>{minutes}m {seconds}s</span>;
     }
-    const minutes = Math.floor(timeDiff / 60000);
-    const seconds = Math.floor((timeDiff % 60000) / 1000);
-    return `${minutes}m ${seconds}s`;
   };
 
   return (
@@ -101,7 +101,7 @@ export const PastRound = ({ contestId }) => {
               {contest.live ? "Live" : "Not Live"} #{contest.roundId}
             </span>
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
-              {formatTimeLeft()}
+              <Countdown date={contest.timeLeft} renderer={renderer} />
             </span>
           </div>
           <div className="flex flex-col gap-6">

@@ -6,9 +6,11 @@ import { Plus2 } from "../../icons/Plus2";
 import { QuestionIcon } from "../../icons/Question";
 import { Link } from "react-router-dom";
 import "./style.css";
+import { useSnapshot } from "valtio";
+import { resetUserManager, setUserInfo, userManager } from '../../models/user';
 
 export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
-  const [user, setUser] = useState({ username: "Dummy User", points: 3559 });
+  const { username, points } = useSnapshot(userManager);
 
   useEffect(() => {
     // Check if Telegram Web App API is available and ready
@@ -20,17 +22,18 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
       // @ts-ignore
       const telegramUserData = Telegram.WebApp.initDataUnsafe?.user;
       if (telegramUserData) {
-        setUser({
+        setUserInfo({
+          id: telegramUserData.id,
           username: telegramUserData.first_name, // assuming first_name is the field for username
           points: telegramUserData.points,
-        });
+        })
       } else {
-        console.error("Telegram user data is not available. Using Dummy User.");
-        setUser({ username: "Dummy User", points: 3559 });
+        console.error("Telegram user data is not available. Hello stranger.");
+        resetUserManager();
       }
     } else {
-      console.error("Telegram WebApp not available. Using Dummy User.");
-      setUser({ username: "Dummy User", points: 3559 });
+      console.error("Telegram WebApp not available. Hello stranger.");
+      resetUserManager();
     }
   }, []);
 
@@ -40,7 +43,7 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
         <div className="div" />
         <div className="frame-2">
           <img className="plus" alt="Image" src="/img/image-1850-1.png" />
-          <div className="text-wrapper">{user.points}</div>
+          <div className="text-wrapper">{points}</div>
           <Link to="/add-coins">
             <Plus2 className="plus" color="#1AAE70" />
           </Link>

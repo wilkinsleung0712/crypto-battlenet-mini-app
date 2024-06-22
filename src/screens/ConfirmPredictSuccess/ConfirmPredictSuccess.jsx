@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { CheckOne } from "../../icons/CheckOne";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
+import { useSnapshot } from "valtio";
+import { mainManager } from "../../models/main";
 
 export const ConfirmPredictSuccess = () => {
+  const { amount } = useSnapshot(mainManager);
   const [showToast, setShowToast] = useState(false);
 
   const handleConfirm = () => {
@@ -29,7 +32,7 @@ export const ConfirmPredictSuccess = () => {
           <CheckOne className="check-one" />
           <div className="text-wrapper-10">Success</div>
           <div className="div-wrapper">
-            <p className="p">Bid 00000 COIN to predict UP! for 0.00X payout</p>
+            <p className="p">Bid {amount} COIN to predict UP! for 0.00X payout</p>
           </div>
         </div>
         <div className="frame-wrapper">
