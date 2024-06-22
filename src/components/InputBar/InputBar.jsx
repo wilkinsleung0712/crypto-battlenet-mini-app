@@ -20,10 +20,6 @@ export const InputBar = ({ property1 }) => {
     handleSliderChange([maxAmount]); // Replace with your MAX value
   };
 
-  useEffect(() => {
-    console.log("now the amount is: ", amount);
-  }, [amount]);
-
   return (
     <div
       className={

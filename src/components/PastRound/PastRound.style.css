@@ -1,10 +1,14 @@
 .past-round {
-  background: url("https://cdn.animaapp.com/projects/66641dbc59e6661189d283f3/releases/6666d488bd5d11b47331080a/img/dashboard.svg")
-    no-repeat center center;
+  background: radial-gradient(100% 100% at 50% 0%, rgba(32, 176, 110, 0.5) 0%, rgba(28, 28, 30, 0.5) 100%);
   background-size: cover;
   border-radius: 15px;
   color: white;
   width: 100%;
+}
+
+.past-round.down {
+  background: radial-gradient(100% 100% at 50% 0%, rgba(238, 53, 85, 0.5) 0%, rgba(28, 28, 30, 0.5) 100%);
+  background-size: cover;
 }
 
 .header {
