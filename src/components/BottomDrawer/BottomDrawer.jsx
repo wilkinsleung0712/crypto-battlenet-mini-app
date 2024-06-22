@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { Drawer as HeadlessDrawer } from "vaul";
 
@@ -9,12 +9,13 @@ export const BottomDrawerClose = HeadlessDrawer.Close;
 export const BottomDrawerTitle = HeadlessDrawer.Title;
 export const BottomDrawerDescription = HeadlessDrawer.Description;
 
-export const BottomDrawerContent = ({
-  className = "",
+export const BottomDrawerContent = ({  className = "",
   children,
-  ...restProps
-}) => (
-  <HeadlessDrawer.Content
+  ...restProps}) => {
+    const ref = useRef()
+    return (
+      <HeadlessDrawer.Content
+      ref={ref}
     className={twMerge(
       "fixed inset-x-0 bottom-0 z-[400] flex flex-col rounded-t-[10px] text-black h-auto",
       className,
@@ -28,7 +29,8 @@ export const BottomDrawerContent = ({
     />
     {children}
   </HeadlessDrawer.Content>
-);
+    )
+}
 
 export const BottomDrawerOverlay = ({ className = "", ...restProps }) => (
   <HeadlessDrawer.Overlay

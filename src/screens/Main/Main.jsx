@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Buttom } from "../../components/Buttom";
 import { LogoBar } from "../../components/LogoBar";
 import { NaviBar } from "../../components/NaviBar";
-// import { Client } from '@stomp/stompjs';
-// import { WebSocket } from 'ws';
 import { ArrowRightDown } from "../../icons/ArrowRightDown";
 import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
 import {
@@ -41,7 +39,6 @@ export const MediaBar = {
 // Object.assign(global, { WebSocket });
 
 export const Main = () => {
-
   const roundId = "123"; // 这里可以设置你的 roundId
   const amount = 1;
   
@@ -60,19 +57,6 @@ export const Main = () => {
   });
 
   useEffect(() => {
-
-    // const client = new Client({
-    //   brokerURL: 'wss://e407-115-194-133-246.ngrok-free.app/crypto-battlenet',
-    //   onConnect: () => {
-    //     client.subscribe('/topic/rounds', message =>
-    //       console.log(`Received: ${message.body}`)
-    //     );
-    //     // client.publish({ destination: '/crypto-battlenet', body: 'First Message' });
-    //   },
-    // });
-
-    // client.activate();
-
     setRounds([{
       "roundId": faker.number.int({ max: 999999 }),
       "lockedPrice": faker.number.int({ max: 9999 }),
