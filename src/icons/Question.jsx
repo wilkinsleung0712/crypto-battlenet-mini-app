@@ -16,7 +16,7 @@ export const QuestionIcon = () => {
       />
       <path
         fillRule="evenodd"
-        clip-rule="evenodd"
+        clipRule="evenodd"
         d="M4.5 16C5.32842 16 6 15.3284 6 14.5C6 13.6716 5.32842 13 4.5 13C3.67158 13 3 13.6716 3 14.5C3 15.3284 3.67158 16 4.5 16Z"
         fill="white"
       />
