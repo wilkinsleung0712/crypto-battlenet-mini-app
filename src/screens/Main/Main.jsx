@@ -82,7 +82,7 @@ export const Main = () => {
         startTime: faker.date.soon().toUTCString(),
         endTime: faker.date.soon().toUTCString(),
         prizePool: faker.number.int(),
-        lastPrice: faker.number.int({ max: 9999 }),
+        currentPrice: faker.number.int({ max: 9999 }),
         status: "STARTED",
       },
     ]);
