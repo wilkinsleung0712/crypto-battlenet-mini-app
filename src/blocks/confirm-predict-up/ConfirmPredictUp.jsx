@@ -20,18 +20,16 @@ export const ConfirmPredictUp = () => {
   const { id } = useSnapshot(userManager);
 
   const handleConfirmClick = () => {
-    const handleConfirmClick = () => {
-      placeBet(1, openRound?.roundId, {
-        optionId: upId,
-        amount,
-        userId: id,
+    placeBet(1, openRound?.roundId, {
+      optionId: upId,
+      amount,
+      userId: id,
+    })
+      .then((response) => {
+        console.log("Bet placed", response.data);
+        setPredictStatus(true);
       })
-        .then((response) => {
-          console.log("Bet placed", response.data);
-          setPredictStatus(true);
-        })
-        .catch((error) => console.error("Error placing bet", error));
-    };
+      .catch((error) => console.error("Error placing bet", error));
   };
 
   useEffect(() => {
