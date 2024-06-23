@@ -4,20 +4,25 @@ import { CloseOne1 } from "../../icons/CloseOne1";
 import { BottomDrawerClose } from "../../components/BottomDrawer";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { mainManager, resetMainPredict, setPredictResult } from "../../models/main";
-import { RewardLose } from "../reward-lose";
-import { RewardWin } from "../reward-win";
+import {
+  mainManager,
+  resetMainPredict,
+  setPredictResult,
+  setPredictStatus,
+} from "../../models/main";
+import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess";
 
 export const ConfirmPredictUp = () => {
   const [showToast, setShowToast] = useState(false);
-  const { predictResult, amount } = useSnapshot(mainManager);
+  const { predictResult, amount, upPayout, predictSuccess } =
+    useSnapshot(mainManager);
 
   const handleConfirmClick = () => {
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
     }, 3000);
-    setPredictResult(`${Math.round(Math.random())}`);
+    setPredictStatus(true);
   };
 
   useEffect(() => {
@@ -26,14 +31,8 @@ export const ConfirmPredictUp = () => {
     };
   }, []);
 
-  if (predictResult === "0") {
-    // lose
-    return <RewardLose />;
-  }
-
-  // win
-  if (predictResult === "1") {
-    return <RewardWin />;
+  if (predictSuccess) {
+    return <ConfirmPredictSuccess />;
   }
 
   return (
@@ -49,7 +48,9 @@ export const ConfirmPredictUp = () => {
           <CircleRightUp1 className="icon-instance-node-4" />
           <div className="text-wrapper-19">UP!</div>
           <div className="frame-49">
-            <div className="element-x-payout">0.00X&nbsp;&nbsp;Payout</div>
+            <div className="element-x-payout">
+              {upPayout}X&nbsp;&nbsp;Payout
+            </div>
             <p className="bid-coin">
               <span className="text-wrapper-17">Bid </span>
               <span className="text-wrapper-18">{amount} Coin</span>

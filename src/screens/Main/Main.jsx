@@ -13,19 +13,11 @@ import {
 import "./style.css";
 import { PastRound } from "../../components/PastRound";
 import { PrizePool } from "../../components/PrizePool/PrizePool";
-import {
-  BottomDrawerRoot,
-  BottomDrawerContent,
-  BottomDrawerTrigger,
-  BottomDrawerPortal,
-  BottomDrawerOverlay,
-} from "../../components/BottomDrawer";
-import { ConfirmPredictUp } from "../../blocks/confirm-predict-up";
-import { ConfirmPredictDown } from "../../blocks/confirm-predict-down";
 import { resetUserManager } from "../../models/user";
-import { resetMainManager, setRounds } from "../../models/main";
+import { mainManager, resetMainManager, setRounds } from "../../models/main";
 import { faker } from "@faker-js/faker";
 import { useSubscription } from "react-stomp-hooks";
+import { useSnapshot } from "valtio";
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
   social_link_exchangehaya: "https://example.com/x1",
@@ -36,12 +28,11 @@ export const MediaBar = {
   social_logo_twitter: "/img/social-app-logo-24.svg",
   social_logo_telegram: "/img/social-app-logo-24.svg",
 };
-// Object.assign(global, { WebSocket });
 
 export const Main = () => {
   const roundId = "123"; // 这里可以设置你的 roundId
-  const amount = 1;
-  
+  const { upPayout, downPayout, amount } = useSnapshot(mainManager);
+
   const handleBethandleBet = async (direction) => {
     const response = await fetch("/api/bet", {
       method: "POST",
@@ -52,39 +43,54 @@ export const Main = () => {
     console.log(data);
   };
 
-  useSubscription("/topic/rounds", (message) =>{
+  useSubscription("/topic/rounds", (message) => {
     try {
       const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
       setRounds(parsedMessage.roundInfo);
     } catch (err) {
-      console.log('Round Error');
+      console.log("Round Error");
     }
   });
 
   useEffect(() => {
-    setRounds([{
-      "roundId": faker.number.int({ max: 999999 }),
-      "lockedPrice": faker.number.int({ max: 9999 }),
-      "endPrice": null,
-      "startTime": faker.date.soon(),
-      "endTime": "2024-06-18T07:59:52",
-      "prizePool": faker.number.int(),
-      "status": "OPEN",
-    }, {
-      "roundId": faker.number.int({ max: 999999 }),
-      "lockedPrice": faker.number.int({ max: 9999 }),
-      "endPrice": null,
-      "startTime": faker.date.soon(),
-      "endTime": faker.date.soon(),
-      "prizePool": faker.number.int(),
-      "lastPrice": faker.number.int({ max: 9999 }),
-      "status": "STARTED",
-    }])
+    setRounds([
+      {
+        roundId: faker.number.int({ max: 999999 }),
+        lockedPrice: faker.number.int({ max: 9999 }),
+        endPrice: null,
+        startTime: faker.date.soon().toUTCString(),
+        endTime: faker.date.soon().toUTCString(),
+        prizePool: faker.number.int(),
+        status: "OPEN",
+        option: [
+          {
+            id: faker.number.int(),
+            createdAt: "",
+            optionText: "UP",
+          },
+          {
+            optionText: "DOWN",
+            id: faker.number.int(),
+            createdAt: "",
+          },
+        ],
+      },
+      {
+        roundId: faker.number.int({ max: 999999 }),
+        lockedPrice: faker.number.int({ max: 9999 }),
+        endPrice: null,
+        startTime: faker.date.soon().toUTCString(),
+        endTime: faker.date.soon().toUTCString(),
+        prizePool: faker.number.int(),
+        lastPrice: faker.number.int({ max: 9999 }),
+        status: "STARTED",
+      },
+    ]);
     return () => {
       resetUserManager();
       resetMainManager();
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <div className="main w-full grid gap-2.5">
@@ -102,42 +108,22 @@ export const Main = () => {
       <PastRound />
       <PrizePool />
       <div className="flex items-center gap-2.5 px-2.5">
-        <BottomDrawerRoot shouldScaleBackground={false}>
-          <BottomDrawerTrigger asChild>
-            <div className="w-full">
-              <Buttom
-                className="buttom-instance"
-                icon={<ArrowRightUp3 className="icon-instance-node" />}
-                pressing={false}
-                property1="UP"
-              />
-            </div>
-          </BottomDrawerTrigger>
-          <BottomDrawerPortal>
-            <BottomDrawerOverlay />
-            <BottomDrawerContent>
-              <ConfirmPredictUp />
-            </BottomDrawerContent>
-          </BottomDrawerPortal>
-        </BottomDrawerRoot>
-        <BottomDrawerRoot shouldScaleBackground={false}>
-          <BottomDrawerTrigger asChild>
-            <div className="w-full">
-              <Buttom
-                className="buttom-instance"
-                icon={<ArrowRightDown className="icon-instance-node" />}
-                pressing={false}
-                property1="DOWN"
-              />
-            </div>
-          </BottomDrawerTrigger>
-          <BottomDrawerPortal>
-            <BottomDrawerOverlay />
-            <BottomDrawerContent>
-              <ConfirmPredictDown />
-            </BottomDrawerContent>
-          </BottomDrawerPortal>
-        </BottomDrawerRoot>
+        <Buttom
+          className="buttom-instance"
+          icon={<ArrowRightUp3 className="icon-instance-node" />}
+          pressing={false}
+          property1="UP"
+          payout={upPayout}
+          disabled={amount === 0}
+        />
+        <Buttom
+          className="buttom-instance"
+          icon={<ArrowRightDown className="icon-instance-node" />}
+          pressing={false}
+          property1="DOWN"
+          payout={downPayout}
+          disabled={amount === 0}
+        />
       </div>
       <div className="frame-16">
         {/* Media links */}

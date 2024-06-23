@@ -11,10 +11,7 @@ import { RewardWin } from "./screens/RewardWin";
 import { RewardLose } from "./screens/RewardLose";
 import { ResultWin } from "./screens/ResultWin";
 import { Lose } from "./screens/Lose";
-import {
-  StompSessionProvider,
-  useSubscription,
-} from "react-stomp-hooks";
+import { StompSessionProvider, useSubscription } from "react-stomp-hooks";
 // import { Win } from "./screens/Win";
 
 const router = createBrowserRouter([
@@ -30,7 +27,6 @@ const router = createBrowserRouter([
     path: "/purchase",
     element: <Purchase />,
   },
-
   {
     path: "/history-list",
     element: <HistoryList />,
@@ -38,18 +34,6 @@ const router = createBrowserRouter([
   {
     path: "/purchase-confirm",
     element: <PurchaseConfirm />,
-  },
-  {
-    path: "/confirm-predictup",
-    element: <ConfirmPredictUp />,
-  },
-  {
-    path: "/confirm-predictdown",
-    element: <ConfirmPredictDown />,
-  },
-  {
-    path: "/confirm-predictsuccess",
-    element: <ConfirmPredictSuccess />,
   },
   {
     path: "/reward-win",
@@ -81,6 +65,6 @@ export const App = () => {
     >
       <RouterProvider router={router} />
     </StompSessionProvider>
-  )
+  );
   return <RouterProvider router={router} />;
 };

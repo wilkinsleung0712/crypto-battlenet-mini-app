@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CheckOne } from "../../icons/CheckOne";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { mainManager } from "../../models/main";
+import { mainManager, setPredictStatus } from "../../models/main";
+import { BottomDrawerClose } from "../../components/BottomDrawer";
 
 export const ConfirmPredictSuccess = () => {
   const { amount, bidPayout } = useSnapshot(mainManager);
@@ -13,20 +14,23 @@ export const ConfirmPredictSuccess = () => {
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
-      onClose();
     }, 2000);
   };
 
-  const onClose = () => {
-    window.location.href = "/"; // Navigate to the main page
-  };
+  useEffect(() => {
+    return () => {
+      setPredictStatus(false);
+    };
+  }, []);
 
   return (
     <div className="confirm-predict">
       <div className="div-6">
         <div className="frame-8">
           <div className="text-wrapper-9">Predict Succeed</div>
-          <CloseOne1 className="close-one-instance" onClick={onClose} />
+          <BottomDrawerClose asChild>
+            <CloseOne1 className="close-one-instance" />
+          </BottomDrawerClose>
         </div>
         <div className="frame-9">
           <CheckOne className="check-one" />
