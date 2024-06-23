@@ -1,9 +1,10 @@
+import { faker } from "@faker-js/faker";
 import { proxy } from "valtio";
 
 const initialState = {
-  id: "",
+  id: "123",
   username: "Stranger",
-  points: "999",
+  points: faker.number.int({ max: 999999 }),
 };
 
 export const userManager = proxy(initialState);
