@@ -11,21 +11,32 @@ import {
   setPredictResult,
   setPredictStatus,
 } from "../../models/main";
-import { RewardWin } from "../reward-win";
-import { RewardLose } from "../reward-lose";
+import { userManager } from "../../models/user";
+import { placeBet } from "../../api/api"; // 确保这里的路径指向你的API文件
 import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess";
 
 export const ConfirmPredictDown = () => {
-  const [showToast, setShowToast] = useState(false);
-  const { amount, predictResult, downPayout, predictSuccess } =
-    useSnapshot(mainManager);
+  const {
+    amount,
+    predictResult,
+    downPayout,
+    predictSuccess,
+    openRound,
+    downId,
+  } = useSnapshot(mainManager);
+  const { id } = useSnapshot(userManager);
 
   const handleConfirmClick = () => {
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
-    setPredictStatus(true);
+    placeBet(1, openRound?.roundId, {
+      optionId: downId,
+      amount,
+      userId: id,
+    })
+      .then((response) => {
+        console.log("Bet placed", response.data);
+        setPredictStatus(true);
+      })
+      .catch((error) => console.error("Error placing bet", error));
   };
 
   useEffect(() => {
@@ -66,11 +77,6 @@ export const ConfirmPredictDown = () => {
           </div>
         </div>
       </div>
-      {/* {showToast && (
-        <div className="toast">
-          <div className="toast-message">Predict Confirmed!</div>
-        </div>
-      )} */}
     </div>
   );
 };

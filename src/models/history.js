@@ -7,9 +7,7 @@ const initialState = {
 export const historyManager = proxy(initialState);
 
 export const setHistoryList = (data) => {
-  if (data.length > 0) {
-    historyManager.list.push(...data);
-  }
+  historyManager.list = historyManager.list.concat(data);
 };
 
 export const resetHistoryManager = () => {
