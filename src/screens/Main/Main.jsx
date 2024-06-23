@@ -1,9 +1,10 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Buttom } from "../../components/Buttom";
 import { LogoBar } from "../../components/LogoBar";
 import { NaviBar } from "../../components/NaviBar";
 import { ArrowRightDown } from "../../icons/ArrowRightDown";
 import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
+import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
 import {
   SocialMedia1,
   SocialMedia2,
@@ -18,6 +19,15 @@ import { mainManager, resetMainManager, setRounds } from "../../models/main";
 import { faker } from "@faker-js/faker";
 import { useSubscription } from "react-stomp-hooks";
 import { useSnapshot } from "valtio";
+import {
+  BottomDrawerContent,
+  BottomDrawerDescription,
+  BottomDrawerOverlay,
+  BottomDrawerPortal,
+  BottomDrawerRoot,
+  BottomDrawerTitle,
+} from "../../components/BottomDrawer";
+import { RewardWin } from "../../blocks/reward-win";
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
   social_link_exchangehaya: "https://example.com/x1",
@@ -31,7 +41,9 @@ export const MediaBar = {
 
 export const Main = () => {
   const roundId = "123"; // 这里可以设置你的 roundId
-  const { upPayout, downPayout, amount } = useSnapshot(mainManager);
+  const [open, setOpen] = useState(false);
+  const { upPayout, downPayout, amount, openRound, closedRound } =
+    useSnapshot(mainManager);
 
   const handleBethandleBet = async (direction) => {
     const response = await fetch("/api/bet", {
@@ -51,6 +63,10 @@ export const Main = () => {
       console.log("Round Error");
     }
   });
+
+  useEffect(() => {
+    setOpen(!!closedRound.roundId);
+  }, [closedRound.roundId]);
 
   useEffect(() => {
     setRounds([
@@ -114,7 +130,7 @@ export const Main = () => {
           pressing={false}
           property1="UP"
           payout={upPayout}
-          disabled={amount === 0}
+          disabled={amount === 0 || !openRound.roundId}
         />
         <Buttom
           className="buttom-instance"
@@ -122,9 +138,20 @@ export const Main = () => {
           pressing={false}
           property1="DOWN"
           payout={downPayout}
-          disabled={amount === 0}
+          disabled={amount === 0 || !openRound.roundId}
         />
       </div>
+      <BottomDrawerRoot open={open} onOpenChange={setOpen}>
+        <BottomDrawerPortal>
+          <BottomDrawerOverlay />
+          <BottomDrawerContent aria-describedby={undefined}>
+            <VisuallyHidden.Root>
+              <BottomDrawerTitle />
+            </VisuallyHidden.Root>
+            <RewardWin />
+          </BottomDrawerContent>
+        </BottomDrawerPortal>
+      </BottomDrawerRoot>
       <div className="frame-16">
         {/* Media links */}
         <a

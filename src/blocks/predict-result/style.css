@@ -1,0 +1,54 @@
+.lose .frame-57 {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 0 0 auto;
+  gap: 10px;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+}
+
+.lose .frame-58 {
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  flex: 1;
+  flex-grow: 1;
+  height: 50px;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.lose .saved-messages-5 {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  color: #000000;
+  display: -webkit-box;
+  font-family: "SF Pro-Semibold", Helvetica;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 22px;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: fit-content;
+}
+
+.lose .text-wrapper-23 {
+  align-self: stretch;
+  color: #ffffff;
+  font-family: "SF Pro Display-Bold", Helvetica;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: normal;
+  margin-top: -1px;
+  position: relative;
+  text-align: center;
+}

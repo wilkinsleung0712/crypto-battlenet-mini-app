@@ -24,10 +24,6 @@ export const PrizePool = () => {
     }
   };
 
-  const bgStyle = {
-    // background: radial-gradient(99.95% 99.95% at 50% 0.05%, #1C1C1E 0%, #111111 100%);
-  };
-
   return (
     <div className="w-full px-2.5">
       <header
