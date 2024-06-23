@@ -7,6 +7,7 @@ import { useSnapshot } from "valtio";
 import {
   mainManager,
   resetMainPredict,
+  setBidPayout,
   setPredictResult,
   setPredictStatus,
 } from "../../models/main";
@@ -15,7 +16,7 @@ import { placeBet } from "../../api/api";
 import { userManager } from "../../models/user";
 
 export const ConfirmPredictUp = () => {
-  const { predictResult, amount, upPayout, predictSuccess, openRound, upId } =
+  const { amount, upPayout, predictSuccess, openRound, upId } =
     useSnapshot(mainManager);
   const { id } = useSnapshot(userManager);
 
@@ -28,6 +29,7 @@ export const ConfirmPredictUp = () => {
       .then((response) => {
         console.log("Bet placed", response.data);
         setPredictStatus(true);
+        setBidPayout(response.data?.payout);
       })
       .catch((error) => console.error("Error placing bet", error));
   };
