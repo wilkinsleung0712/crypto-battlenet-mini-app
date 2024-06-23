@@ -11,18 +11,27 @@ import {
   setPredictStatus,
 } from "../../models/main";
 import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess";
+import { placeBet } from "../../api/api";
+import { userManager } from "../../models/user";
 
 export const ConfirmPredictUp = () => {
-  const [showToast, setShowToast] = useState(false);
-  const { predictResult, amount, upPayout, predictSuccess } =
+  const { predictResult, amount, upPayout, predictSuccess, openRound, upId } =
     useSnapshot(mainManager);
+  const { id } = useSnapshot(userManager);
 
   const handleConfirmClick = () => {
-    setShowToast(true);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3000);
-    setPredictStatus(true);
+    const handleConfirmClick = () => {
+      placeBet(1, openRound?.roundId, {
+        optionId: upId,
+        amount,
+        userId: id,
+      })
+        .then((response) => {
+          console.log("Bet placed", response.data);
+          setPredictStatus(true);
+        })
+        .catch((error) => console.error("Error placing bet", error));
+    };
   };
 
   useEffect(() => {
@@ -63,11 +72,6 @@ export const ConfirmPredictUp = () => {
           </div>
         </div>
       </div>
-      {showToast && (
-        <div className="toast">
-          <div className="toast-message">Predict Confirmed!</div>
-        </div>
-      )}
     </div>
   );
 };

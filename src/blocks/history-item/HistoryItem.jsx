@@ -7,7 +7,7 @@ import { formatCoin, formatCurrency } from "../../utils";
 
 export const HistoryItem = ({ isUp, price, change, date, coinAmount }) => {
   return (
-    <div className="history-item flex items-center gap-2">
+    <div className="history-item flex items-center gap-2 w-full">
       {isUp ? (
         <TrendingUp className="icon-instance-node-3" />
       ) : (

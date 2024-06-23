@@ -77,7 +77,7 @@ export const PastRound = () => {
     variants: {
       status: {
         up: "text-green",
-        down: "text-pink",
+        down: "text-red",
         none: "hidden",
       },
     },
