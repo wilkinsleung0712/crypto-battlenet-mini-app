@@ -44,7 +44,7 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
         <div className="frame-2">
           <img className="plus" alt="Image" src="/img/coin.png" />
           <div className="text-wrapper">{points}</div>
-          <Link to="/add-coins">
+          <Link to="/purchase">
             <Plus2 className="plus" color="#1AAE70" />
           </Link>
         </div>

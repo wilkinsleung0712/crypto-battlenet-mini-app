@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { PurchaseConfirm } from "../PurchaseConfirm";
+import { useSnapshot } from "valtio";
+import { mainManager } from "../../models/main";
+import { userManager } from "../../models/user";
+import { Link } from "react-router-dom";
 
 const coinItems = [
   { image: "/img/18.png", amount: 300, price: "$0.99" },
@@ -30,6 +34,7 @@ const CoinItem = ({ image, amount, price, onClick }) => (
 export const Purchase = () => {
   const [showConfirm, setShowConfirm] = useState(false);
   const [selectedCoin, setSelectedCoin] = useState(null);
+  const { points } = useSnapshot(userManager);
 
   const handleConfirmClick = () => {
     setShowConfirm(true);
@@ -73,19 +78,21 @@ export const Purchase = () => {
     <div className="purchase">
       <div className="frame-17">
         <div className="text-wrapper-6">Purchase</div>
-        <CloseOne1 className="close-one" />
+        <Link to="/">
+          <CloseOne1 className="close-one" />
+        </Link>
       </div>
       <div className="frame-18">
         <div className="frame-19" />
         <div className="frame-20">
           <img className="image" alt="Image" src="/img/coin.png" />
-          <div className="text-wrapper-7">0000000</div>
+          <div className="text-wrapper-7">{points}</div>
         </div>
       </div>
       <div className="frame-21">{renderRows()}</div>
-      <div className="saved-messages-wrapper">
+      <Link className="saved-messages-wrapper" to="/">
         <div className="saved-messages">Close</div>
-      </div>
+      </Link>
       {showConfirm && (
         <PurchaseConfirm
           onClose={handleCloseConfirm}

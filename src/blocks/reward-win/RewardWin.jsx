@@ -16,7 +16,7 @@ export const RewardWin = () => {
     <div className="win-overlay">
       <div className="win" onClick={(e) => e.stopPropagation()}>
         <div className="frame-47">
-          <div className="text-wrapper-16">Congratulation</div>
+          <div className="text-wrapper-16">Congratulations</div>
           <BottomDrawerClose asChild>
             <CloseOne1 className="close-one-9" />
           </BottomDrawerClose>
@@ -28,13 +28,12 @@ export const RewardWin = () => {
         />
         <div className="frame-63">
           <div className="frame-64">
-            <div className="text-wrapper-28">Congratulation</div>
+            <div className="text-wrapper-28">Congratulations</div>
             <div className="text-wrapper-30">Your prediction is correct!</div>
           </div>
           <div className="text-wrapper-32">＋0000000 COIN</div>
           <div className="frame-65">
             <div className="text-wrapper-31">Time: 2024.00.00 00:00:00</div>
-            <div className="text-wrapper-31">#00000</div>
             <div className="text-wrapper-31">#00000</div>
           </div>
         </div>
