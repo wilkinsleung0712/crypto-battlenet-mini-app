@@ -11,7 +11,7 @@ export const LogoBar = ({ className, frame = "/img/frame-307265693.svg" }) => {
   return (
     <div className={`logo-bar ${className}`}>
       <img className="img" alt="Frame" src={frame} />
-      <a className="leading-crypto-index" href="www.baidu.com">
+      <a className="leading-crypto-index" href="www.baidu.com" target="_blank">
         Leading Crypto Index &gt;
       </a>
     </div>

@@ -5,20 +5,27 @@ import { BottomDrawerClose } from "../../components/BottomDrawer";
 
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { mainManager, resetMainPredict, setPredictResult } from "../../models/main";
+import {
+  mainManager,
+  resetMainPredict,
+  setPredictResult,
+  setPredictStatus,
+} from "../../models/main";
 import { RewardWin } from "../reward-win";
 import { RewardLose } from "../reward-lose";
+import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess";
 
 export const ConfirmPredictDown = () => {
   const [showToast, setShowToast] = useState(false);
-  const { amount, predictResult } = useSnapshot(mainManager);
+  const { amount, predictResult, downPayout, predictSuccess } =
+    useSnapshot(mainManager);
 
   const handleConfirmClick = () => {
     setShowToast(true);
     setTimeout(() => {
       setShowToast(false);
     }, 3000);
-    setPredictResult(`${Math.round(Math.random())}`);
+    setPredictStatus(true);
   };
 
   useEffect(() => {
@@ -27,14 +34,8 @@ export const ConfirmPredictDown = () => {
     };
   }, []);
 
-  if (predictResult === "0") {
-    // lose
-    return <RewardLose />;
-  }
-
-  // win
-  if (predictResult === "1") {
-    return <RewardWin />;
+  if (predictSuccess) {
+    return <ConfirmPredictSuccess />;
   }
 
   return (
@@ -50,7 +51,9 @@ export const ConfirmPredictDown = () => {
           <CircleRightDown1 className="icon-instance-node-4" />
           <div className="text-wrapper-19">DOWN!</div>
           <div className="frame-49">
-            <div className="element-x-payout">0.00X&nbsp;&nbsp;Payout</div>
+            <div className="element-x-payout">
+              {downPayout}X&nbsp;&nbsp;Payout
+            </div>
             <p className="bid-coin">
               <span className="text-wrapper-17">Bid </span>
               <span className="text-wrapper-18">{amount} Coin</span>

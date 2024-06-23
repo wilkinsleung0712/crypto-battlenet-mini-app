@@ -78,7 +78,7 @@ export const Purchase = () => {
       <div className="frame-18">
         <div className="frame-19" />
         <div className="frame-20">
-          <img className="image" alt="Image" src="/img/image-1850-1.png" />
+          <img className="image" alt="Image" src="/img/coin.png" />
           <div className="text-wrapper-7">0000000</div>
         </div>
       </div>

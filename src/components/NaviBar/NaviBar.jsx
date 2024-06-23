@@ -7,7 +7,7 @@ import { QuestionIcon } from "../../icons/Question";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { resetUserManager, setUserInfo, userManager } from '../../models/user';
+import { resetUserManager, setUserInfo, userManager } from "../../models/user";
 
 export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
   const { username, points } = useSnapshot(userManager);
@@ -26,7 +26,7 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
           id: telegramUserData.id,
           username: telegramUserData.first_name, // assuming first_name is the field for username
           points: telegramUserData.points,
-        })
+        });
       } else {
         console.error("Telegram user data is not available. Hello stranger.");
         resetUserManager();
@@ -42,7 +42,7 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
       <div className="frame">
         <div className="div" />
         <div className="frame-2">
-          <img className="plus" alt="Image" src="/img/image-1850-1.png" />
+          <img className="plus" alt="Image" src="/img/coin.png" />
           <div className="text-wrapper">{points}</div>
           <Link to="/add-coins">
             <Plus2 className="plus" color="#1AAE70" />
