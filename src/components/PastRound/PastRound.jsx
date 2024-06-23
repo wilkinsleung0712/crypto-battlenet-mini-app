@@ -12,13 +12,13 @@ import CoinImg from "../../../static/img/coin.png";
 
 export const PastRound = () => {
   const { pastRound } = useSnapshot(mainManager);
-  const { lockedPrice, endPrice, endTime, prizePool, roundId, lastPrice } =
+  const { lockedPrice, endPrice, endTime, prizePool, roundId, currentPrice } =
     pastRound || {};
 
   const intervalId = useRef(null);
 
   const priceChange = Number(
-    ((lastPrice * 100 - Number(lockedPrice) * 100) / 100).toFixed(2),
+    ((currentPrice * 100 - Number(lockedPrice) * 100) / 100).toFixed(2),
   );
 
   useEffect(() => {
@@ -106,7 +106,7 @@ export const PastRound = () => {
                 <span className="text-xs text-grey">H2O Last Price</span>
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-xl">
-                    ${formatCurrency(lastPrice)}
+                    ${formatCurrency(currentPrice)}
                   </span>
                   <span
                     className={priceChangeVariants({

@@ -34,7 +34,7 @@ const initialState = {
   downPayout: 1,
   upId: "",
   downId: "",
-  pastRound: { ...initRound, lastPrice: 0 },
+  pastRound: { ...initRound, currentPrice: 0 },
   openRound: { ...initRound },
   closedRound: { ...initRound },
   bidId: "",
