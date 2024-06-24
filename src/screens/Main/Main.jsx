@@ -69,10 +69,6 @@ export const Main = () => {
   }, [closedRound.roundId]);
 
   useEffect(() => {
-    setOpen(!!closedRound.roundId);
-  }, [closedRound.roundId]);
-
-  useEffect(() => {
     setRounds([
       {
         roundId: faker.number.int({ max: 999999 }),
