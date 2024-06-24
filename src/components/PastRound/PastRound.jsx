@@ -14,7 +14,6 @@ export const PastRound = () => {
   const { pastRound } = useSnapshot(mainManager);
   const { lockedPrice, endPrice, endTime, prizePool, roundId, currentPrice } =
     pastRound || {};
-
   const intervalId = useRef(null);
 
   const priceChange = Number(
@@ -29,8 +28,6 @@ export const PastRound = () => {
 
         // @ts-ignore
         if (!response.ok || !contentType.includes("application/json")) {
-          // console.error("Failed to fetch or non-JSON response received");
-          setDefaultContest();
           return;
         }
 
@@ -39,25 +36,11 @@ export const PastRound = () => {
         const deadline = new Date(createdAt.getTime() + 5 * 60000);
       } catch (error) {
         console.error("Error fetching contest:", error);
-        setDefaultContest();
       }
     };
 
     fetchContestById();
-  }, [pastRound.roundId]);
-
-  useEffect(() => {
-    intervalId.current = setInterval(() => {
-      // updateTimer();
-    }, 1000);
-
-    return () => clearInterval(intervalId.current);
-  }, []);
-
-  const setDefaultContest = () => {
-    const mockCreatedAt = new Date();
-    const mockDeadline = new Date(mockCreatedAt.getTime() + 5 * 60000);
-  };
+  }, [pastRound?.roundId]);
 
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
@@ -94,10 +77,11 @@ export const PastRound = () => {
               {roundId ? "Live" : "Not Live"} #{roundId ?? "-"}
             </span>
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
-              <Countdown
+              {roundId ? <Countdown
+                intervalDelay={1}
                 date={new Date(endTime).toUTCString()}
                 renderer={renderer}
-              />
+              /> : null}
             </span>
           </div>
           <div className="flex flex-col gap-6">
@@ -106,7 +90,7 @@ export const PastRound = () => {
                 <span className="text-xs text-grey">H2O Last Price</span>
                 <div className="flex items-center gap-2">
                   <span className="font-bold text-xl">
-                    ${formatCurrency(currentPrice)}
+                    ${formatCurrency(currentPrice ?? 0)}
                   </span>
                   <span
                     className={priceChangeVariants({
@@ -135,7 +119,7 @@ export const PastRound = () => {
               <div className="locked-price">
                 <span className="text-xs text-grey">Locked Price</span>
                 <span className="text-base font-semibold">
-                  ${formatCurrency(lockedPrice)}
+                  ${formatCurrency(lockedPrice ?? 0)}
                 </span>
               </div>
               <div className="prize-pool flex items-center justify-between">
@@ -143,7 +127,7 @@ export const PastRound = () => {
                 <div className="flex items-center justify-end gap-1">
                   <img src={CoinImg} className="" alt="" />
                   <span className="text-base font-semibold">
-                    {formatCoin(prizePool)}
+                    {formatCoin(prizePool ?? 0)}
                   </span>
                 </div>
               </div>

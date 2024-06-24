@@ -5,9 +5,7 @@ import { Purchase } from "./screens/Purchase";
 import { HistoryList } from "./screens/HistoryList";
 import { PurchaseConfirm } from "./screens/PurchaseConfirm";
 import { RewardWin } from "./screens/RewardWin";
-import { RewardLose } from "./screens/RewardLose";
 import { ResultWin } from "./screens/ResultWin";
-import { Lose } from "./screens/Lose";
 import { StompSessionProvider } from "react-stomp-hooks";
 
 const router = createBrowserRouter([
@@ -15,7 +13,7 @@ const router = createBrowserRouter([
     path: "/*",
     element: (
       <StompSessionProvider
-        url={"wss://e407-115-194-133-246.ngrok-free.app/crypto-battlenet"}
+        url={"wss://b58a5de725ad.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -25,7 +23,7 @@ const router = createBrowserRouter([
     path: "/main",
     element: (
       <StompSessionProvider
-        url={"wss://e407-115-194-133-246.ngrok-free.app/crypto-battlenet"}
+        url={"wss://b58a5de725ad.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -39,22 +37,18 @@ const router = createBrowserRouter([
     path: "/history-list",
     element: <HistoryList />,
   },
-  {
-    path: "/purchase-confirm",
-    element: <PurchaseConfirm />,
-  },
-  {
-    path: "/reward-win",
-    element: <RewardWin />,
-  },
-  {
-    path: "/ResultWin",
-    element: <ResultWin />,
-  },
-  {
-    path: "/lose",
-    element: <div>Lose</div>,
-  },
+  // {
+  //   path: "/purchase-confirm",
+  //   element: <PurchaseConfirm />,
+  // },
+  // {
+  //   path: "/reward-win",
+  //   element: <RewardWin />,
+  // },
+  // {
+  //   path: "/ResultWin",
+  //   element: <ResultWin />,
+  // },
 ]);
 
 export const App = () => {
