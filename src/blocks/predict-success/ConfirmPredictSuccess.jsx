@@ -3,11 +3,11 @@ import { CheckOne } from "../../icons/CheckOne";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { mainManager, setPredictStatus } from "../../models/main";
+import { mainManager, resetPredictAmount, setPredictStatus } from "../../models/main";
 import { BottomDrawerClose } from "../../components/BottomDrawer";
 
 export const ConfirmPredictSuccess = () => {
-  const { amount, bidPayout } = useSnapshot(mainManager);
+  const { amount, bidPayout, bidText } = useSnapshot(mainManager);
   const [showToast, setShowToast] = useState(false);
 
   const handleConfirm = () => {
@@ -20,6 +20,7 @@ export const ConfirmPredictSuccess = () => {
   useEffect(() => {
     return () => {
       setPredictStatus(false);
+      resetPredictAmount();
     };
   }, []);
 
@@ -37,7 +38,7 @@ export const ConfirmPredictSuccess = () => {
           <div className="text-wrapper-10">Success</div>
           <div className="div-wrapper">
             <p className="p">
-              Bid {amount} COIN to predict UP! for {bidPayout}X payout
+              Bid {amount} COIN to predict {bidText} ! for {bidPayout}X payout
             </p>
           </div>
         </div>

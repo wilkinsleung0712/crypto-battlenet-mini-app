@@ -8,6 +8,8 @@ import { useSnapshot } from "valtio";
 import {
   mainManager,
   resetMainPredict,
+  setBid,
+  setBidPayout,
   setPredictResult,
   setPredictStatus,
 } from "../../models/main";
@@ -33,8 +35,9 @@ export const ConfirmPredictDown = () => {
       userId: id,
     })
       .then((response) => {
-        console.log("Bet placed", response.data);
+        setBid(downId);
         setPredictStatus(true);
+        setBidPayout(response.data?.payout);
       })
       .catch((error) => console.error("Error placing bet", error));
   };

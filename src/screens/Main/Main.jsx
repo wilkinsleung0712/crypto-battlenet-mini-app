@@ -42,27 +42,27 @@ export const MediaBar = {
 export const Main = () => {
   const roundId = "123"; // 这里可以设置你的 roundId
   const [open, setOpen] = useState(false);
-  const { upPayout, downPayout, amount, openRound, closedRound } =
+  const { upPayout, downPayout, amount, openRound, closedRound, pastRound } =
     useSnapshot(mainManager);
-
-  const handleBethandleBet = async (direction) => {
-    const response = await fetch("/api/bet", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ amount, direction, roundId }),
-    });
-    const data = await response.json();
-    console.log(data);
-  };
 
   useSubscription("/topic/rounds", (message) => {
     try {
       const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
+      console.log('round info', parsedMessage.roundInfo)
       setRounds(parsedMessage.roundInfo);
     } catch (err) {
       console.log("Round Error");
     }
   });
+
+  useSubscription("/topic/rounds/closed", (message) => {
+    try {
+      const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
+      console.log('parsedMeeee', parsedMessage)
+    } catch (err) {
+      console.log("Closed Error");
+    }
+  })
 
   useEffect(() => {
     setOpen(!!closedRound.roundId);
@@ -74,6 +74,7 @@ export const Main = () => {
         roundId: faker.number.int({ max: 999999 }),
         lockedPrice: faker.number.int({ max: 9999 }),
         endPrice: null,
+        openTime: faker.date.past().toUTCString(),
         startTime: faker.date.soon().toUTCString(),
         endTime: faker.date.soon().toUTCString(),
         prizePool: faker.number.int(),
@@ -95,6 +96,7 @@ export const Main = () => {
         roundId: faker.number.int({ max: 999999 }),
         lockedPrice: faker.number.int({ max: 9999 }),
         endPrice: null,
+        openTime: faker.date.past().toUTCString(),
         startTime: faker.date.soon().toUTCString(),
         endTime: faker.date.soon().toUTCString(),
         prizePool: faker.number.int(),
@@ -144,6 +146,7 @@ export const Main = () => {
       <BottomDrawerRoot open={open} onOpenChange={setOpen}>
         <BottomDrawerPortal>
           <BottomDrawerOverlay />
+          {/* @ts-ignore */}
           <BottomDrawerContent aria-describedby={undefined}>
             <VisuallyHidden.Root>
               <BottomDrawerTitle />

@@ -7,6 +7,7 @@ const initRound = {
   endPrice: null,
   startTime: "",
   endTime: "",
+  openTime: '',
   prizePool: 0,
   status: "OPEN",
   upPayout: 1,
@@ -27,7 +28,7 @@ const initRound = {
 
 const initialState = {
   amount: 0,
-  maxAmount: faker.number.int({ min: 100, max: 999999 }),
+  maxAmount: faker.number.int({ min: 100, max: 2000 }),
   predictResult: "-1",
   predictSuccess: false,
   upPayout: 1,
@@ -39,6 +40,7 @@ const initialState = {
   closedRound: { ...initRound },
   bidId: "",
   bidPayout: 1,
+  bidText: '',
 };
 
 export const mainManager = proxy(initialState);
@@ -81,6 +83,7 @@ export const setRounds = (data) => {
 
 export const setBid = (id) => {
   mainManager.bidId = id;
+  mainManager.bidText = mainManager.upId === id ? 'UP' : 'DOWN';
 };
 
 export const setBidPayout = (payout) => {
@@ -98,3 +101,7 @@ export const resetMainPredict = () => {
 export const setPredictStatus = (status) => {
   mainManager.predictSuccess = status;
 };
+
+export const resetPredictAmount = () => {
+  mainManager.amount = 0;
+}
