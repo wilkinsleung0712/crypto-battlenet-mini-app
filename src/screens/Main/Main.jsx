@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Buttom } from "../../components/Buttom";
 import { LogoBar } from "../../components/LogoBar";
 import { NaviBar } from "../../components/NaviBar";
@@ -16,12 +16,10 @@ import { PastRound } from "../../components/PastRound";
 import { PrizePool } from "../../components/PrizePool/PrizePool";
 import { resetUserManager } from "../../models/user";
 import { mainManager, resetMainManager, setClosedRound, setRounds } from "../../models/main";
-import { faker } from "@faker-js/faker";
 import { useSubscription } from "react-stomp-hooks";
 import { useSnapshot } from "valtio";
 import {
   BottomDrawerContent,
-  BottomDrawerDescription,
   BottomDrawerOverlay,
   BottomDrawerPortal,
   BottomDrawerRoot,
@@ -40,9 +38,8 @@ export const MediaBar = {
 };
 
 export const Main = () => {
-  const roundId = "123"; // 这里可以设置你的 roundId
   const [open, setOpen] = useState(false);
-  const { upPayout, downPayout, amount, openRound, closedRound, pastRound } =
+  const { upPayout, downPayout, amount, openRound, closedRound, isNewCloseToast } =
     useSnapshot(mainManager);
 
   useSubscription("/topic/rounds", (message) => {
@@ -66,8 +63,8 @@ export const Main = () => {
   })
 
   useEffect(() => {
-    setOpen(!!closedRound.roundId);
-  }, [closedRound.roundId]);
+    setOpen(!!closedRound.roundId && isNewCloseToast);
+  }, [isNewCloseToast]);
 
   useEffect(() => {
     // setRounds([

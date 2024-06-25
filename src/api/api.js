@@ -45,3 +45,8 @@ export const placeBet = (contestId, roundId, betData) => {
 };
 
 // 将其他API按照上述模式添加
+export const getHistoryList = (offset, limit = 10) => {
+  return apiClient.get(
+    `/rounds/history?offset=${offset}&limit=${limit}`,
+  );
+};

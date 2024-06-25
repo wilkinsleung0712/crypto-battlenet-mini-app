@@ -39,11 +39,11 @@ export const PrizePool = () => {
               Next #{roundId}
             </div>
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
-              <Countdown
+              {startTime ? <Countdown
                 intervalDelay={1}
                 date={new Date(startTime).toUTCString()}
                 renderer={renderer}
-              />
+              /> : null}
             </span>
           </div>
         </div>

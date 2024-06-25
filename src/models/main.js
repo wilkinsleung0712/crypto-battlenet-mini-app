@@ -38,9 +38,12 @@ const initialState = {
   pastRound: { ...initRound, currentPrice: 0 },
   openRound: { ...initRound },
   closedRound: { ...initRound },
+  // bid info
   bidId: "",
   bidPayout: 1,
   bidText: '',
+  bidRoundId: '',
+  isNewCloseToast: false,
 };
 
 export const mainManager = proxy(initialState);
@@ -72,24 +75,35 @@ export const setRounds = (data) => {
   );
   mainManager.upId = upOption?.id ?? "";
   mainManager.downId = downOption?.id ?? "";
+  if (openRound) {
+    mainManager.upPayout = openRound.upPayout.toFixed(2);
+    mainManager.downPayout = openRound.downPayout.toFixed(2);
+  }
 };
 
 export const setClosedRound = (closedRound) => {
-  if (closedRound) {
+  const isNewClose = closedRound?.roundId !== mainManager.closedRound?.roundId;
+  if (isNewClose) {
     mainManager.closedRound = closedRound;
-    setTimeout(() => {
-      mainManager.closedRound = { ...initRound };
-    }, 300000);
   }
+  mainManager.isNewCloseToast = isNewClose;
 }
 
-export const setBid = (id) => {
+export const closeRoundToast = () => {
+  mainManager.isNewCloseToast = false;
+  mainManager.bidId = '';
+  mainManager.bidPayout = 0;
+  mainManager.bidRoundId = '';
+}
+
+export const setBid = (id, roundId) => {
   mainManager.bidId = id;
   mainManager.bidText = mainManager.upId === id ? 'UP' : 'DOWN';
+  mainManager.bidRoundId = roundId;
 };
 
 export const setBidPayout = (payout) => {
-  mainManager.bidPayout = payout ?? 1;
+  mainManager.bidPayout = payout?.toFixed(2) ?? 1;
 };
 
 export const resetMainManager = () => {
