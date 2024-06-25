@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Main } from "./screens/Main";
 import { Purchase } from "./screens/Purchase";
@@ -7,6 +7,8 @@ import { PurchaseConfirm } from "./screens/PurchaseConfirm";
 import { RewardWin } from "./screens/RewardWin";
 import { ResultWin } from "./screens/ResultWin";
 import { StompSessionProvider } from "react-stomp-hooks";
+import { getUserById } from "./api/api";
+import { setUserInfo } from "./models/user";
 
 const router = createBrowserRouter([
   {
@@ -52,5 +54,12 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
+  useEffect(() => {
+    getUserById(1)
+      .then(({ data }) => {
+        setUserInfo(data);
+      })
+      .catch((error) => console.error("Failed to sign in", error));
+  }, []);
   return <RouterProvider router={router} />;
 };

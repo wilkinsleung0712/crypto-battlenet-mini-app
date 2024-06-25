@@ -15,7 +15,7 @@ import "./style.css";
 import { PastRound } from "../../components/PastRound";
 import { PrizePool } from "../../components/PrizePool/PrizePool";
 import { resetUserManager } from "../../models/user";
-import { mainManager, resetMainManager, setRounds } from "../../models/main";
+import { mainManager, resetMainManager, setClosedRound, setRounds } from "../../models/main";
 import { faker } from "@faker-js/faker";
 import { useSubscription } from "react-stomp-hooks";
 import { useSnapshot } from "valtio";
@@ -58,7 +58,8 @@ export const Main = () => {
   useSubscription("/topic/rounds/closed", (message) => {
     try {
       const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
-      console.log('parsedMeeee', parsedMessage)
+      console.log('parsedMeeee', parsedMessage.roundInfo)
+      setClosedRound(parsedMessage.roundInfo);
     } catch (err) {
       console.log("Closed Error");
     }
@@ -69,41 +70,41 @@ export const Main = () => {
   }, [closedRound.roundId]);
 
   useEffect(() => {
-    setRounds([
-      {
-        roundId: faker.number.int({ max: 999999 }),
-        lockedPrice: faker.number.int({ max: 9999 }),
-        endPrice: null,
-        openTime: faker.date.past().toUTCString(),
-        startTime: faker.date.soon().toUTCString(),
-        endTime: faker.date.soon().toUTCString(),
-        prizePool: faker.number.int(),
-        status: "OPEN",
-        option: [
-          {
-            id: faker.number.int(),
-            createdAt: "",
-            optionText: "UP",
-          },
-          {
-            optionText: "DOWN",
-            id: faker.number.int(),
-            createdAt: "",
-          },
-        ],
-      },
-      {
-        roundId: faker.number.int({ max: 999999 }),
-        lockedPrice: faker.number.int({ max: 9999 }),
-        endPrice: null,
-        openTime: faker.date.past().toUTCString(),
-        startTime: faker.date.soon().toUTCString(),
-        endTime: faker.date.soon().toUTCString(),
-        prizePool: faker.number.int(),
-        currentPrice: faker.number.int({ max: 9999 }),
-        status: "STARTED",
-      },
-    ]);
+    // setRounds([
+    //   {
+    //     roundId: faker.number.int({ max: 999999 }),
+    //     lockedPrice: faker.number.int({ max: 9999 }),
+    //     endPrice: null,
+    //     openTime: faker.date.past().toUTCString(),
+    //     startTime: faker.date.soon().toUTCString(),
+    //     endTime: faker.date.soon().toUTCString(),
+    //     prizePool: faker.number.int(),
+    //     status: "OPEN",
+    //     option: [
+    //       {
+    //         id: faker.number.int(),
+    //         createdAt: "",
+    //         optionText: "UP",
+    //       },
+    //       {
+    //         optionText: "DOWN",
+    //         id: faker.number.int(),
+    //         createdAt: "",
+    //       },
+    //     ],
+    //   },
+    //   {
+    //     roundId: faker.number.int({ max: 999999 }),
+    //     lockedPrice: faker.number.int({ max: 9999 }),
+    //     endPrice: null,
+    //     openTime: faker.date.past().toUTCString(),
+    //     startTime: faker.date.soon().toUTCString(),
+    //     endTime: faker.date.soon().toUTCString(),
+    //     prizePool: faker.number.int(),
+    //     currentPrice: faker.number.int({ max: 9999 }),
+    //     status: "STARTED",
+    //   },
+    // ]);
     return () => {
       resetUserManager();
       resetMainManager();
