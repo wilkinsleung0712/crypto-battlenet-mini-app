@@ -8,7 +8,8 @@ import { RewardWin } from "./screens/RewardWin";
 import { ResultWin } from "./screens/ResultWin";
 import { StompSessionProvider } from "react-stomp-hooks";
 import { getUserById } from "./api/api";
-import { setUserInfo } from "./models/user";
+import { setUserInfo, userManager } from "./models/user";
+import { useSnapshot } from "valtio";
 
 const router = createBrowserRouter([
   {
@@ -54,12 +55,14 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
+  const { id } = useSnapshot(userManager);
   useEffect(() => {
-    getUserById(1)
+    if (!id) return;
+    getUserById(id)
       .then(({ data }) => {
         setUserInfo(data);
       })
       .catch((error) => console.error("Failed to sign in", error));
-  }, []);
+  }, [id]);
   return <RouterProvider router={router} />;
 };

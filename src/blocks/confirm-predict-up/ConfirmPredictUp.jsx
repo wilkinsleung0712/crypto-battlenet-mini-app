@@ -29,7 +29,7 @@ export const ConfirmPredictUp = () => {
     })
       .then((response) => {
         setPredictStatus(true);
-        setBid(upId);
+        setBid(upId, openRound?.roundId);
         setBidPayout(response.data?.payout);
       })
       .catch((error) => console.error("Error placing bet", error));
