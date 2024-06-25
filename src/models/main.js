@@ -72,14 +72,16 @@ export const setRounds = (data) => {
   );
   mainManager.upId = upOption?.id ?? "";
   mainManager.downId = downOption?.id ?? "";
-  const closedRound = data.find((item) => item.status === "CLOSED");
+};
+
+export const setClosedRound = (closedRound) => {
   if (closedRound) {
     mainManager.closedRound = closedRound;
     setTimeout(() => {
       mainManager.closedRound = { ...initRound };
     }, 300000);
   }
-};
+}
 
 export const setBid = (id) => {
   mainManager.bidId = id;
