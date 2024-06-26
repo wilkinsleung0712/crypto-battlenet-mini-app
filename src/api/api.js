@@ -44,6 +44,12 @@ export const placeBet = (contestId, roundId, betData) => {
   );
 };
 
+export const getRoundResult = (contestId, roundId, userId) => {
+  return apiClient.get(
+    `contests/${contestId}/rounds/${roundId}/bets/${userId}`
+  )
+}
+
 // 将其他API按照上述模式添加
 export const getHistoryList = (offset, limit = 10) => {
   return apiClient.get(

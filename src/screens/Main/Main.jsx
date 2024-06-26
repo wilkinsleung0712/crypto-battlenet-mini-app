@@ -14,8 +14,8 @@ import {
 import "./style.css";
 import { PastRound } from "../../components/PastRound";
 import { PrizePool } from "../../components/PrizePool/PrizePool";
-import { resetUserManager } from "../../models/user";
-import { mainManager, resetMainManager, setClosedRound, setRounds } from "../../models/main";
+import { resetUserManager, userManager } from "../../models/user";
+import { mainManager, resetMainManager, setClosedRound, setPayoutAmount, setRounds } from "../../models/main";
 import { useSubscription } from "react-stomp-hooks";
 import { useSnapshot } from "valtio";
 import {
@@ -26,6 +26,9 @@ import {
   BottomDrawerTitle,
 } from "../../components/BottomDrawer";
 import { RewardWin } from "../../blocks/reward-win";
+import { RewardLose } from "../../blocks/reward-lose";
+import { getRoundResult } from "../../api/api";
+import dayjs from "dayjs";
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
   social_link_exchangehaya: "https://example.com/x1",
@@ -39,8 +42,9 @@ export const MediaBar = {
 
 export const Main = () => {
   const [open, setOpen] = useState(false);
-  const { upPayout, downPayout, amount, openRound, closedRound, isNewCloseToast } =
+  const { upPayout, downPayout, amount, openRound, closedRound, payoutAmount } =
     useSnapshot(mainManager);
+  const { id } = useSnapshot(userManager);
 
   useSubscription("/topic/rounds", (message) => {
     try {
@@ -63,8 +67,22 @@ export const Main = () => {
   })
 
   useEffect(() => {
-    setOpen(!!closedRound.roundId && isNewCloseToast);
-  }, [isNewCloseToast]);
+    if (closedRound.roundId) {
+      const sec = dayjs(closedRound.endTime).diff(dayjs(new Date()), 'seconds');
+      if (sec > -5) {
+        getRoundResult(1, closedRound.roundId, id).then((res) => {
+          console.log('get round result', sec, res.data);
+          setPayoutAmount(res.data?.bet?.payoutAmount ?? 0);
+          if (res.data?.bet?.payoutAmount > 0 || res.data?.bet?.payoutAmount < 0) {
+            setTimeout(() => {
+              setOpen(true);
+            }, 500)
+          }
+        })
+        .catch((error) => console.error("Error get round result", error));
+      }
+    }
+  }, [closedRound.roundId]);
 
   useEffect(() => {
     // setRounds([
@@ -149,7 +167,9 @@ export const Main = () => {
             <VisuallyHidden.Root>
               <BottomDrawerTitle />
             </VisuallyHidden.Root>
-            <RewardWin />
+            {
+              payoutAmount > 0 ? <RewardWin /> : <RewardLose />
+            }
           </BottomDrawerContent>
         </BottomDrawerPortal>
       </BottomDrawerRoot>

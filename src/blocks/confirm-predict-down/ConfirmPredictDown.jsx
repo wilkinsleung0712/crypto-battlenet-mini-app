@@ -10,7 +10,6 @@ import {
   resetMainPredict,
   setBid,
   setBidPayout,
-  setPredictResult,
   setPredictStatus,
 } from "../../models/main";
 import { userManager } from "../../models/user";
@@ -20,7 +19,6 @@ import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess"
 export const ConfirmPredictDown = () => {
   const {
     amount,
-    predictResult,
     downPayout,
     predictSuccess,
     openRound,
