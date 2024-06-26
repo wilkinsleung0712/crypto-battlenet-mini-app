@@ -43,6 +43,7 @@ const initialState = {
   bidPayout: 1,
   bidText: '',
   bidRoundId: '',
+  payoutAmount: 0,
   isNewCloseToast: false,
 };
 
@@ -82,11 +83,7 @@ export const setRounds = (data) => {
 };
 
 export const setClosedRound = (closedRound) => {
-  const isNewClose = closedRound?.roundId !== mainManager.closedRound?.roundId;
-  if (isNewClose) {
-    mainManager.closedRound = closedRound;
-  }
-  mainManager.isNewCloseToast = isNewClose;
+  mainManager.closedRound = closedRound;
 }
 
 export const closeRoundToast = () => {
@@ -105,6 +102,10 @@ export const setBid = (id, roundId) => {
 export const setBidPayout = (payout) => {
   mainManager.bidPayout = payout?.toFixed(2) ?? 1;
 };
+
+export const setPayoutAmount = (amount) => {
+  mainManager.payoutAmount = amount;
+}
 
 export const resetMainManager = () => {
   Object.assign(mainManager, initialState);

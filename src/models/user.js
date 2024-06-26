@@ -11,7 +11,7 @@ const initialState = {
 export const userManager = proxy(initialState);
 
 export const setUserInfo = (data) => {
-  userManager.id = data.id;
+  userManager.id = data.id ?? 2;
   userManager.username = data.username ?? '';
   userManager.points = data.points ?? 0;
   userManager.walletAddress = data.address ?? '';

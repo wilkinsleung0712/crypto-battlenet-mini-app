@@ -2,6 +2,9 @@ import React from "react";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { BottomDrawerClose } from "../../components/BottomDrawer";
+import { useSnapshot } from "valtio";
+import { mainManager } from "../../models/main";
+import dayjs from "dayjs";
 
 // Example function to share on Telegram
 const shareOnTelegram = () => {
@@ -12,6 +15,7 @@ const shareOnTelegram = () => {
 };
 
 export const RewardWin = () => {
+  const { payoutAmount, closedRound } = useSnapshot(mainManager);
   return (
     <div className="win-overlay">
       <div className="win" onClick={(e) => e.stopPropagation()}>
@@ -31,10 +35,10 @@ export const RewardWin = () => {
             <div className="text-wrapper-28">Congratulations</div>
             <div className="text-wrapper-30">Your prediction is correct!</div>
           </div>
-          <div className="text-wrapper-32">＋0000000 COIN</div>
+          <div className="text-wrapper-32">+{payoutAmount} COIN</div>
           <div className="frame-65">
-            <div className="text-wrapper-31">Time: 2024.00.00 00:00:00</div>
-            <div className="text-wrapper-31">#00000</div>
+            <div className="text-wrapper-31">Time: {dayjs(closedRound.endTime).format('YYYY.MM.DD HH:mm:ss')}</div>
+            <div className="text-wrapper-31">#{closedRound.roundId}</div>
           </div>
         </div>
         <div className="frame-68">
