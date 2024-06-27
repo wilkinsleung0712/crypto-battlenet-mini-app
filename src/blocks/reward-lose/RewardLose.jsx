@@ -38,7 +38,9 @@ export const RewardLose = () => {
           </div>
           <div className="frame-65 flex items-center gap-4">
             <div className="text-wrapper-31">#{closedRound.roundId}</div>
-            <div className="text-wrapper-31">Time: {dayjs(closedRound.endTime).format('YYYY.MM.DD HH:mm:ss')}</div>
+            <div className="text-wrapper-31">
+              Time: {dayjs(closedRound.endTime).format("YYYY.MM.DD HH:mm:ss")}
+            </div>
           </div>
         </div>
         <div className="frame-68 my-2">

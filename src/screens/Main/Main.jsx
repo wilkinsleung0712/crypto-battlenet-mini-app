@@ -4,7 +4,7 @@ import { LogoBar } from "../../components/LogoBar";
 import { NaviBar } from "../../components/NaviBar";
 import { ArrowRightDown } from "../../icons/ArrowRightDown";
 import { ArrowRightUp3 } from "../../icons/ArrowRightUp3";
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import {
   SocialMedia1,
   SocialMedia2,
@@ -15,7 +15,13 @@ import "./style.css";
 import { PastRound } from "../../components/PastRound";
 import { PrizePool } from "../../components/PrizePool/PrizePool";
 import { resetUserManager, userManager } from "../../models/user";
-import { mainManager, resetMainManager, setClosedRound, setPayoutAmount, setRounds } from "../../models/main";
+import {
+  mainManager,
+  resetMainManager,
+  setClosedRound,
+  setPayoutAmount,
+  setRounds,
+} from "../../models/main";
 import { useSubscription } from "react-stomp-hooks";
 import { useSnapshot } from "valtio";
 import {
@@ -49,7 +55,7 @@ export const Main = () => {
   useSubscription("/topic/rounds", (message) => {
     try {
       const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
-      console.log('round info', parsedMessage.roundInfo)
+      console.log("round info", parsedMessage.roundInfo);
       setRounds(parsedMessage.roundInfo);
     } catch (err) {
       console.log("Round Error");
@@ -59,27 +65,31 @@ export const Main = () => {
   useSubscription("/topic/rounds/closed", (message) => {
     try {
       const parsedMessage = JSON.parse(message.body); // Attempt to parse as JSON
-      console.log('parsedMeeee', parsedMessage.roundInfo)
+      console.log("parsedMeeee", parsedMessage.roundInfo);
       setClosedRound(parsedMessage.roundInfo);
     } catch (err) {
       console.log("Closed Error");
     }
-  })
+  });
 
   useEffect(() => {
     if (closedRound.roundId) {
-      const sec = dayjs(closedRound.endTime).diff(dayjs(new Date()), 'seconds');
+      const sec = dayjs(closedRound.endTime).diff(dayjs(new Date()), "seconds");
       if (sec > -5) {
-        getRoundResult(1, closedRound.roundId, id).then((res) => {
-          console.log('get round result', sec, res.data);
-          setPayoutAmount(res.data?.bet?.payoutAmount ?? 0);
-          if (res.data?.bet?.payoutAmount > 0 || res.data?.bet?.payoutAmount < 0) {
-            setTimeout(() => {
-              setOpen(true);
-            }, 500)
-          }
-        })
-        .catch((error) => console.error("Error get round result", error));
+        getRoundResult(1, closedRound.roundId, id)
+          .then((res) => {
+            console.log("get round result", sec, res.data);
+            setPayoutAmount(res.data?.bet?.payoutAmount ?? 0);
+            if (
+              res.data?.bet?.payoutAmount > 0 ||
+              res.data?.bet?.payoutAmount < 0
+            ) {
+              setTimeout(() => {
+                setOpen(true);
+              }, 500);
+            }
+          })
+          .catch((error) => console.error("Error get round result", error));
       }
     }
   }, [closedRound.roundId]);
@@ -167,9 +177,7 @@ export const Main = () => {
             <VisuallyHidden.Root>
               <BottomDrawerTitle />
             </VisuallyHidden.Root>
-            {
-              payoutAmount > 0 ? <RewardWin /> : <RewardLose />
-            }
+            {payoutAmount > 0 ? <RewardWin /> : <RewardLose />}
           </BottomDrawerContent>
         </BottomDrawerPortal>
       </BottomDrawerRoot>

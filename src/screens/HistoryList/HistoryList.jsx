@@ -37,42 +37,46 @@ export const HistoryList = () => {
     const items = Array.from({ length: 10 }).map(generateItem);
     console.log("items", items);
     setHistoryList(items);
-    getHistoryList(offset, limit).then(res => {
-      console.log('get list', res.data)
-      // setHistoryList(items);
-    }).catch((error) => console.error("Failed to get history information", error));
+    getHistoryList(offset, limit)
+      .then((res) => {
+        console.log("get list", res.data);
+        // setHistoryList(items);
+      })
+      .catch((error) =>
+        console.error("Failed to get history information", error),
+      );
   }, []);
 
   return (
     <div className="history-list w-full">
       <div className="w-full ">
-      <InfiniteScroll
-        next={fetchMoreData}
-        dataLength={list.length}
-        hasMore={list.length < 100}
-        loader={
-          <div className="text-center text-grey text-lg pb-6">Loading...</div>
-        }
-        endMessage={
-          <p style={{ textAlign: 'center' }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-      >
-        <div className="w-full frame-38">
-          {list.map((item, index) => (
-            <HistoryItem
-              key={index}
-              isUp={item.isUp}
-              price={item.price}
-              change={item.change}
-              date={item.date}
-              coinAmount={item.coinAmount}
-            />
-          ))}
-        </div>
-      </InfiniteScroll>
-    </div>
+        <InfiniteScroll
+          next={fetchMoreData}
+          dataLength={list.length}
+          hasMore={list.length < 100}
+          loader={
+            <div className="text-center text-grey text-lg pb-6">Loading...</div>
+          }
+          endMessage={
+            <p style={{ textAlign: "center" }}>
+              <b>Yay! You have seen it all</b>
+            </p>
+          }
+        >
+          <div className="w-full frame-38">
+            {list.map((item, index) => (
+              <HistoryItem
+                key={index}
+                isUp={item.isUp}
+                price={item.price}
+                change={item.change}
+                date={item.date}
+                coinAmount={item.coinAmount}
+              />
+            ))}
+          </div>
+        </InfiniteScroll>
+      </div>
     </div>
   );
 };

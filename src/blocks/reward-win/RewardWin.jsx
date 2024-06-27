@@ -37,7 +37,9 @@ export const RewardWin = () => {
           </div>
           <div className="text-wrapper-32">+{payoutAmount} COIN</div>
           <div className="frame-65">
-            <div className="text-wrapper-31">Time: {dayjs(closedRound.endTime).format('YYYY.MM.DD HH:mm:ss')}</div>
+            <div className="text-wrapper-31">
+              Time: {dayjs(closedRound.endTime).format("YYYY.MM.DD HH:mm:ss")}
+            </div>
             <div className="text-wrapper-31">#{closedRound.roundId}</div>
           </div>
         </div>

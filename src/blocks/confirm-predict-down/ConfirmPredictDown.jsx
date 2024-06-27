@@ -17,13 +17,8 @@ import { placeBet } from "../../api/api"; // 确保这里的路径指向你的AP
 import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess";
 
 export const ConfirmPredictDown = () => {
-  const {
-    amount,
-    downPayout,
-    predictSuccess,
-    openRound,
-    downId,
-  } = useSnapshot(mainManager);
+  const { amount, downPayout, predictSuccess, openRound, downId } =
+    useSnapshot(mainManager);
   const { id } = useSnapshot(userManager);
 
   const handleConfirmClick = () => {
