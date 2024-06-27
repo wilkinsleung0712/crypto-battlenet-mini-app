@@ -28,6 +28,11 @@ export const registerUser = (userData) => {
   return apiClient.post("/users/register", userData);
 };
 
+export const topUpCoins = (userId, amount) => {
+  return apiClient.post(
+      `/users/${userId}`, amount);
+};
+
 // 比赛API
 export const registerForContest = (contestData) => {
   return apiClient.post("/contests/register", contestData);
