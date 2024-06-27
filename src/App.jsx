@@ -64,8 +64,7 @@ export const App = () => {
   }, [id]);
   return(
   <TonConnectUIProvider
-      // manifestUrl="http://localhost:1234/manifest.json"
-      manifestUrl="https://wilkinsleung0712.github.io/crypto-battlenet-mini-app/manifest.json"
+      manifestUrl={process.env.REACT_APP_MANIFEST_URL}
       uiPreferences={{theme: THEME.DARK}}
       walletsListConfiguration={{
         includeWallets: [
@@ -105,7 +104,7 @@ export const App = () => {
         ]
       }}
       actionsConfiguration={{
-        twaReturnUrl: 'https://wilkinsleung0712.github.io/crypto-battlenet-mini-app'
+        twaReturnUrl: 'https://t.me/tc_twa_demo_bot/start'
       }}
   >
     <RouterProvider router={router} />

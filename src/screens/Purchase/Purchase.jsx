@@ -6,6 +6,7 @@ import { useSnapshot } from "valtio";
 import { mainManager } from "../../models/main";
 import { userManager } from "../../models/user";
 import { Link } from "react-router-dom";
+import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
 
 const coinItems = [
   { image: "/img/18.png", amount: 300, price: "$0.99" },
@@ -32,77 +33,79 @@ const CoinItem = ({ image, amount, price, onClick }) => (
 );
 
 export const Purchase = () => {
-  const [showConfirm, setShowConfirm] = useState(false);
-  const [selectedCoin, setSelectedCoin] = useState(null);
-  const { points } = useSnapshot(userManager);
+    const [showConfirm, setShowConfirm] = useState(false);
+    const [selectedCoin, setSelectedCoin] = useState(null);
+    const { points } = useSnapshot(userManager);
+    const tonAddress = useTonAddress();  // Correct placement of the hook.
 
-  const handleConfirmClick = () => {
-    setShowConfirm(true);
-  };
+    const handleConfirmClick = () => {
+        setShowConfirm(true);
+    };
 
-  const handleCloseConfirm = () => {
-    setShowConfirm(false);
-  };
+    const handleCloseConfirm = () => {
+        setShowConfirm(false);
+    };
 
-  const handleItemClick = (item) => {
-    setSelectedCoin(item);
-    handleConfirmClick();
-  };
+    const handleItemClick = (item) => {
+        setSelectedCoin(item);
+        handleConfirmClick();
+    };
 
-  const renderRows = () => {
-    const rows = [];
-    for (let i = 0; i < coinItems.length; i += 2) {
-      rows.push(
-        <div className="frame-22" key={i}>
-          <CoinItem
-            image={coinItems[i].image}
-            amount={coinItems[i].amount}
-            price={coinItems[i].price}
-            onClick={() => handleItemClick(coinItems[i])}
-          />
-          {i + 1 < coinItems.length && (
-            <CoinItem
-              image={coinItems[i + 1].image}
-              amount={coinItems[i + 1].amount}
-              price={coinItems[i + 1].price}
-              onClick={() => handleItemClick(coinItems[i + 1])}
-            />
-          )}
-        </div>,
-      );
-    }
-    return rows;
-  };
+    const renderRows = () => {
+        const rows = [];
+        for (let i = 0; i < coinItems.length; i += 2) {
+            rows.push(
+                <div className="frame-22" key={i}>
+                    <CoinItem
+                        image={coinItems[i].image}
+                        amount={coinItems[i].amount}
+                        price={coinItems[i].price}
+                        onClick={() => handleItemClick(coinItems[i])}
+                    />
+                    {i + 1 < coinItems.length && (
+                        <CoinItem
+                            image={coinItems[i + 1].image}
+                            amount={coinItems[i + 1].amount}
+                            price={coinItems[i + 1].price}
+                            onClick={() => handleItemClick(coinItems[i + 1])}
+                        />
+                    )}
+                </div>,
+            );
+        }
+        return rows;
+    };
 
-  return (
-    <div className="purchase">
-      <div className="frame-17">
-        <div className="text-wrapper-6">Purchase</div>
-        <Link to="/">
-          <CloseOne1 className="close-one" />
-        </Link>
-      </div>
-      <div className="frame-18">
-        <div className="frame-19" />
-        <div className="frame-20">
-          <img className="image" alt="Image" src="/img/coin.png" />
-          <div className="text-wrapper-7">{points}</div>
+    return (
+        <div className="purchase">
+            <div className="frame-17">
+                <div className="text-wrapper-6">Purchase</div>
+                <Link to="/">
+                    <CloseOne1 className="close-one"/>
+                </Link>
+            </div>
+            <div className="frame-18">
+                <div className="frame-19"/>
+                <div className="frame-20">
+                    <img className="image" alt="Image" src="/img/coin.png"/>
+                    <div className="text-wrapper-7">{points}</div>
+                </div>
+                <div><TonConnectButton/></div>
+            </div>
+            <div className="frame-21">{renderRows()}</div>
+            <Link className="saved-messages-wrapper" to="/">
+                <div className="saved-messages">Close</div>
+            </Link>
+            {showConfirm && selectedCoin && (
+                <PurchaseConfirm
+                    userId={tonAddress}
+                    onClose={handleCloseConfirm}
+                    tonAmount={selectedCoin.amount / 1000}
+                    onWalletClick={() => console.log("Wallet clicked")}
+                    onTonConnectClick={() => console.log("TON Connect clicked")}
+                />
+            )}
         </div>
-      </div>
-      <div className="frame-21">{renderRows()}</div>
-      <Link className="saved-messages-wrapper" to="/">
-        <div className="saved-messages">Close</div>
-      </Link>
-      {showConfirm && (
-        <PurchaseConfirm
-          onClose={handleCloseConfirm}
-          tonAmount={
-            selectedCoin ? selectedCoin.amount / 1000 + " TON" : "0 TON"
-          }
-          onWalletClick={() => console.log("Wallet clicked")}
-          onTonConnectClick={() => console.log("TON Connect clicked")}
-        />
-      )}
-    </div>
-  );
+    );
 };
+

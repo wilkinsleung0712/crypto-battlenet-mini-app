@@ -2,6 +2,7 @@ import React, {useState, useEffect } from 'react';
 import PropTypes from "prop-types";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import { useTonConnectUI, useTonWallet } from "@tonconnect/ui-react";
+import { toNano } from '@ton/ton'
 import { topUpCoins } from '../../api/api';  // 确保正确导入API函数
 import "./style.css";
 
@@ -10,8 +11,11 @@ const defaultTx = (walletAddress, amount) => ({
     messages: [
         {
             address: walletAddress,
-            amount: amount,  // 初始化时设置金额
+            // address: "UQDEgIhbx4sAjhbnV4_XI44nq3QFRVbzHtlVOYmIIj11E-LX",
+            amount: toNano(amount).toString(),
+            // (optional) State initialization in boc base64 format.
             stateInit: 'te6cckEBBAEAOgACATQCAQAAART/APSkE/S88sgLAwBI0wHQ0wMBcbCRW+D6QDBwgBDIywVYzxYh+gLLagHPFsmAQPsAlxCarA==',
+            // (optional) Payload in boc base64 format.
             payload: 'te6ccsEBAQEADAAMABQAAAAASGVsbG8hCaTc/g==',
         },
     ],
@@ -33,14 +37,25 @@ export const PurchaseConfirm = ({
     const handleSendTransaction = async () => {
         try {
             const transactionResult = await tonConnectUi.sendTransaction(tx);
+            console.log('Transaction Result:', transactionResult);  // 打印响应结果查看结构
+
             if (transactionResult && transactionResult.success) {
-                await topUpCoins(userId, tx.messages[0].amount);
-                console.log('Coins topped up successfully');
+                // 成功发送交易后，尝试充值
+                try {
+                    await topUpCoins(userId, tx.messages[0].amount);
+                    console.log('Coins topped up successfully');
+                } catch (topUpError) {
+                    // 处理topUpCoins函数可能抛出的错误
+                    console.error('Failed to top up coins:', topUpError);
+                    // 可以在这里添加更多用户反馈逻辑，比如显示错误消息给用户
+                }
             } else {
                 console.error('Transaction failed:', transactionResult);
+                // 交易失败的额外用户反馈逻辑
             }
-        } catch (error) {
-            console.error('Transaction error:', error);
+        } catch (transactionError) {
+            console.error('Transaction error:', transactionError);
+            // 可能需要处理网络问题或其他意外情况的用户反馈
         }
     };
 
@@ -49,7 +64,7 @@ export const PurchaseConfirm = ({
             <div className="purchase-confirm" onClick={(e) => e.stopPropagation()}>
                 <div className="frame-43">
                     <div className="text-wrapper-13">Purchase</div>
-                    <CloseOne1 className="close-one-1" onClick={onClose} />
+                    <CloseOne1 className="close-one-1" onClick={onClose}/>
                 </div>
                 <div className="frame-44">
                     <div className="text-wrapper-14">{tonAmount} TON</div>
@@ -75,6 +90,6 @@ export const PurchaseConfirm = ({
 
 PurchaseConfirm.propTypes = {
     onClose: PropTypes.func.isRequired,
-    tonAmount: PropTypes.string.isRequired,
+    tonAmount: PropTypes.number.isRequired,
     userId: PropTypes.string.isRequired  // 确保传入userId
 };
