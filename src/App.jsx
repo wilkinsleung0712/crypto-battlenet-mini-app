@@ -3,20 +3,18 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Main } from "./screens/Main";
 import { Purchase } from "./screens/Purchase";
 import { HistoryList } from "./screens/HistoryList";
-import { PurchaseConfirm } from "./screens/PurchaseConfirm";
-import { RewardWin } from "./screens/RewardWin";
-import { ResultWin } from "./screens/ResultWin";
 import { StompSessionProvider } from "react-stomp-hooks";
 import { getUserById } from "./api/api";
 import { setUserInfo, userManager } from "./models/user";
 import { useSnapshot } from "valtio";
+import { THEME, TonConnectUIProvider } from '@tonconnect/ui-react';
 
 const router = createBrowserRouter([
   {
     path: "/*",
     element: (
       <StompSessionProvider
-        url={"wss://b58a5de725ad.ngrok.app/crypto-battlenet"}
+        url={"wss://2b93772af1e9.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -26,7 +24,7 @@ const router = createBrowserRouter([
     path: "/main",
     element: (
       <StompSessionProvider
-        url={"wss://b58a5de725ad.ngrok.app/crypto-battlenet"}
+        url={"wss://2b93772af1e9.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -64,5 +62,53 @@ export const App = () => {
       })
       .catch((error) => console.error("Failed to sign in", error));
   }, [id]);
-  return <RouterProvider router={router} />;
+  return(
+  <TonConnectUIProvider
+      // manifestUrl="http://localhost:1234/manifest.json"
+      manifestUrl="https://wilkinsleung0712.github.io/crypto-battlenet-mini-app/manifest.json"
+      uiPreferences={{theme: THEME.DARK}}
+      walletsListConfiguration={{
+        includeWallets: [
+          {
+            appName: "safepalwallet",
+            name: "SafePal",
+            imageUrl: "https://s.pvcliping.com/web/public_image/SafePal_x288.png",
+            tondns: "",
+            aboutUrl: "https://www.safepal.com",
+            universalLink: "https://link.safepal.io/ton-connect",
+            deepLink: "safepal-tc://",
+            jsBridgeKey: "safepalwallet",
+            bridgeUrl: "https://ton-bridge.safepal.com/tonbridge/v1/bridge",
+            platforms: ["ios", "android", "chrome", "firefox"]
+          },
+          {
+            appName: "bitgetTonWallet",
+            name: "Bitget Wallet",
+            imageUrl: "https://raw.githubusercontent.com/bitkeepwallet/download/main/logo/png/bitget%20wallet_logo_iOS.png",
+            aboutUrl: "https://web3.bitget.com",
+            deepLink: "bitkeep://",
+            jsBridgeKey: "bitgetTonWallet",
+            bridgeUrl: "https://bridge.tonapi.io/bridge",
+            platforms: ["ios", "android", "chrome"],
+            universalLink: "https://bkcode.vip/ton-connect"
+          },
+          {
+            appName: "tonwallet",
+            name: "TON Wallet",
+            imageUrl: "https://wallet.ton.org/assets/ui/qr-logo.png",
+            aboutUrl: "https://chrome.google.com/webstore/detail/ton-wallet/nphplpgoakhhjchkkhmiggakijnkhfnd",
+            universalLink: "https://wallet.ton.org/ton-connect",
+            jsBridgeKey: "tonwallet",
+            bridgeUrl: "https://bridge.tonapi.io/bridge",
+            platforms: ["chrome", "android"]
+          }
+        ]
+      }}
+      actionsConfiguration={{
+        twaReturnUrl: 'https://wilkinsleung0712.github.io/crypto-battlenet-mini-app'
+      }}
+  >
+    <RouterProvider router={router} />
+  </TonConnectUIProvider>
+  )
 };

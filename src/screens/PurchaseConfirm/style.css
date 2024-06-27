@@ -42,7 +42,7 @@
   display: flex;
   flex: 0 0 auto;
   justify-content: space-between;
-  padding: 0px 0px 0px 10px;
+  padding: 0 0 0 10px;
   position: relative;
   width: 100%;
 }
@@ -139,6 +139,8 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   color: #ffffff;
+  background-color: transparent;
+  border: 0px;
   display: -webkit-box;
   font-family: "SF Pro-Semibold", Helvetica;
   font-size: 20px;
