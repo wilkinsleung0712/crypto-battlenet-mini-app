@@ -7,7 +7,7 @@ const initRound = {
   endPrice: null,
   startTime: "",
   endTime: "",
-  openTime: '',
+  openTime: "",
   prizePool: 0,
   status: "OPEN",
   upPayout: 1,
@@ -41,8 +41,8 @@ const initialState = {
   // bid info
   bidId: "",
   bidPayout: 1,
-  bidText: '',
-  bidRoundId: '',
+  bidText: "",
+  bidRoundId: "",
   payoutAmount: 0,
   isNewCloseToast: false,
 };
@@ -84,18 +84,18 @@ export const setRounds = (data) => {
 
 export const setClosedRound = (closedRound) => {
   mainManager.closedRound = closedRound;
-}
+};
 
 export const closeRoundToast = () => {
   mainManager.isNewCloseToast = false;
-  mainManager.bidId = '';
+  mainManager.bidId = "";
   mainManager.bidPayout = 0;
-  mainManager.bidRoundId = '';
-}
+  mainManager.bidRoundId = "";
+};
 
 export const setBid = (id, roundId) => {
   mainManager.bidId = id;
-  mainManager.bidText = mainManager.upId === id ? 'UP' : 'DOWN';
+  mainManager.bidText = mainManager.upId === id ? "UP" : "DOWN";
   mainManager.bidRoundId = roundId;
 };
 
@@ -105,7 +105,7 @@ export const setBidPayout = (payout) => {
 
 export const setPayoutAmount = (amount) => {
   mainManager.payoutAmount = amount;
-}
+};
 
 export const resetMainManager = () => {
   Object.assign(mainManager, initialState);
@@ -121,4 +121,4 @@ export const setPredictStatus = (status) => {
 
 export const resetPredictAmount = () => {
   mainManager.amount = 0;
-}
+};

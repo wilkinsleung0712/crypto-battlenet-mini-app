@@ -3,7 +3,11 @@ import { CheckOne } from "../../icons/CheckOne";
 import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { mainManager, resetPredictAmount, setPredictStatus } from "../../models/main";
+import {
+  mainManager,
+  resetPredictAmount,
+  setPredictStatus,
+} from "../../models/main";
 import { BottomDrawerClose } from "../../components/BottomDrawer";
 
 export const ConfirmPredictSuccess = () => {

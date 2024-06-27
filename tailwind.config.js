@@ -2,7 +2,7 @@
 import pluginAnimate from "tailwindcss-animate";
 
 const config = {
-  mode: 'jit',
+  mode: "jit",
   corePlugins: {
     preflight: false,
   },
