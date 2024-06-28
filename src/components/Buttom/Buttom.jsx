@@ -18,7 +18,7 @@ import {
   BottomDrawerDescription,
 } from "../BottomDrawer";
 import { ConfirmPredictUp } from "../../blocks/confirm-predict-up";
-import * as VisuallyHidden from '@radix-ui/react-visually-hidden';
+import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 
 export const Buttom = ({
   property1,
@@ -71,9 +71,9 @@ export const Buttom = ({
       <BottomDrawerPortal>
         <BottomDrawerOverlay />
         <BottomDrawerContent aria-describedby={undefined}>
-            <VisuallyHidden.Root>
-              <BottomDrawerTitle />
-            </VisuallyHidden.Root>
+          <VisuallyHidden.Root>
+            <BottomDrawerTitle />
+          </VisuallyHidden.Root>
           {property1.includes("DOWN") ? <ConfirmPredictDown /> : null}
           {property1.includes("UP") ? <ConfirmPredictUp /> : null}
         </BottomDrawerContent>
