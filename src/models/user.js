@@ -12,7 +12,7 @@ export const userManager = proxy(initialState);
 
 export const setUserInfo = (data) => {
   userManager.id = data.id ?? 2;
-  userManager.username = data.userName ?? "";
+  userManager.username = data.userName ?? data.username ?? '';
   userManager.points = data.points ?? 0;
   userManager.walletAddress = data.address ?? "";
 };
