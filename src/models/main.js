@@ -28,7 +28,6 @@ const initRound = {
 
 const initialState = {
   amount: 0,
-  maxAmount: faker.number.int({ min: 100, max: 2000 }),
   predictResult: "-1",
   predictSuccess: false,
   upPayout: 1,
@@ -44,6 +43,7 @@ const initialState = {
   bidText: "",
   bidRoundId: "",
   payoutAmount: 0,
+  myPrediction: 0,
   isNewCloseToast: false,
 };
 
@@ -51,18 +51,6 @@ export const mainManager = proxy(initialState);
 
 export const setPredictResult = (status) => {
   mainManager.predictResult = status;
-};
-
-export const setMaxAmount = (value) => {
-  mainManager.maxAmount = value;
-};
-
-export const setAmount = (value) => {
-  if (value > mainManager.maxAmount) {
-    mainManager.amount = mainManager.maxAmount;
-  } else {
-    mainManager.amount = Number(value);
-  }
 };
 
 export const setRounds = (data) => {
@@ -81,6 +69,10 @@ export const setRounds = (data) => {
     mainManager.downPayout = openRound.downPayout.toFixed(2);
   }
 };
+
+export const setMyPrediction = (value) => {
+  mainManager.myPrediction = value;
+}
 
 export const setClosedRound = (closedRound) => {
   mainManager.closedRound = closedRound;

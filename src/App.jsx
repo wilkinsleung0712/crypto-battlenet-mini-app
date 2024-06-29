@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Main } from "./screens/Main";
 import { Purchase } from "./screens/Purchase";
 import { HistoryList } from "./screens/HistoryList";
 import { StompSessionProvider } from "react-stomp-hooks";
-import { getUserById } from "./api/api";
-import { setUserInfo, userManager } from "./models/user";
-import { useSnapshot } from "valtio";
 import { THEME, TonConnectUIProvider } from '@tonconnect/ui-react';
 
 const router = createBrowserRouter([
@@ -14,7 +11,7 @@ const router = createBrowserRouter([
     path: "/*",
     element: (
       <StompSessionProvider
-        url={"wss://2b93772af1e9.ngrok.app/crypto-battlenet"}
+        url={"wss://2665de61f5fd.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -24,7 +21,7 @@ const router = createBrowserRouter([
     path: "/main",
     element: (
       <StompSessionProvider
-        url={"wss://2b93772af1e9.ngrok.app/crypto-battlenet"}
+        url={"wss://2665de61f5fd.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -53,15 +50,6 @@ const router = createBrowserRouter([
 ]);
 
 export const App = () => {
-  const { id } = useSnapshot(userManager);
-  useEffect(() => {
-    if (!id) return;
-    getUserById(id)
-      .then(({ data }) => {
-        setUserInfo(data);
-      })
-      .catch((error) => console.error("Failed to sign in", error));
-  }, [id]);
   return(
   <TonConnectUIProvider
       manifestUrl={process.env.REACT_APP_MANIFEST_URL}

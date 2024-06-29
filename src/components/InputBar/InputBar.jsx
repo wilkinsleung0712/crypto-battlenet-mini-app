@@ -3,9 +3,11 @@ import "./style.css";
 import { Slider } from "../Slider";
 import { useSnapshot } from "valtio";
 import { mainManager, setAmount } from "../../models/main";
+import { userManager } from "../../models/user";
 
 export const InputBar = ({ property1 }) => {
-  const { amount, maxAmount } = useSnapshot(mainManager);
+  const { amount } = useSnapshot(mainManager);
+  const { points } = useSnapshot(userManager);
 
   const handleInputChange = (e) => {
     const value = e.target.value.replace(/[^\d]/g, "");
@@ -17,7 +19,7 @@ export const InputBar = ({ property1 }) => {
   };
 
   const handleMaxClick = () => {
-    handleSliderChange([maxAmount]); // Replace with your MAX value
+    handleSliderChange([points]); // Replace with your MAX value
   };
 
   return (
@@ -33,7 +35,7 @@ export const InputBar = ({ property1 }) => {
             <span className="text-xs text-grey">My Prediction:</span>
             <div className="text-xs text-white font-medium">
               {property1 === "zero" && <>None</>}
-              {["amount-0", "wrong"].includes(property1) && <>{maxAmount} UP</>}
+              {["amount-0", "wrong"].includes(property1) && <>{points} UP</>}
             </div>
           </div>
         </section>
@@ -41,7 +43,7 @@ export const InputBar = ({ property1 }) => {
           <input
             type="number"
             value={amount}
-            max={maxAmount}
+            max={points}
             step={1}
             onChange={handleInputChange}
             className="h-full w-full rounded bg-transparent font-bold px-3.5 text-xl text-white outline-none transition-colors duration-150 ease-linear disabled:cursor-not-allowed disabled:text-grey disabled:placeholder:text-grey border-transparent"
@@ -55,7 +57,7 @@ export const InputBar = ({ property1 }) => {
         </div>
       </div>
       <Slider
-        max={maxAmount}
+        max={points}
         onValueChange={handleSliderChange}
         value={amount}
       />

@@ -3,7 +3,6 @@ import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { PurchaseConfirm } from "../PurchaseConfirm";
 import { useSnapshot } from "valtio";
-import { mainManager } from "../../models/main";
 import { userManager } from "../../models/user";
 import { Link } from "react-router-dom";
 import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";

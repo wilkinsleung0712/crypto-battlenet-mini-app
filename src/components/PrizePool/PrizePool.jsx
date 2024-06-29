@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { InputBar } from "../InputBar";
 import { useSnapshot } from "valtio";
 import { mainManager } from "../../models/main";
@@ -41,7 +41,8 @@ export const PrizePool = () => {
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
               {startTime ? (
                 <Countdown
-                  intervalDelay={1}
+                  autoStart
+                  intervalDelay={0}
                   date={new Date(startTime).toUTCString()}
                   renderer={renderer}
                 />
