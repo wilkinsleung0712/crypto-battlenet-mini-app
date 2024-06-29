@@ -19,6 +19,9 @@ import {
 } from "../BottomDrawer";
 import { ConfirmPredictUp } from "../../blocks/confirm-predict-up";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { setUserInfo, userManager } from "../../models/user";
+import { getUserById } from "../../api/api";
+import { useSnapshot } from "valtio";
 
 export const Buttom = ({
   property1,
@@ -29,6 +32,16 @@ export const Buttom = ({
   icon = <ArrowRightUp1 className="arrow-right-up" />,
   to,
 }) => {
+  const { id } = useSnapshot(userManager);
+
+  const getUserInfo = () => {
+    getUserById(id)
+      .then(({ data }) => {
+        setUserInfo(data);
+      })
+      .catch((error) => console.error("Failed to get user info", error));
+  }
+
   if (disabled) {
     return (
       <div className="w-full">
@@ -74,8 +87,8 @@ export const Buttom = ({
           <VisuallyHidden.Root>
             <BottomDrawerTitle />
           </VisuallyHidden.Root>
-          {property1.includes("DOWN") ? <ConfirmPredictDown /> : null}
-          {property1.includes("UP") ? <ConfirmPredictUp /> : null}
+          {property1.includes("DOWN") ? <ConfirmPredictDown refresh={getUserInfo} /> : null}
+          {property1.includes("UP") ? <ConfirmPredictUp refresh={getUserInfo} /> : null}
         </BottomDrawerContent>
       </BottomDrawerPortal>
     </BottomDrawerRoot>

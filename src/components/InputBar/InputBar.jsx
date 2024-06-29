@@ -11,7 +11,7 @@ export const InputBar = ({ property1 }) => {
 
   const handleInputChange = (e) => {
     const value = e.target.value.replace(/[^\d]/g, "");
-    setAmount(value);
+    setAmount(Number(value));
   };
 
   const handleSliderChange = (values) => {

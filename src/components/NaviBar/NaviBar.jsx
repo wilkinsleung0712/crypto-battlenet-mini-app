@@ -7,7 +7,7 @@ import { QuestionIcon } from "../../icons/Question";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { resetUserManager, setUserInfo, userManager } from "../../models/user";
+import { setUserInfo, userManager } from "../../models/user";
 import { getUserById } from "../../api/api";
 
 export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {

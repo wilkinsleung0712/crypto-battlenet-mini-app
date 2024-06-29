@@ -16,7 +16,7 @@ import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess"
 import { placeBet } from "../../api/api";
 import { userManager } from "../../models/user";
 
-export const ConfirmPredictUp = () => {
+export const ConfirmPredictUp = ({ refresh }) => {
   const { amount, upPayout, predictSuccess, openRound, upId } =
     useSnapshot(mainManager);
   const { id } = useSnapshot(userManager);
@@ -31,6 +31,7 @@ export const ConfirmPredictUp = () => {
         setPredictStatus(true);
         setBid(upId, openRound?.roundId);
         setBidPayout(response.data?.payout);
+        refresh();
       })
       .catch((error) => console.error("Error placing bet", error));
   };
