@@ -34,7 +34,7 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
       if (telegramUserData) {
         setUserInfo({
           id: telegramUserData.id,
-          username: telegramUserData.first_name, // assuming first_name is the field for username
+          userName: telegramUserData.first_name, // assuming first_name is the field for username
           points: telegramUserData.points,
         });
       } else {
