@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     path: "/*",
     element: (
       <StompSessionProvider
-        url={"wss://2665de61f5fd.ngrok.app/crypto-battlenet"}
+        url={"wss://4c33852a2949.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     path: "/main",
     element: (
       <StompSessionProvider
-        url={"wss://2665de61f5fd.ngrok.app/crypto-battlenet"}
+        url={"wss://4c33852a2949.ngrok.app/crypto-battlenet"}
       >
         <Main />
       </StompSessionProvider>

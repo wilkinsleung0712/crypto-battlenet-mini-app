@@ -1,5 +1,5 @@
-import { faker } from "@faker-js/faker";
 import { proxy } from "valtio";
+import { userManager } from "./user";
 
 const initRound = {
   roundId: "",
@@ -51,6 +51,14 @@ export const mainManager = proxy(initialState);
 
 export const setPredictResult = (status) => {
   mainManager.predictResult = status;
+};
+
+export const setAmount = (value) => {
+  if (value > userManager.points) {
+    mainManager.amount = mainManager.maxAmount;
+  } else {
+    mainManager.amount = Number(value);
+  }
 };
 
 export const setRounds = (data) => {
