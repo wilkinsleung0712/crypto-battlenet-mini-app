@@ -3,7 +3,6 @@ import { CloseOne1 } from "../../icons/CloseOne1";
 import "./style.css";
 import { PurchaseConfirm } from "../PurchaseConfirm";
 import { useSnapshot } from "valtio";
-import { mainManager } from "../../models/main";
 import { userManager } from "../../models/user";
 import { Link } from "react-router-dom";
 import { TonConnectButton, useTonAddress } from "@tonconnect/ui-react";
@@ -13,7 +12,7 @@ const coinItems = [
   { image: "/img/20-1.png", amount: 1500, price: "$4.99" },
   { image: "/img/19-1.png", amount: 4050, price: "$13.49" },
   { image: "/img/17.png", amount: 8100, price: "$26.99" },
-  { image: "/img/15.png", amount: 20700, price: "$68.99" },
+  { image: "/img/pool.png", amount: 20700, price: "$68.99" },
   { image: "/img/14.png", amount: 39000, price: "$129.99" },
 ];
 

@@ -16,7 +16,7 @@ import { userManager } from "../../models/user";
 import { placeBet } from "../../api/api"; // 确保这里的路径指向你的API文件
 import { ConfirmPredictSuccess } from "../predict-success/ConfirmPredictSuccess";
 
-export const ConfirmPredictDown = () => {
+export const ConfirmPredictDown = ({ refresh }) => {
   const { amount, downPayout, predictSuccess, openRound, downId } =
     useSnapshot(mainManager);
   const { id } = useSnapshot(userManager);
@@ -31,6 +31,7 @@ export const ConfirmPredictDown = () => {
         setBid(downId);
         setPredictStatus(true);
         setBidPayout(response.data?.payout);
+        refresh();
       })
       .catch((error) => console.error("Error placing bet", error));
   };
