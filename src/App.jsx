@@ -104,7 +104,7 @@ export const App = () => {
         ]
       }}
       actionsConfiguration={{
-        twaReturnUrl: 'https://t.me/tc_twa_demo_bot/start'
+        twaReturnUrl: process.env.REACT_APP_API_BASE_URL
       }}
   >
     <RouterProvider router={router} />
