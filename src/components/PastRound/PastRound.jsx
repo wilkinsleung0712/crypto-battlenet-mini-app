@@ -79,7 +79,8 @@ export const PastRound = () => {
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
               {roundId ? (
                 <Countdown
-                  intervalDelay={1}
+                  autoStart
+                  intervalDelay={0}
                   date={new Date(endTime).toUTCString()}
                   renderer={renderer}
                 />

@@ -35,6 +35,7 @@ import { RewardWin } from "../../blocks/reward-win";
 import { RewardLose } from "../../blocks/reward-lose";
 import { getRoundResult } from "../../api/api";
 import dayjs from "dayjs";
+import { PredictResult } from "../../blocks/predict-result/PredictResult";
 export const MediaBar = {
   social_link_haya: "https://example.com/sphere2",
   social_link_exchangehaya: "https://example.com/x1",
@@ -48,9 +49,11 @@ export const MediaBar = {
 
 export const Main = () => {
   const [open, setOpen] = useState(false);
+  const [resultOpen, setResultOpen] = useState(false);
+
   const { upPayout, downPayout, amount, openRound, closedRound, payoutAmount } =
     useSnapshot(mainManager);
-  const { id } = useSnapshot(userManager);
+  const { id, username } = useSnapshot(userManager);
 
   useSubscription("/topic/rounds", (message) => {
     try {
@@ -86,6 +89,7 @@ export const Main = () => {
             ) {
               setTimeout(() => {
                 setOpen(true);
+                setResultOpen(open);
               }, 500);
             }
           })
@@ -93,6 +97,14 @@ export const Main = () => {
       }
     }
   }, [closedRound.roundId]);
+
+  useEffect(() => {
+    if (resultOpen) {
+      setTimeout(() => {
+        setResultOpen(false);
+      }, 3000);
+    }
+  }, [resultOpen]);
 
   useEffect(() => {
     // setRounds([
@@ -138,7 +150,7 @@ export const Main = () => {
 
   return (
     <div className="main w-full grid gap-2.5">
-      <div className="px-2.5">
+      <div className="px-2.5 grid gap-2">
         <NaviBar className="flex-0 p-2.5 w-full" vector="/img/vector-5.svg" />
       </div>
       <div className="px-2.5">
@@ -177,7 +189,13 @@ export const Main = () => {
             <VisuallyHidden.Root>
               <BottomDrawerTitle />
             </VisuallyHidden.Root>
-            {payoutAmount > 0 ? <RewardWin /> : <RewardLose />}
+            {
+              resultOpen? (
+                <PredictResult />
+              ) : (
+                payoutAmount > 0 ? <RewardWin /> : <RewardLose />
+              )
+            }
           </BottomDrawerContent>
         </BottomDrawerPortal>
       </BottomDrawerRoot>

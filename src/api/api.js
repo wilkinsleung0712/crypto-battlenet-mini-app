@@ -1,9 +1,7 @@
 import axios from "axios";
 
 // 从环境变量中获取基础URL和默认内容类型
-const API_BASE_URL =
-  // @ts-ignore
-  process.env.REACT_APP_API_BASE_URL || "https://b58a5de725ad.ngrok.app";
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost";
 const CONTENT_TYPE =
   // @ts-ignore
   process.env.REACT_APP_API_CONTENT_TYPE || "application/json";
