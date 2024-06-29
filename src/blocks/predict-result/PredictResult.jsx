@@ -7,6 +7,8 @@ import { BottomDrawerClose } from "../../components/BottomDrawer";
 import { useSnapshot } from "valtio";
 import { mainManager } from "../../models/main";
 import { formatCurrency } from "../../utils";
+import { twMerge } from "tailwind-merge";
+import dayjs from "dayjs";
 
 export const PredictResult = () => {
   const { closedRound } = useSnapshot(mainManager);
@@ -25,22 +27,27 @@ export const PredictResult = () => {
           </BottomDrawerClose>
         </div>
         <div className="frame-54">
-          <div className="frame-55">
+          <div className="frame-55 text-center">
             {priceChange > 0 ? (
                 <TrendingUp2 className="trending-down" />
               ) : priceChange < 0 ? (
                 <TrendingDown2 className="trending-down" />
               ) : null}
-            <div className="text-wrapper-23">${endPrice}</div>
-            <div className="text-wrapper-24">{priceChange > 0
-                      ? `+$${formatCurrency(priceChange)}`
-                      : `-$${formatCurrency(Math.abs(priceChange))}`}</div>
+            <div className="text-xl font-semibold text-white text-center">${endPrice}</div>
+            <div className={twMerge('text-sm', priceChange > 0 ? 'text-green' : 'text-red')}>{priceChange > 0
+                ? `+$${formatCurrency(priceChange)}`
+                : `-$${formatCurrency(Math.abs(priceChange))}`}
+            </div>
+            <div className="frame-65 flex justify-center gap-2">
+              <div className="text-wrapper-31">#{closedRound.roundId}</div>
+              <div className="text-wrapper-31">
+                Time: {dayjs(closedRound.endTime).format("YYYY.MM.DD HH:mm:ss")}
+              </div>
+            </div>
           </div>
         </div>
-        <div className="frame-57">
-          <div className="frame-58">
-            <div className="saved-messages-5">Share</div>
-          </div>
+        <div className="flex w-full justify-center bg-white items-center flex h-[50px] rounded-xl flex-1">
+          <div className="leading-[50px] text-black text-xl font-medium font-regular">Share</div>
         </div>
       </div>
     </div>

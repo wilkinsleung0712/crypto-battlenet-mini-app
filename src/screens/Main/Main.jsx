@@ -89,8 +89,10 @@ export const Main = () => {
             ) {
               setTimeout(() => {
                 setOpen(true);
-                setResultOpen(open);
               }, 500);
+            }
+            if (res.data?.bet) {
+              setResultOpen(true);
             }
           })
           .catch((error) => console.error("Error get round result", error));
@@ -102,7 +104,7 @@ export const Main = () => {
     if (resultOpen) {
       setTimeout(() => {
         setResultOpen(false);
-      }, 3000);
+      }, 5000);
     }
   }, [resultOpen]);
 
