@@ -2,7 +2,7 @@ import { faker } from "@faker-js/faker";
 import { proxy } from "valtio";
 
 const initialState = {
-  id: 2,
+  id: 4,
   username: "Stranger",
   walletAddress: "",
   points: 0,
@@ -13,13 +13,13 @@ const initialState = {
 export const userManager = proxy(initialState);
 
 export const setUserFromTg = (data) => {
-  userManager.idFromTg = data.id ?? 2;
-  userManager.usernameFromTg = data.username ?? '';
+  userManager.idFromTg = data.id ?? '';
+  userManager.username = data.username ?? '';
 }
 
 export const setUserInfo = (data) => {
-  userManager.id = data.id ?? 2;
-  userManager.username = data.userName ?? data.username ?? '';
+  userManager.id = data.id ?? 4;
+  // userManager.username = data.userName ?? data.username ?? '';
   userManager.points = data.points ?? 0;
   userManager.walletAddress = data.address ?? "";
 };
