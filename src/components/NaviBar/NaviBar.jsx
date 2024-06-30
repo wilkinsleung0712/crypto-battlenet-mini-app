@@ -7,8 +7,8 @@ import { QuestionIcon } from "../../icons/Question";
 import { Link } from "react-router-dom";
 import "./style.css";
 import { useSnapshot } from "valtio";
-import { setUserInfo, userManager } from "../../models/user";
-import { getUserById } from "../../api/api";
+import { setUserFromTg, setUserInfo, userManager } from "../../models/user";
+import { getUserById, registerUser } from "../../api/api";
 
 export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
   const { id, username, points } = useSnapshot(userManager);
@@ -32,20 +32,18 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
       const telegramUserData = Telegram.WebApp.initDataUnsafe?.user;
       console.log('telegramUserData', telegramUserData)
       if (telegramUserData) {
-        setUserInfo({
+        setUserFromTg({
           id: telegramUserData.id,
-          userName: telegramUserData.first_name, // assuming first_name is the field for username
-          points: telegramUserData.points,
-        });
+          username: telegramUserData.first_name,
+        })
+        getUserInfo(4);
       } else {
         console.error("Telegram user data is not available. Hello stranger.");
-        // resetUserManager();
         if (!id) return;
         getUserInfo(id);
       }
     } else {
       console.error("Telegram WebApp not available. Hello stranger.");
-      // resetUserManager();
       if (!id) return;
       getUserInfo(id);
     }

@@ -6,9 +6,16 @@ const initialState = {
   username: "Stranger",
   walletAddress: "",
   points: 0,
+  idFromTg: '',
+  usernameFromTg: '',
 };
 
 export const userManager = proxy(initialState);
+
+export const setUserFromTg = (data) => {
+  userManager.idFromTg = data.id ?? 2;
+  userManager.usernameFromTg = data.username ?? '';
+}
 
 export const setUserInfo = (data) => {
   userManager.id = data.id ?? 2;
