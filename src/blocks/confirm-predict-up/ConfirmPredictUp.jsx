@@ -25,7 +25,7 @@ export const ConfirmPredictUp = ({ refresh }) => {
     placeBet(1, openRound?.roundId, {
       optionId: upId,
       amount,
-      userId: id,
+      telegramId: id,
     })
       .then((response) => {
         setPredictStatus(true);

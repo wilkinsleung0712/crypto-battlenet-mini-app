@@ -5,13 +5,14 @@ import { Purchase } from "./screens/Purchase";
 import { HistoryList } from "./screens/HistoryList";
 import { StompSessionProvider } from "react-stomp-hooks";
 import { THEME, TonConnectUIProvider } from '@tonconnect/ui-react';
+import { WSS_BASE_URL } from "./api/api";
 
 const router = createBrowserRouter([
   {
     path: "/*",
     element: (
       <StompSessionProvider
-        url={"wss://4c33852a2949.ngrok.app/crypto-battlenet"}
+        url={`${WSS_BASE_URL}/crypto-battlenet`}
       >
         <Main />
       </StompSessionProvider>
@@ -21,7 +22,7 @@ const router = createBrowserRouter([
     path: "/main",
     element: (
       <StompSessionProvider
-        url={"wss://4c33852a2949.ngrok.app/crypto-battlenet"}
+        url={`${WSS_BASE_URL}/crypto-battlenet`}
       >
         <Main />
       </StompSessionProvider>

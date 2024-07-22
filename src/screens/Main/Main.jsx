@@ -53,7 +53,7 @@ export const Main = () => {
 
   const { upPayout, downPayout, amount, openRound, closedRound, payoutAmount } =
     useSnapshot(mainManager);
-  const { id, username } = useSnapshot(userManager);
+  const { id } = useSnapshot(userManager);
 
   useSubscription("/topic/rounds", (message) => {
     try {
@@ -89,7 +89,7 @@ export const Main = () => {
             ) {
               setTimeout(() => {
                 setOpen(true);
-              }, 500);
+              }, 300);
             }
             if (res.data?.bet) {
               setResultOpen(true);
@@ -104,7 +104,7 @@ export const Main = () => {
     if (resultOpen) {
       setTimeout(() => {
         setResultOpen(false);
-      }, 5000);
+      }, 3000);
     }
   }, [resultOpen]);
 

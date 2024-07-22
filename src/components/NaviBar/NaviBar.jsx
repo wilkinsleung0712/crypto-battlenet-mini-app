@@ -8,18 +8,10 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { useSnapshot } from "valtio";
 import { setUserFromTg, setUserInfo, userManager } from "../../models/user";
-import { getUserById, registerUser } from "../../api/api";
+import { registerUser } from "../../api/api";
 
 export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
   const { id, username, points } = useSnapshot(userManager);
-
-  const getUserInfo = (id) => {
-    getUserById(id)
-      .then(({ data }) => {
-        setUserInfo(data);
-      })
-      .catch((error) => console.error("Failed to get user info", error));
-  }
 
   useEffect(() => {
     // Check if Telegram Web App API is available and ready
@@ -30,24 +22,31 @@ export const NaviBar = ({ className, vector = "/img/vector-4.svg" }) => {
 
       // @ts-ignore
       const telegramUserData = Telegram.WebApp.initDataUnsafe?.user;
-      console.log('telegramUserData', telegramUserData)
       if (telegramUserData) {
         setUserFromTg({
           id: telegramUserData.id,
           username: telegramUserData.first_name,
         })
-        getUserInfo(4);
       } else {
         console.error("Telegram user data is not available. Hello stranger.");
-        if (!id) return;
-        getUserInfo(id);
       }
     } else {
       console.error("Telegram WebApp not available. Hello stranger.");
-      if (!id) return;
-      getUserInfo(id);
     }
-  }, [id]);
+  }, []);
+
+  useEffect(() => {
+    registerUser({
+      username,
+      telegramId: id,
+    }).then((res)=> {
+      console.log('register user', res?.data);
+      if (res.data) {
+        setUserInfo(res.data)
+      }
+    }).catch((error) => console.error("Register error", error));
+
+  }, [id])
 
   return (
     <div className={`navi-bar ${className}`}>

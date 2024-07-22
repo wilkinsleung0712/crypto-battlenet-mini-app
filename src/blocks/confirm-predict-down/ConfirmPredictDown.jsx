@@ -25,7 +25,7 @@ export const ConfirmPredictDown = ({ refresh }) => {
     placeBet(1, openRound?.roundId, {
       optionId: downId,
       amount,
-      userId: id,
+      telegramId: id,
     })
       .then((response) => {
         setBid(downId);
