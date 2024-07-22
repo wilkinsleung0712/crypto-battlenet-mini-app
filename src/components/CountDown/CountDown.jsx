@@ -1,33 +1,39 @@
-/*
-We're constantly improving the code you see. 
-Please share your feedback here: https://form.asana.com/?k=uvp-HPgd3_hyoXRBw1IcNg&d=1152665201300829
-*/
+import React, { useState, useEffect, useRef } from 'react';
 
-import PropTypes from "prop-types";
-import React from "react";
-import "./style.css";
+export const CountdownTimer = ({ timeLeft }) => {
+    const [minutes, setMinutes] = useState(0);
+    const [seconds, setSeconds] = useState(0);
+    const timer = useRef();
 
-export const CountDown = ({
-  property1,
-  className,
-  frameClassName,
-  union = "https://cdn.animaapp.com/projects/66641dbc59e6661189d283f3/releases/66641de4dc5f7759f1404660/img/union.svg",
-}) => {
-  return (
-    <div className={`count-down ${className}`}>
-      <div className={`frame ${frameClassName}`}>
-        <img className="union" alt="Union" src={union} />
-      </div>
-      <div className={`element ${property1}`}>
-        {property1 === "default" && <>4m30s</>}
 
-        {property1 === "sixty-s" && <>59s</>}
-      </div>
-    </div>
-  );
-};
+    useEffect(() => {
+      if (timeLeft) {
+        setMinutes(Math.floor(timeLeft / 60));
+        setSeconds(timeLeft % 60);
+      }
+    }, [timeLeft]);
+    
+    useEffect(() => {
+        timer.current = setInterval(() => {
+          console.log('timeLeft111', minutes, seconds)
+          if (seconds > 0) {
+              setSeconds(seconds - 1);
+          } else {
+              if (minutes > 0) {
+                setMinutes(minutes - 1);
+                setSeconds(59);
+              }
+          }
+        }, 1000);
 
-CountDown.propTypes = {
-  property1: PropTypes.oneOf(["sixty-s", "default"]),
-  union: PropTypes.string,
+    return () => {
+      if (timer.current) clearInterval(timer.current);
+    }
+    }, [minutes, seconds]);
+
+    return (
+        <div>
+          { minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`}
+        </div>
+    );
 };

@@ -91,5 +91,5 @@ export const PurchaseConfirm = ({
 PurchaseConfirm.propTypes = {
     onClose: PropTypes.func.isRequired,
     tonAmount: PropTypes.number.isRequired,
-    userId: PropTypes.string.isRequired  // 确保传入userId
+    telegramId: PropTypes.string.isRequired  // 确保传入userId
 };

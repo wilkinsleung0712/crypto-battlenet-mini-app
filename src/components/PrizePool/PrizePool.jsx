@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { InputBar } from "../InputBar";
 import { useSnapshot } from "valtio";
 import { mainManager } from "../../models/main";
 import Countdown from "react-countdown";
 import PoolImg from "../../../static/img/pool.png";
 import { formatCoin } from "../../utils";
+import dayjs from "dayjs";
+// import { CountdownTimer } from "../countdown";
 
 export const PrizePool = () => {
   const { openRound } = useSnapshot(mainManager);
   const { roundId, startTime, prizePool } = openRound || {};
+  const [timeLeft, setTimeLeft] = useState(0);
+
+  useEffect(() => {
+    if (startTime) {
+      const now = new Date().toUTCString();
+      const diff = dayjs(new Date(startTime).toUTCString()).diff(now, 'seconds');
+      setTimeLeft(diff - 1);
+    }
+  }, [startTime]);
 
   const renderer = ({ minutes, seconds, completed }) => {
     if (completed) {
@@ -39,6 +50,7 @@ export const PrizePool = () => {
               Next #{roundId}
             </div>
             <span className="text-xs font-semibold font-regular text-grey px-2.5 py-1 bg-black/20 rounded-[15px] font-[inter]">
+              {/* <CountdownTimer timeLeft={timeLeft} /> */}
               {startTime ? (
                 <Countdown
                   autoStart

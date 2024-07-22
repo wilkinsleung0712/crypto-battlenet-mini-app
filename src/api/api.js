@@ -1,6 +1,7 @@
 import axios from "axios";
 
 // 从环境变量中获取基础URL和默认内容类型
+export const WSS_BASE_URL = "wss://1ebd331653a9.ngrok.app";
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "http://localhost";
 const CONTENT_TYPE =
   // @ts-ignore

@@ -19,6 +19,7 @@ export const InputBar = ({ property1 }) => {
   };
 
   const handleMaxClick = () => {
+    if (points === 0) return;
     handleSliderChange([points]); // Replace with your MAX value
   };
 
@@ -45,6 +46,7 @@ export const InputBar = ({ property1 }) => {
             value={amount}
             max={points}
             step={1}
+            disabled={points === 0}
             onChange={handleInputChange}
             className="h-full w-full rounded bg-transparent font-bold px-3.5 text-xl text-white outline-none transition-colors duration-150 ease-linear disabled:cursor-not-allowed disabled:text-grey disabled:placeholder:text-grey border-transparent"
           />
